@@ -7,6 +7,9 @@ plugins {
     id 'com.gladed.androidgitversion' version '0.4.14'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 kapt {
     correctErrorTypes = true
 }
@@ -36,6 +39,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField("String", "OPEN_WEATHER_MAP_API_KEY", localProperties['OPEN_WEATHER_MAP_API_KEY'])
+        buildConfigField("String", "NEWS_DATA_IO_API_KEY", localProperties['NEWS_DATA_IO_API_KEY'])
     }
 
     buildTypes {

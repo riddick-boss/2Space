@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import abandonedstudio.app.tospace.ui.theme.ToSpaceTheme
+import abandonedstudio.app.tospace.core.presentation.theme.ToSpaceTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
