@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">ToSpace</string>
+    <string name="app_name">2Space</string>
 
-<!--    -->
+    <!--    main drawer -->
+    <string name="main_drawer_dashboard_title">Dashboard</string>
+    <string name="main_drawer_launches_title">Launches</string>
+    <string name="main_drawer_news_title">News</string>
+    <string name="main_drawer_contact_title">Contact</string>
+
+    <!--   content description -->
     <string name="content_description">Content description</string>
 </resources>
