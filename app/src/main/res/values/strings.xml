@@ -9,4 +9,13 @@
 
     <!--   content description -->
     <string name="content_description">Content description</string>
+
+    <!--   dashboard -->
+    <string name="dashboard_region_title">Region</string>
+    <string name="dashboard_temperature_title">Temp</string>
+    <string name="dashboard_temperature_content">%1$d °C</string>
+    <string name="dashboard_weather_title">Weather</string>
+    <string name="dashboard_wind_title">Wind</string>
+    <string name="dashboard_wind_content">%1$d m/s</string>
+    <string name="dashboard_no_data">No data</string>
 </resources>

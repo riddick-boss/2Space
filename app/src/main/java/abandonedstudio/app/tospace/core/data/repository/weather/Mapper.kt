@@ -4,4 +4,8 @@ import abandonedstudio.app.tospace.core.data.remote.weather.dto.OpenWeatherMapRe
 import abandonedstudio.app.tospace.core.domain.model.Weather
 
 fun OpenWeatherMapResponse.toWeather() =
-    Weather(id)
+    Weather(
+        temperature = this.main.temp,
+        summary = this.weather.first().description,
+        wind = this.wind.speed
+    )

@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import abandonedstudio.app.tospace.core.presentation.theme.ToSpaceTheme
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
-import abandonedstudio.app.tospace.navigation.maindrawer.MainDrawer
+import abandonedstudio.app.tospace.core.navigation.maindrawer.MainDrawer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.res.painterResource
@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
 private fun App() {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground), // TODO: icon
+            painter = painterResource(id = R.drawable.ic_launcher_foreground), // TODO: image
             contentDescription = contentDescription(),
             modifier = Modifier.fillMaxSize()
         )
