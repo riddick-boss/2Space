@@ -19,7 +19,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadCanaveralWeather())
             } catch (e: Exception) {
-                e.message?.run {
+                e.localizedMessage?.run {
                     showToast(this)
                 }
             }
@@ -32,7 +32,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadCanaveralWeather()) //TODO: starbase
             } catch (e: Exception) {
-                e.message?.run {
+                e.localizedMessage?.run {
                     showToast(this)
                 }
             }
@@ -42,7 +42,7 @@ class DashboardViewModel @Inject constructor(
 
 
     val showWeatherLoading: StateFlow<Boolean> by lazy {
-        combine(capeCanaveralWeather, starBaseWeather) { t1, t2 -> t1 != null && t2 != null }
+        combine(capeCanaveralWeather, starBaseWeather) { t1, t2 -> t1 == null || t2 == null }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
     }
 }

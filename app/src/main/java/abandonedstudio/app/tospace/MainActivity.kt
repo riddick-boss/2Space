@@ -12,7 +12,12 @@ import abandonedstudio.app.tospace.core.navigation.maindrawer.MainDrawer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.res.painterResource
+import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * @author Pawel Kremienowski <Kremienowski33@gmail.com>
+ */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
