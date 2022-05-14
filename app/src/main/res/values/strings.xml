@@ -1,3 +1,31 @@
 <resources>
-    <string name="app_name">ToSpace</string>
+    <string name="app_name">2Space</string>
+
+    <!--    main drawer -->
+    <string name="main_drawer_dashboard_title">Dashboard</string>
+    <string name="main_drawer_launches_title">Launches</string>
+    <string name="main_drawer_news_title">News</string>
+    <string name="main_drawer_contact_title">Contact</string>
+
+    <!--   content description -->
+    <string name="content_description">Content description</string>
+
+    <!--   dashboard -->
+    <string name="dashboard_region_title">Region</string>
+    <string name="dashboard_temperature_title">Temp</string>
+    <string name="dashboard_launch_facilities">Launch facilities</string>
+    <string name="dashboard_temperature_content">%1$.2f °C</string>
+    <string name="dashboard_weather_title">Weather</string>
+    <string name="dashboard_wind_title">Wind</string>
+    <string name="dashboard_wind_content">%1$.2f m/s</string>
+    <string name="dashboard_no_data">No data</string>
+    <string name="dashboard_canaveral_location">Cape canaveral</string>
+    <string name="dashboard_canaveral_launchpad">LC-39A &amp; SLC-40</string>
+    <string name="dashboard_canaveral_region">Florida</string>
+    <string name="dashboard_starship_location">Starbase</string>
+    <string name="dashboard_starship_launchpad">Starship Launch Facility</string>
+    <string name="dashboard_starship_region">Texas</string>
+    <string name="dashboard_vandenberg_location">Vandenberg</string>
+    <string name="dashboard_vandenberg_launchpad">USSF SLC-4E</string>
+    <string name="dashboard_vandenberg_region">California</string>
 </resources>
