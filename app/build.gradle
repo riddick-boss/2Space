@@ -10,6 +10,10 @@ plugins {
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 
+// Load keystore
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(rootProject.file("releasekeystore.properties")))
+
 kapt {
     correctErrorTypes = true
 }
@@ -44,12 +48,22 @@ android {
         buildConfigField("String", "NEWS_DATA_IO_API_KEY", localProperties['NEWS_DATA_IO_API_KEY'])
     }
 
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         debug {
