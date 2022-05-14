@@ -2,7 +2,6 @@ package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +32,6 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadStarbaseWeather())
             } catch (e: Exception) {
-                Log.d("dashboardVm", e.toString()) //TODO: del
                 e.localizedMessage?.run {
                     showToast(this)
                 }

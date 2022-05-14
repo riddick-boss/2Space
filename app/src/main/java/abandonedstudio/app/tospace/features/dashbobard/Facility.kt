@@ -165,16 +165,12 @@ private fun Region(
 
 @Composable
 private fun TemperatureText(
-    temperature: String?
+    temperature: String
 ) {
     TitledText(
         titleResId = R.string.dashboard_temperature_title,
-        content = temperature?.let {
-            StringUtil.getString(
-                R.string.dashboard_temperature_content,
-                it
-            )
-        } ?: stringResource(id = R.string.dashboard_no_data))
+        content = temperature
+    )
 }
 
 @Composable
@@ -186,14 +182,10 @@ private fun WeatherText(
 
 @Composable
 private fun WindText(
-    wind: String?
+    wind: String
 ) {
     TitledText(
         titleResId = R.string.dashboard_wind_title,
-        content = wind?.let {
-            StringUtil.getString(
-                R.string.dashboard_temperature_content,
-                it
-            )
-        } ?: stringResource(id = R.string.dashboard_no_data))
+        content = wind
+    )
 }

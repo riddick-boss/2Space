@@ -9,101 +9,101 @@ import androidx.annotation.Keep
 @Serializable
 data class OpenWeatherMapResponse(
     @SerialName("base")
-    val base: String,
+    val base: String? = null,
     @SerialName("clouds")
-    val clouds: Clouds,
+    val clouds: Clouds? = null,
     @SerialName("cod")
-    val cod: Int,
+    val cod: Int? = null,
     @SerialName("coord")
-    val coord: Coord,
+    val coord: Coord? = null,
     @SerialName("dt")
-    val dt: Int,
+    val dt: Int? = null,
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("main")
-    val main: Main,
+    val main: Main? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("sys")
-    val sys: Sys,
+    val sys: Sys? = null,
     @SerialName("timezone")
-    val timezone: Int,
+    val timezone: Int? = null,
     @SerialName("visibility")
-    val visibility: Int,
+    val visibility: Int? = null,
     @SerialName("weather")
-    val weather: List<Weather>,
+    val weather: List<Weather?>? = null,
     @SerialName("wind")
-    val wind: Wind
+    val wind: Wind? = null
 ) {
     @Keep
     @Serializable
     data class Clouds(
         @SerialName("all")
-        val all: Int
+        val all: Int? = null
     )
 
     @Keep
     @Serializable
     data class Coord(
         @SerialName("lat")
-        val lat: Double,
+        val lat: Double? = null,
         @SerialName("lon")
-        val lon: Double
+        val lon: Double? = null
     )
 
     @Keep
     @Serializable
     data class Main(
         @SerialName("feels_like")
-        val feelsLike: Double,
+        val feelsLike: Double? = null,
         @SerialName("humidity")
-        val humidity: Int,
+        val humidity: Int? = null,
         @SerialName("pressure")
-        val pressure: Int,
+        val pressure: Int? = null,
         @SerialName("temp")
-        val temp: Double,
+        val temp: Double? = null,
         @SerialName("temp_max")
-        val tempMax: Double,
+        val tempMax: Double? = null,
         @SerialName("temp_min")
-        val tempMin: Double
+        val tempMin: Double? = null
     )
 
     @Keep
     @Serializable
     data class Sys(
         @SerialName("country")
-        val country: String,
+        val country: String? = null,
         @SerialName("id")
-        val id: Int,
+        val id: Int? = null,
         @SerialName("message")
-        val message: Double,
+        val message: Double? = null,
         @SerialName("sunrise")
-        val sunrise: Int,
+        val sunrise: Int? = null,
         @SerialName("sunset")
-        val sunset: Int,
+        val sunset: Int? = null,
         @SerialName("type")
-        val type: Int
+        val type: Int? = null
     )
 
     @Keep
     @Serializable
     data class Weather(
         @SerialName("description")
-        val description: String,
+        val description: String? = null,
         @SerialName("icon")
-        val icon: String,
+        val icon: String? = null,
         @SerialName("id")
-        val id: Int,
+        val id: Int? = null,
         @SerialName("main")
-        val main: String
+        val main: String? = null
     )
 
     @Keep
     @Serializable
     data class Wind(
         @SerialName("deg")
-        val deg: Int,
+        val deg: Int? = null,
         @SerialName("speed")
-        val speed: Double
+        val speed: Double? = null
     )
 }
