@@ -16,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,6 +45,7 @@ fun MainDrawer() {
 
     ModalDrawer(
         drawerState = drawerState,
+        drawerShape = RectangleShape,
         gesturesEnabled = drawerState.isOpen,
         drawerContent = {
             DrawerContent(drawerNavController, drawerState, scope)
@@ -61,6 +63,7 @@ fun MainDrawer() {
 private fun DrawerContent(navController: NavController, drawerState: DrawerState, scope: CoroutineScope) {
     Column(
         modifier = Modifier
+            .fillMaxHeight()
             .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Blue)))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -124,20 +127,23 @@ private fun NavGraphBuilder.composableScreen(screen: MainDrawerScreen, onIconCli
 
 @Composable
 private fun TopBar(@StringRes titleResId: Int, onIconClicked: () -> Unit) {
-    TopAppBar(
-        title = {
-            Text(
-                text = stringResource(id = titleResId),
-                style = MaterialTheme.typography.subtitle2
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = onIconClicked) {
-                Icon(Icons.Filled.Menu, contentDescription = contentDescription())
-            }
-        },
-        backgroundColor = Color.Transparent,
-        contentColor = Color.White,
-        elevation = 0.dp
-    )
+    Column(modifier = Modifier.fillMaxWidth()) {
+        TopAppBar(
+            title = {
+                Text(
+                    text = stringResource(id = titleResId),
+                    style = MaterialTheme.typography.subtitle2
+                )
+            },
+            navigationIcon = {
+                IconButton(onClick = onIconClicked) {
+                    Icon(Icons.Filled.Menu, contentDescription = contentDescription())
+                }
+            },
+            backgroundColor = Color.Transparent,
+            contentColor = Color.White,
+            elevation = 0.dp
+        )
+        Divider(color = Color.Blue, thickness = 2.dp)
+    }
 }

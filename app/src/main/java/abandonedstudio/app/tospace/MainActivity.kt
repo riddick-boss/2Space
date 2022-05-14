@@ -11,6 +11,7 @@ import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import abandonedstudio.app.tospace.core.navigation.maindrawer.MainDrawer
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,9 +34,10 @@ class MainActivity : ComponentActivity() {
 private fun App() {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground), // TODO: image
+            painter = painterResource(id = R.drawable.spacex_background),
             contentDescription = contentDescription(),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
         )
         MainDrawer()
     }

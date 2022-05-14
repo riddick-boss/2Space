@@ -1,7 +1,6 @@
 package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
 import abandonedstudio.app.tospace.core.presentation.component.TitledText
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import androidx.annotation.DrawableRes
@@ -31,7 +30,7 @@ enum class Facility(
         locationResId = R.string.dashboard_canaveral_location,
         regionResId = R.string.dashboard_canaveral_region,
         launchpadNameResId = R.string.dashboard_canaveral_launchpad,
-        imageResId = R.drawable.ic_launcher_foreground //TODO: image
+        imageResId = R.drawable.canaveral
     ) {
         @Composable
         override fun Content(weather: FacilityWeather) {
@@ -49,7 +48,7 @@ enum class Facility(
         locationResId = R.string.dashboard_starship_location,
         regionResId = R.string.dashboard_starship_region,
         launchpadNameResId = R.string.dashboard_starship_launchpad,
-        imageResId = R.drawable.ic_launcher_foreground //TODO: image
+        imageResId = R.drawable.starbase
     ) {
         @Composable
         override fun Content(weather: FacilityWeather) {
@@ -67,7 +66,7 @@ enum class Facility(
         locationResId = R.string.dashboard_vandenberg_location,
         regionResId = R.string.dashboard_vandenberg_region,
         launchpadNameResId = R.string.dashboard_vandenberg_launchpad,
-        imageResId = R.drawable.ic_launcher_foreground //TODO: image
+        imageResId = R.drawable.vandenberg
     ) {
         @Composable
         override fun Content(weather: FacilityWeather) {
@@ -94,7 +93,9 @@ private fun FacilityCard(
     weather: FacilityWeather
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(125.dp),
         shape = RoundedCornerShape(16.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -105,11 +106,12 @@ private fun FacilityCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -132,7 +134,7 @@ private fun FacilityCard(
                         weather = weather.summary
                     )
 
-                    WindText(wind = weather.temperature)
+                    WindText(wind = weather.wind)
                 }
             }
         }
