@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -64,14 +65,15 @@ private fun DrawerContent(navController: NavController, drawerState: DrawerState
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Blue)))
+            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Black)))
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground), // TODO: icon
+            painter = painterResource(id = R.drawable.spacex_logo),
             contentDescription = contentDescription(),
-            modifier = Modifier.height(100.dp)
+            modifier = Modifier.height(100.dp),
+            contentScale = ContentScale.Fit
         )
 
         MainDrawerScreen.values().forEach {
@@ -103,7 +105,8 @@ private fun DrawerItem(screen: MainDrawerScreen, onIconClicked: () -> Unit) {
     ) {
         Text(
             text = stringResource(id = screen.titleResId),
-            style = MaterialTheme.typography.subtitle1
+            style = MaterialTheme.typography.h4,
+            color = Color.White
         )
     }
 }
@@ -132,7 +135,7 @@ private fun TopBar(@StringRes titleResId: Int, onIconClicked: () -> Unit) {
             title = {
                 Text(
                     text = stringResource(id = titleResId),
-                    style = MaterialTheme.typography.subtitle2
+                    style = MaterialTheme.typography.h6
                 )
             },
             navigationIcon = {
