@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 enum class Facility(
@@ -111,7 +112,7 @@ private fun FacilityCard(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -142,18 +143,24 @@ private fun FacilityCard(
 }
 
 @Composable
-private fun FacilityLocation(
+private fun RowScope.FacilityLocation(
     @StringRes locationResId: Int,
     @StringRes launchpadNameResId: Int
 ) {
-    Column {
+    Column(
+        modifier = Modifier.padding(end = 5.dp).weight(1f)
+    ) {
         Text(
             text = stringResource(id = locationResId).uppercase(),
-            color = Color.White
+            color = Color.White,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
         Text(
             text = stringResource(id = launchpadNameResId).uppercase(),
-            color = Color.White
+            color = Color.White,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
     }
 }

@@ -65,14 +65,13 @@ private fun DrawerContent(navController: NavController, drawerState: DrawerState
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Black)))
-            .padding(16.dp),
+            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Black))),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
             contentDescription = contentDescription(),
-            modifier = Modifier.height(100.dp),
+            modifier = Modifier.height(100.dp).padding(start = 16.dp, top = 16.dp, end = 16.dp),
             contentScale = ContentScale.Fit
         )
 
@@ -101,7 +100,9 @@ private fun DrawerItem(screen: MainDrawerScreen, onIconClicked: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(vertical = 16.dp)
             .clickable(onClick = onIconClicked)
+            .padding(horizontal = 16.dp)
     ) {
         Text(
             text = stringResource(id = screen.titleResId),

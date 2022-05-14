@@ -37,39 +37,45 @@ private fun BaseTitledText(
 @Composable
 fun TitledText(
     @StringRes titleResId: Int,
-    @StringRes contentResId: Int
+    @StringRes contentResId: Int,
+    modifier: Modifier = Modifier
 ) {
-    BaseTitledText(titleResId = titleResId, content = stringResource(id = contentResId))
+    BaseTitledText(titleResId = titleResId, content = stringResource(id = contentResId), modifier = modifier)
 }
 
 @Composable
 fun TitledText(
     @StringRes titleResId: Int,
-    content: String
+    content: String,
+    modifier: Modifier = Modifier
 ) {
-    BaseTitledText(titleResId = titleResId, content = content)
+    BaseTitledText(titleResId = titleResId, content = content, modifier = modifier)
 }
 
 @Composable
 fun CenteredTitledText(
     @StringRes titleResId: Int,
-    @StringRes contentResId: Int
+    @StringRes contentResId: Int,
+    modifier: Modifier = Modifier
 ) {
     BaseTitledText(
         titleResId = titleResId,
         content = stringResource(id = contentResId),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
     )
 }
 
 @Composable
 fun CenteredTitledText(
     @StringRes titleResId: Int,
-    content: String
+    content: String,
+    modifier: Modifier = Modifier
 ) {
     BaseTitledText(
         titleResId = titleResId,
         content = content,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
     )
 }
