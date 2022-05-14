@@ -2,6 +2,7 @@ package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,10 +28,24 @@ class DashboardViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
-    val starBaseWeather: StateFlow<FacilityWeather?> by lazy {
+    val starbaseWeather: StateFlow<FacilityWeather?> by lazy {
         flow {
             try {
-                emit(dataSource.loadCanaveralWeather()) //TODO: starbase
+                emit(dataSource.loadStarbaseWeather())
+            } catch (e: Exception) {
+                Log.d("dashboardVm", e.toString()) //TODO: del
+                e.localizedMessage?.run {
+                    showToast(this)
+                }
+            }
+        }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    }
+
+    val vandenbergWeather: StateFlow<FacilityWeather?> by lazy {
+        flow {
+            try {
+                emit(dataSource.loadVandenbergWeather())
             } catch (e: Exception) {
                 e.localizedMessage?.run {
                     showToast(this)
@@ -40,9 +55,8 @@ class DashboardViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
-
-    val showWeatherLoading: StateFlow<Boolean> by lazy {
-        combine(capeCanaveralWeather, starBaseWeather) { t1, t2 -> t1 == null || t2 == null }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), true)
+    val showWeatherContent: StateFlow<Boolean> by lazy {
+        combine(capeCanaveralWeather, starbaseWeather) { t1, t2 -> t1 != null || t2 != null }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 }

@@ -18,4 +18,13 @@
     <string name="dashboard_wind_title">Wind</string>
     <string name="dashboard_wind_content">%1$d m/s</string>
     <string name="dashboard_no_data">No data</string>
+    <string name="dashboard_canaveral_location">Cape canaveral</string>
+    <string name="dashboard_canaveral_launchpad">LC-39A &amp; SLC-40</string>
+    <string name="dashboard_canaveral_region">Florida</string>
+    <string name="dashboard_starship_location">Starbase</string>
+    <string name="dashboard_starship_launchpad">Starship Launch Facility</string>
+    <string name="dashboard_starship_region">Texas</string>
+    <string name="dashboard_vandenberg_location">Vandenberg</string>
+    <string name="dashboard_vandenberg_launchpad">USSF SLC-4E</string>
+    <string name="dashboard_vandenberg_region">California</string>
 </resources>

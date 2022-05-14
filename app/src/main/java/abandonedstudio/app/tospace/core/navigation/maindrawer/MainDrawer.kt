@@ -137,6 +137,7 @@ private fun TopBar(@StringRes titleResId: Int, onIconClicked: () -> Unit) {
             }
         },
         backgroundColor = Color.Transparent,
-        contentColor = Color.White
+        contentColor = Color.White,
+        elevation = 0.dp
     )
 }

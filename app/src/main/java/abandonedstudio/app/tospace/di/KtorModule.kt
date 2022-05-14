@@ -1,6 +1,7 @@
 package abandonedstudio.app.tospace.di
 
 import abandonedstudio.app.tospace.BuildConfig
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +23,12 @@ object KtorModule {
     fun provideHttpClient(): HttpClient = HttpClient(Android) {
         install(Logging) {
             level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
+            logger = object : Logger {
+                override fun log(message: String) {
+                    Log.i("CustomKtorHttpLogger", message)
+                }
+
+            }
         }
         install(ContentNegotiation) {
             json(Json {

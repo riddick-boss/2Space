@@ -28,9 +28,45 @@ enum class Facility(
 ) {
 
     CAPE_CANAVERAL(
-        locationResId = R.string.main_drawer_dashboard_title,
-        regionResId = R.string.main_drawer_dashboard_title,
-        launchpadNameResId = R.string.main_drawer_dashboard_title,
+        locationResId = R.string.dashboard_canaveral_location,
+        regionResId = R.string.dashboard_canaveral_region,
+        launchpadNameResId = R.string.dashboard_canaveral_launchpad,
+        imageResId = R.drawable.ic_launcher_foreground //TODO: image
+    ) {
+        @Composable
+        override fun Content(weather: FacilityWeather) {
+            FacilityCard(
+                locationResId = locationResId,
+                regionResId = regionResId,
+                launchpadNameResId = launchpadNameResId,
+                imageResId = imageResId,
+                weather = weather
+            )
+        }
+    },
+
+    STARBASE(
+        locationResId = R.string.dashboard_starship_location,
+        regionResId = R.string.dashboard_starship_region,
+        launchpadNameResId = R.string.dashboard_starship_launchpad,
+        imageResId = R.drawable.ic_launcher_foreground //TODO: image
+    ) {
+        @Composable
+        override fun Content(weather: FacilityWeather) {
+            FacilityCard(
+                locationResId = locationResId,
+                regionResId = regionResId,
+                launchpadNameResId = launchpadNameResId,
+                imageResId = imageResId,
+                weather = weather
+            )
+        }
+    },
+
+    VANDENBERG(
+        locationResId = R.string.dashboard_vandenberg_location,
+        regionResId = R.string.dashboard_vandenberg_region,
+        launchpadNameResId = R.string.dashboard_vandenberg_launchpad,
         imageResId = R.drawable.ic_launcher_foreground //TODO: image
     ) {
         @Composable

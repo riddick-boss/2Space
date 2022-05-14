@@ -9,6 +9,7 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,30 +20,56 @@ fun DashboardScreen(
 ) {
 
     val capeCanaveralWeather by viewModel.capeCanaveralWeather.collectAsState()
-    val starBaseWeather by viewModel.starBaseWeather.collectAsState()
+    val starbaseWeather by viewModel.starbaseWeather.collectAsState()
+    val vandenbergWeather by viewModel.vandenbergWeather.collectAsState()
 
-    val showWeatherLoading by viewModel.showWeatherLoading.collectAsState()
+    val showWeatherContent by viewModel.showWeatherContent.collectAsState()
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        item("weather_card") {
-            Card(
-                modifier = Modifier.animateContentSize(),
-                elevation = 0.dp,
-                shape = RoundedCornerShape(8.dp)
-            ) {
-                if (!showWeatherLoading) {
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        Facility.CAPE_CANAVERAL.Content(weather = capeCanaveralWeather!!)
-//                        TODO: starbase
-//                        TODO: vanden
-                    }
-                } else {
-                    CircularProgressIndicator(modifier = Modifier.size(56.dp))
+        item("facilities_card") {
+            FacilitiesCard(
+                showContent = showWeatherContent,
+                capeCanaveralWeather = capeCanaveralWeather,
+                starbaseWeather = starbaseWeather,
+                vandenbergWeather = vandenbergWeather
+            )
+        }
+    }
+}
+
+@Composable
+fun FacilitiesCard(
+    showContent: Boolean,
+    capeCanaveralWeather: FacilityWeather?,
+    starbaseWeather: FacilityWeather?,
+    vandenbergWeather: FacilityWeather?
+) {
+    Card(
+        modifier = Modifier.animateContentSize(),
+        elevation = 0.dp,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
+            if (showContent) {
+                capeCanaveralWeather?.also {
+                    Facility.CAPE_CANAVERAL.Content(weather = it)
                 }
+                starbaseWeather?.also {
+                    Facility.STARBASE.Content(weather = it)
+                }
+                vandenbergWeather?.also {
+                    Facility.VANDENBERG.Content(weather = it)
+                }
+            } else {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(56.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
             }
         }
     }
