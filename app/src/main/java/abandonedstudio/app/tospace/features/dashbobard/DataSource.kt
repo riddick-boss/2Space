@@ -1,16 +1,23 @@
 package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.R
+import abandonedstudio.app.tospace.core.domain.model.Launch
+import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
-import android.util.Log
 import javax.inject.Inject
 
 class DataSource @Inject constructor(
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
+    private val spaceXRepository: SpaceXRepository
 ) {
-
     private val noData = StringUtil.getString(R.string.dashboard_no_data)
+
+    suspend fun loadLastLaunch(): Launch =
+        spaceXRepository.getLastLaunch() //TODO
+
+    suspend fun loadNextLaunch(): Launch =
+        spaceXRepository.getNextLaunch() // TODO
 
     private suspend fun loadWeather(coordinates: Coordinates): FacilityWeather =
         try {
@@ -34,7 +41,6 @@ class DataSource @Inject constructor(
                 temperature = temperature
             )
         } catch (e: Exception) {
-            Log.d("weather", e.toString())
             FacilityWeather(
                 wind = noData,
                 summary = noData,
@@ -50,7 +56,7 @@ class DataSource @Inject constructor(
 }
 
 private sealed class Coordinates(val lat: String, val lon: String) {
-    object CANAVERAL: Coordinates(lat = "28.5830", lon = "-80.5906")
-    object STARBASE: Coordinates(lat = "25.9968", lon = "-97.1558")
-    object VANDENBERG: Coordinates(lat = "34.6321", lon = "-120.6106")
+    object CANAVERAL : Coordinates(lat = "28.5830", lon = "-80.5906")
+    object STARBASE : Coordinates(lat = "25.9968", lon = "-97.1558")
+    object VANDENBERG : Coordinates(lat = "34.6321", lon = "-120.6106")
 }

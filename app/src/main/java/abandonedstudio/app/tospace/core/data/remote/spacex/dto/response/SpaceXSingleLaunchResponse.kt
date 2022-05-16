@@ -9,27 +9,7 @@ import androidx.annotation.Keep
 @Serializable
 data class SpaceXSingleLaunchResponse(
     @SerialName("docs")
-    val docs: List<Doc?>? = null,
-//    @SerialName("hasNextPage")
-//    val hasNextPage: Boolean? = null,
-//    @SerialName("hasPrevPage")
-//    val hasPrevPage: Boolean? = null,
-//    @SerialName("limit")
-//    val limit: Int? = null,
-//    @SerialName("nextPage")
-//    val nextPage: Int? = null,
-//    @SerialName("offset")
-//    val offset: Int? = null,
-//    @SerialName("page")
-//    val page: Int? = null,
-//    @SerialName("pagingCounter")
-//    val pagingCounter: Int? = null,
-//    @SerialName("prevPage")
-//    val prevPage: Int? = null,
-//    @SerialName("totalDocs")
-//    val totalDocs: Int? = null,
-//    @SerialName("totalPages")
-//    val totalPages: Int? = null
+    val docs: List<Doc>
 ) {
     @Keep
     @Serializable

@@ -1,7 +1,10 @@
 package abandonedstudio.app.tospace.di
 
+import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.weather.WeatherRemoteApi
+import abandonedstudio.app.tospace.core.data.repository.spacex.SpaceXRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.weather.WeatherRepositoryImpl
+import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
@@ -15,4 +18,8 @@ object DomainRepositoryModule {
     @Provides
     fun provideWeatherRepository(remoteApi: WeatherRemoteApi): WeatherRepository =
         WeatherRepositoryImpl(remoteApi)
+
+    @Provides
+    fun provideSpaceXRepository(remoteApi: SpaceXRemoteApi) : SpaceXRepository =
+        SpaceXRepositoryImpl(remoteApi)
 }
