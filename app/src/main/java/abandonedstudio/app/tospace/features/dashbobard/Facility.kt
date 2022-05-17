@@ -1,6 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.R
+import abandonedstudio.app.tospace.core.presentation.component.CenteredTitledText
 import abandonedstudio.app.tospace.core.presentation.component.TitledText
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import androidx.annotation.DrawableRes
@@ -176,7 +177,7 @@ private fun Region(
 private fun TemperatureText(
     temperature: String
 ) {
-    TitledText(
+    CenteredTitledText(
         titleResId = R.string.dashboard_temperature_title,
         content = temperature
     )
@@ -186,14 +187,14 @@ private fun TemperatureText(
 private fun WeatherText(
     weather: String
 ) {
-    TitledText(titleResId = R.string.dashboard_weather_title, content = weather)
+    CenteredTitledText(titleResId = R.string.dashboard_weather_title, content = weather)
 }
 
 @Composable
 private fun WindText(
     wind: String
 ) {
-    TitledText(
+    CenteredTitledText(
         titleResId = R.string.dashboard_wind_title,
         content = wind
     )

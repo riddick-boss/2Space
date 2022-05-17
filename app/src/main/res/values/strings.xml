@@ -10,7 +10,27 @@
     <!--   content description -->
     <string name="content_description">Content description</string>
 
+    <!--   no data -->
+    <string name="no_data_info">No data</string>
+
     <!--   dashboard -->
+    <string name="dashboard_mission_name">Mission name</string>
+    <string name="dashboard_upcoming_launch">Upcoming launch</string>
+    <string name="dashboard_previous_launch">Previous launch</string>
+    <string name="dashboard_rocket">Rocket</string>
+    <string name="dashboard_flight_number">Flight number</string>
+    <string name="dashboard_time_local">Time (local)</string>
+    <string name="dashboard_links">Links</string>
+    <string name="dashboard_launchpad">Launchpad</string>
+    <string name="dashboard_show_more">Show more</string>
+    <string name="dashboard_details">Details</string>
+    <string name="dashboard_payloads">Payloads</string>
+    <string name="dashboard_payload_type">Type</string>
+    <string name="dashboard_payload_mass">Mass</string>
+    <string name="dashboard_payload_orbit">Orbit</string>
+    <string name="dashboard_payload_inclination">Inclination</string>
+    <string name="dashboard_payload_period">Period</string>
+    <string name="dashboard_payload_customer">Customer</string>
     <string name="dashboard_region_title">Region</string>
     <string name="dashboard_temperature_title">Temp</string>
     <string name="dashboard_launch_facilities">Launch facilities</string>
@@ -18,7 +38,6 @@
     <string name="dashboard_weather_title">Weather</string>
     <string name="dashboard_wind_title">Wind</string>
     <string name="dashboard_wind_content">%1$.2f m/s</string>
-    <string name="dashboard_no_data">No data</string>
     <string name="dashboard_canaveral_location">Cape canaveral</string>
     <string name="dashboard_canaveral_launchpad">LC-39A &amp; SLC-40</string>
     <string name="dashboard_canaveral_region">Florida</string>

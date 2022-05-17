@@ -5,7 +5,8 @@ data class Launch(
     val logoImgPath: String?,
     val rocket: String?,
     val flightNumber: Int?,
-    val time: String?, //TODO: type datetime?
+    val timeStamp: Int?,
+    val date: String?,
     val links: Links,
     val details: String?,
     val launchPad: String?,

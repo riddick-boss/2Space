@@ -1,5 +1,6 @@
 package abandonedstudio.app.tospace.core.presentation.component
 
+import abandonedstudio.app.tospace.R
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -50,6 +51,15 @@ fun TitledText(
     modifier: Modifier = Modifier
 ) {
     BaseTitledText(titleResId = titleResId, content = content, modifier = modifier)
+}
+
+@Composable
+fun TitledTextNoData(
+    @StringRes titleResId: Int,
+    content: String?,
+    modifier: Modifier = Modifier
+) {
+    BaseTitledText(titleResId = titleResId, content = content ?: stringResource(id = R.string.no_data_info), modifier = modifier)
 }
 
 @Composable

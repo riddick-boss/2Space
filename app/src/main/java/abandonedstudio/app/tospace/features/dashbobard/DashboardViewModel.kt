@@ -1,5 +1,6 @@
 package abandonedstudio.app.tospace.features.dashbobard
 
+import abandonedstudio.app.tospace.core.domain.model.Launch
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -13,6 +14,32 @@ class DashboardViewModel @Inject constructor(
     application: Application,
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
+
+    val nextLaunchFlow: StateFlow<Launch?> by lazy {
+        flow {
+            try {
+                emit(dataSource.loadNextLaunch())
+            } catch (e: Exception) {
+                e.localizedMessage?.run {
+                    showToast(this)
+                }
+            }
+        }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    }
+
+    val previousLaunchFlow: StateFlow<Launch?> by lazy {
+        flow {
+            try {
+                emit(dataSource.loadNextLaunch())
+            } catch (e: Exception) {
+                e.localizedMessage?.run {
+                    showToast(this)
+                }
+            }
+        }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    }
 
     val capeCanaveralWeather: StateFlow<FacilityWeather?> by lazy {
         flow {
@@ -54,7 +81,8 @@ class DashboardViewModel @Inject constructor(
     }
 
     val showWeatherContent: StateFlow<Boolean> by lazy {
-        combine(capeCanaveralWeather, starbaseWeather) { t1, t2 -> t1 != null || t2 != null }
+        merge(capeCanaveralWeather, starbaseWeather)
+            .map { it != null }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 }

@@ -11,13 +11,11 @@ class DataSource @Inject constructor(
     private val weatherRepository: WeatherRepository,
     private val spaceXRepository: SpaceXRepository
 ) {
-    private val noData = StringUtil.getString(R.string.dashboard_no_data)
+    private val noData = StringUtil.getString(R.string.no_data_info)
 
-    suspend fun loadLastLaunch(): Launch =
-        spaceXRepository.getLastLaunch() //TODO
+    suspend fun loadLastLaunch(): Launch = spaceXRepository.getLastLaunch()
 
-    suspend fun loadNextLaunch(): Launch =
-        spaceXRepository.getNextLaunch() // TODO
+    suspend fun loadNextLaunch(): Launch = spaceXRepository.getNextLaunch()
 
     private suspend fun loadWeather(coordinates: Coordinates): FacilityWeather =
         try {
