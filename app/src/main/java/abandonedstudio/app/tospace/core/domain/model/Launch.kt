@@ -6,7 +6,6 @@ data class Launch(
     val rocket: String?,
     val flightNumber: Int?,
     val timeStamp: Int?,
-    val date: String?,
     val links: Links,
     val details: String?,
     val launchPad: String?,

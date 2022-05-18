@@ -2,7 +2,10 @@ package abandonedstudio.app.tospace.features.dashbobard
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.model.Launch
+import abandonedstudio.app.tospace.core.domain.util.Precision
+import abandonedstudio.app.tospace.core.domain.util.formatDateFromUnix
 import abandonedstudio.app.tospace.core.presentation.component.TitledTextNoData
+import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize
@@ -83,7 +86,7 @@ fun LaunchCard(@StringRes titleResId: Int, launch: Launch?) {
             .animateContentSize(),
         elevation = 0.dp,
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = Color.DarkGray
+        backgroundColor = DarkGrayBackground
     ) {
         Column(
             modifier = Modifier
@@ -115,7 +118,7 @@ fun LaunchCard(@StringRes titleResId: Int, launch: Launch?) {
                         TitledTextNoData(titleResId = R.string.dashboard_mission_name, content = launch.missionName)
                         TitledTextNoData(titleResId = R.string.dashboard_rocket, content = launch.rocket)
                         TitledTextNoData(titleResId = R.string.dashboard_flight_number, content = launch.flightNumber?.toString())
-                        TitledTextNoData(titleResId = R.string.dashboard_time_local, content = launch.date)
+                        TitledTextNoData(titleResId = R.string.dashboard_time_local, content = launch.timeStamp?.formatDateFromUnix(Precision.MONTH)) // TODO
                     }
 
                     Column(modifier = Modifier.fillMaxWidth()) {
@@ -134,13 +137,14 @@ private fun MissionLogo(
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(16.dp)
             .aspectRatio(1f),
         shape = RoundedCornerShape(8.dp),
         backgroundColor = Color.DarkGray,
         elevation = 0.dp
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(8.dp),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -165,7 +169,7 @@ private fun FacilitiesCard(
             .animateContentSize(),
         elevation = 0.dp,
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = Color.DarkGray
+        backgroundColor = DarkGrayBackground
     ) {
         Column(
             modifier = Modifier

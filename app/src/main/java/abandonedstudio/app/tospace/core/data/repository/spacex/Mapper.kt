@@ -11,7 +11,6 @@ fun SpaceXSingleLaunchResponse.toLaunch() =
             rocket = it.rocket?.name,
             flightNumber = it.flightNumber,
             timeStamp = it.dateUnix,
-            date = it.dateLocal,
             links = Launch.Links(
                 wikipedia = it.links?.wikipedia,
                 yt = it.links?.webcast,
