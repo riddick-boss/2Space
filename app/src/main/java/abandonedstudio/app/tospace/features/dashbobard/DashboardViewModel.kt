@@ -31,7 +31,7 @@ class DashboardViewModel @Inject constructor(
     val previousLaunchFlow: StateFlow<Launch?> by lazy {
         flow {
             try {
-                emit(dataSource.loadNextLaunch())
+                emit(dataSource.loadLastLaunch())
             } catch (e: Exception) {
                 e.localizedMessage?.run {
                     showToast(this)

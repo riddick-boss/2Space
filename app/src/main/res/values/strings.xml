@@ -23,6 +23,7 @@
     <string name="dashboard_links">Links</string>
     <string name="dashboard_launchpad">Launchpad</string>
     <string name="dashboard_show_more">Show more</string>
+    <string name="dashboard_show_less">Show less</string>
     <string name="dashboard_details">Details</string>
     <string name="dashboard_payloads">Payloads</string>
     <string name="dashboard_payload_type">Type</string>
@@ -47,4 +48,5 @@
     <string name="dashboard_vandenberg_location">Vandenberg</string>
     <string name="dashboard_vandenberg_launchpad">USSF SLC-4E</string>
     <string name="dashboard_vandenberg_region">California</string>
+    <string name="dashboard_reference_no_link">No link provided yet</string>
 </resources>
