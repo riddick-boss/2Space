@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
@@ -34,7 +35,9 @@ fun DashboardScreen(
 ) {
 
     val nextLaunch by viewModel.nextLaunchFlow.collectAsState()
+    val nextLaunchCountdown by viewModel.nextLaunchCountdown.collectAsState()
     val previousLaunch by viewModel.previousLaunchFlow.collectAsState()
+    val previousLaunchCountdown by viewModel.previousLaunchCountdown.collectAsState()
 
     val capeCanaveralWeather by viewModel.capeCanaveralWeather.collectAsState()
     val starbaseWeather by viewModel.starbaseWeather.collectAsState()
@@ -51,11 +54,21 @@ fun DashboardScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item("next_launch") {
-            NextLaunchCard(nextLaunch, uriHandler, context)
+            NextLaunchCard(
+                nextLaunch = nextLaunch,
+                countDown = nextLaunchCountdown,
+                uriHandler = uriHandler,
+                context = context
+            )
         }
 
         item("previous_launch") {
-            PreviousLaunchCard(previousLaunch, uriHandler, context)
+            PreviousLaunchCard(
+                previousLaunch = previousLaunch,
+                countDown = previousLaunchCountdown,
+                uriHandler = uriHandler,
+                context = context
+            )
         }
 
         item("facilities_card") {
@@ -70,19 +83,42 @@ fun DashboardScreen(
 }
 
 @Composable
-private fun NextLaunchCard(nextLaunch: SpaceXLaunch?, uriHandler: UriHandler, context: Context) {
-    LaunchCard(titleResId = R.string.dashboard_upcoming_launch, launch = nextLaunch, uriHandler = uriHandler, context = context)
+private fun NextLaunchCard(
+    nextLaunch: SpaceXLaunch?,
+    countDown: String,
+    uriHandler: UriHandler,
+    context: Context
+) {
+    LaunchCard(
+        titleResId = R.string.dashboard_upcoming_launch,
+        launch = nextLaunch,
+        countDown = countDown,
+        uriHandler = uriHandler,
+        context = context
+    )
 }
 
 @Composable
-private fun PreviousLaunchCard(previousLaunch: SpaceXLaunch?, uriHandler: UriHandler, context: Context) {
-    LaunchCard(titleResId = R.string.dashboard_previous_launch, launch = previousLaunch, uriHandler = uriHandler, context = context)
+private fun PreviousLaunchCard(
+    previousLaunch: SpaceXLaunch?,
+    countDown: String,
+    uriHandler: UriHandler,
+    context: Context
+) {
+    LaunchCard(
+        titleResId = R.string.dashboard_previous_launch,
+        launch = previousLaunch,
+        countDown = countDown,
+        uriHandler = uriHandler,
+        context = context
+    )
 }
 
 @Composable
 private fun LaunchCard(
     @StringRes titleResId: Int,
     launch: SpaceXLaunch?,
+    countDown: String,
     uriHandler: UriHandler,
     context: Context
 ) {
@@ -105,7 +141,14 @@ private fun LaunchCard(
                 style = MaterialTheme.typography.h5,
                 color = Color.White
             )
-            //TODO: T-counter
+
+            Text(
+                text = countDown,
+                style = MaterialTheme.typography.body1,
+                color = Color.Yellow,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
 
 
             if (launch == null) {
