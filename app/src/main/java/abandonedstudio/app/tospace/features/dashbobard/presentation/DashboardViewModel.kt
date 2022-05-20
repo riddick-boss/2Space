@@ -1,7 +1,9 @@
-package abandonedstudio.app.tospace.features.dashbobard
+package abandonedstudio.app.tospace.features.dashbobard.presentation
 
-import abandonedstudio.app.tospace.core.domain.model.Launch
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.features.dashbobard.domain.DataSource
+import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
+import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +17,7 @@ class DashboardViewModel @Inject constructor(
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
 
-    val nextLaunchFlow: StateFlow<Launch?> by lazy {
+    val nextLaunchFlow: StateFlow<SpaceXLaunch?> by lazy {
         flow {
             try {
                 emit(dataSource.loadNextLaunch())
@@ -28,7 +30,7 @@ class DashboardViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
-    val previousLaunchFlow: StateFlow<Launch?> by lazy {
+    val previousLaunchFlow: StateFlow<SpaceXLaunch?> by lazy {
         flow {
             try {
                 emit(dataSource.loadLastLaunch())

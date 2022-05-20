@@ -1,10 +1,13 @@
-package abandonedstudio.app.tospace.features.dashbobard
+package abandonedstudio.app.tospace.features.dashbobard.domain
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.model.Launch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
+import abandonedstudio.app.tospace.core.domain.util.DateFormat
 import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
+import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
+import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch
 import javax.inject.Inject
 
 class DataSource @Inject constructor(
@@ -13,9 +16,15 @@ class DataSource @Inject constructor(
 ) {
     private val noData = StringUtil.getString(R.string.no_data_info)
 
-    suspend fun loadLastLaunch(): Launch = spaceXRepository.getLastLaunch()
+    suspend fun loadLastLaunch(): SpaceXLaunch =
+        spaceXRepository
+            .getLastLaunch()
+            .toSpacexLaunch()
 
-    suspend fun loadNextLaunch(): Launch = spaceXRepository.getNextLaunch()
+    suspend fun loadNextLaunch(): SpaceXLaunch =
+        spaceXRepository
+            .getNextLaunch()
+            .toSpacexLaunch()
 
     private suspend fun loadWeather(coordinates: Coordinates): FacilityWeather =
         try {
@@ -58,3 +67,31 @@ private sealed class Coordinates(val lat: String, val lon: String) {
     object STARBASE : Coordinates(lat = "25.9968", lon = "-97.1558")
     object VANDENBERG : Coordinates(lat = "34.6321", lon = "-120.6106")
 }
+
+private fun Launch.toSpacexLaunch() =
+    SpaceXLaunch(
+        missionName = missionName,
+        logoImgPath = logoImgPath,
+        rocket = rocket,
+        flightNumber = flightNumber,
+        timeStamp = timeStamp,
+        date = timeStamp?.let { DateFormat(it).format(DateFormat.Precision.MONTH) },
+        links = links.toSpaceXLinks(),
+        details = details,
+        launchPad = launchPad,
+        payloads = payloads.toSpaceXPayloads()
+    )
+
+private fun Launch.Links.toSpaceXLinks() = SpaceXLaunch.Links(wikipedia, yt, reddit)
+
+private fun List<Launch.Payload>.toSpaceXPayloads() =
+    this.map {
+        SpaceXLaunch.Payload(
+            type = it.type,
+            massKg = it.massKg,
+            orbit = it.orbit,
+            inclination = it.inclination,
+            periodMin = it.periodMin,
+            customers = it.customers
+        )
+    }

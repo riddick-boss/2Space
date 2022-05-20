@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.dashbobard
+package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
@@ -39,7 +39,7 @@ enum class Reference(@DrawableRes val iconResId: Int) {
             shape = CircleShape,
             contentPadding = PaddingValues(4.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.DarkGray
+                backgroundColor = Color.Gray
             ),
             onClick = {
             onIconClick(uriHandler, context, link)

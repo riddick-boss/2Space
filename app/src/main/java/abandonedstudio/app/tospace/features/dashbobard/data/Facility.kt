@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.dashbobard
+package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.component.CenteredTitledText
