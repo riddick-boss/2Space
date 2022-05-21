@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.dashbobard
+package abandonedstudio.app.tospace.features.dashbobard.data
 
 data class FacilityWeather(
     val temperature: String,

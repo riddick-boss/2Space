@@ -2,7 +2,7 @@ package abandonedstudio.app.tospace.core.navigation.maindrawer
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
-import abandonedstudio.app.tospace.features.dashbobard.DashboardScreen
+import abandonedstudio.app.tospace.features.dashbobard.presentation.DashboardScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
