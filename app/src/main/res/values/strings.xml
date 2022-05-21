@@ -13,6 +13,9 @@
     <!--   no data -->
     <string name="no_data_info">No data</string>
 
+    <!--   fetch fail -->
+    <string name="fetch_fail_message">Failed to fetch data</string>
+
     <!--   dashboard -->
     <string name="dashboard_mission_name">Mission name</string>
     <string name="dashboard_upcoming_launch">Upcoming launch</string>
@@ -53,4 +56,5 @@
     <string name="dashboard_vandenberg_launchpad">USSF SLC-4E</string>
     <string name="dashboard_vandenberg_region">California</string>
     <string name="dashboard_reference_no_link">No link provided yet</string>
+    <string name="dashboard_failed_to_load_launch_info">Failed to load data about launch</string>
 </resources>

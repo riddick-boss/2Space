@@ -46,9 +46,9 @@ data class SpaceXLaunch(
     private val toggleExpand = { expanded = !expanded }
 
     @Composable
-    fun Item(launch: SpaceXLaunch, uriHandler: UriHandler, context: Context) {
+    fun Item(uriHandler: UriHandler, context: Context) {
         SpacexLaunchCard(
-            launch = launch,
+            launch = this,
             uriHandler = uriHandler,
             context = context,
             expanded = expanded,
@@ -85,13 +85,18 @@ private fun SpacexLaunchCard(
             modifier = Modifier.fillMaxWidth(0.5f),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            TitledTextNoData(titleResId = R.string.dashboard_mission_name, content = launch.missionName)
+            TitledTextNoData(
+                titleResId = R.string.dashboard_mission_name,
+                content = launch.missionName
+            )
 
             TitledTextNoData(titleResId = R.string.dashboard_rocket, content = launch.rocket)
 
-            TitledTextNoData(titleResId = R.string.dashboard_flight_number, content = launch.flightNumber?.let {
-                StringUtil.getString(R.string.dashboard_flight_number_content, it)
-            })
+            TitledTextNoData(
+                titleResId = R.string.dashboard_flight_number,
+                content = launch.flightNumber?.let {
+                    StringUtil.getString(R.string.dashboard_flight_number_content, it)
+                })
 
             TitledTextNoData(titleResId = R.string.dashboard_time_local, content = launch.date)
         }
@@ -192,19 +197,25 @@ private fun PayloadCard(payload: SpaceXLaunch.Payload) {
         ) {
             PayloadData(titleResId = R.string.dashboard_payload_type, content = payload.type)
 
-            PayloadData(titleResId = R.string.dashboard_payload_mass, content = payload.massKg?.let {
-                StringUtil.getString(R.string.dashboard_payload_mass_content, it)
-            })
+            PayloadData(
+                titleResId = R.string.dashboard_payload_mass,
+                content = payload.massKg?.let {
+                    StringUtil.getString(R.string.dashboard_payload_mass_content, it)
+                })
 
             PayloadData(titleResId = R.string.dashboard_payload_orbit, content = payload.orbit)
 
-            PayloadData(titleResId = R.string.dashboard_payload_inclination, content = payload.inclination?.let {
-                StringUtil.getString(R.string.dashboard_payload_inclination_content, it)
-            })
+            PayloadData(
+                titleResId = R.string.dashboard_payload_inclination,
+                content = payload.inclination?.let {
+                    StringUtil.getString(R.string.dashboard_payload_inclination_content, it)
+                })
 
-            PayloadData(titleResId = R.string.dashboard_payload_period, content = payload.periodMin?.let {
-                StringUtil.getString(R.string.dashboard_payload_period_content, it)
-            })
+            PayloadData(
+                titleResId = R.string.dashboard_payload_period,
+                content = payload.periodMin?.let {
+                    StringUtil.getString(R.string.dashboard_payload_period_content, it)
+                })
 
             payload.customers.forEach {
                 PayloadData(titleResId = R.string.dashboard_payload_customer, content = it)
@@ -238,7 +249,13 @@ fun PayloadData(@StringRes titleResId: Int, content: String?) {
 }
 
 @Composable
-private fun Links(wikipediaLink: String?, ytLink: String?, redditLink: String?, uriHandler: UriHandler, context: Context) {
+private fun Links(
+    wikipediaLink: String?,
+    ytLink: String?,
+    redditLink: String?,
+    uriHandler: UriHandler,
+    context: Context
+) {
     Column(modifier = Modifier.fillMaxWidth(0.5f)) {
         Text(
             text = stringResource(id = R.string.dashboard_links).uppercase(),
@@ -247,9 +264,17 @@ private fun Links(wikipediaLink: String?, ytLink: String?, redditLink: String?, 
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Reference.WIKIPEDIA.LinkButton(uriHandler = uriHandler, context = context, link = wikipediaLink)
+            Reference.WIKIPEDIA.LinkButton(
+                uriHandler = uriHandler,
+                context = context,
+                link = wikipediaLink
+            )
             Reference.YOUTUBE.LinkButton(uriHandler = uriHandler, context = context, link = ytLink)
-            Reference.REDDIT.LinkButton(uriHandler = uriHandler, context = context, link = redditLink)
+            Reference.REDDIT.LinkButton(
+                uriHandler = uriHandler,
+                context = context,
+                link = redditLink
+            )
         }
     }
 }

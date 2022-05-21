@@ -9,9 +9,9 @@ class SpaceXRepositoryImpl @Inject constructor(
     private val remoteApi: SpaceXRemoteApi
 ) : SpaceXRepository {
 
-    override suspend fun getLastLaunch(): Launch =
-        remoteApi.getLastLaunch().toLaunch()
-
     override suspend fun getNextLaunch(): Launch =
         remoteApi.getNextLaunch().toLaunch()
+
+    override suspend fun getLastLaunch(): Launch =
+        remoteApi.getLastLaunch().toLaunch()
 }

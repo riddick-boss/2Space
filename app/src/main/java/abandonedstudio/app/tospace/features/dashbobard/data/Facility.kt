@@ -187,7 +187,10 @@ private fun TemperatureText(
 private fun WeatherText(
     weather: String
 ) {
-    CenteredTitledText(titleResId = R.string.dashboard_weather_title, content = weather)
+    CenteredTitledText(
+        titleResId = R.string.dashboard_weather_title,
+        content = weather
+    )
 }
 
 @Composable

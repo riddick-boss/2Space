@@ -1,6 +1,8 @@
 package abandonedstudio.app.tospace.features.dashbobard.presentation
 
+import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
 import abandonedstudio.app.tospace.features.dashbobard.domain.DataSource
 import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
 import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch
@@ -19,15 +21,15 @@ class DashboardViewModel @Inject constructor(
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
 
-    val nextLaunchFlow: StateFlow<SpaceXLaunch?> by lazy {
+    val nextLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
         flow {
             try {
-                emit(dataSource.loadNextLaunch())
+                emit(Result.success(dataSource.loadNextLaunch()))
             } catch (e: Exception) {
-                //TODO: emit empty maybe?
-                e.localizedMessage?.run {
-                    showToast(this)
+                e.toMessage().run {
+                    showToast(R.string.fetch_fail_message)
                 }
+                emit(Result.failure(e))
             }
         }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
@@ -35,7 +37,7 @@ class DashboardViewModel @Inject constructor(
 
     val nextLaunchCountdown: StateFlow<String> by lazy {
         nextLaunchFlow
-            .map { it?.timeStamp }
+            .map { it?.getOrNull()?.timeStamp }
             .filterNotNull()
             .flatMapLatest { launchTime ->
                 flow {
@@ -51,15 +53,15 @@ class DashboardViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
     }
 
-    val previousLaunchFlow: StateFlow<SpaceXLaunch?> by lazy {
+    val previousLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
         flow {
             try {
-                emit(dataSource.loadLastLaunch())
+                emit(Result.success(dataSource.loadLastLaunch()))
             } catch (e: Exception) {
-                //TODO: emit empty maybe?
-                e.localizedMessage?.run {
-                    showToast(this)
+                e.toMessage().run {
+                    showToast(R.string.fetch_fail_message)
                 }
+                emit(Result.failure(e))
             }
         }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
@@ -67,7 +69,7 @@ class DashboardViewModel @Inject constructor(
 
     val previousLaunchCountdown: StateFlow<String> by lazy {
         previousLaunchFlow
-            .map { it?.timeStamp }
+            .map { it?.getOrNull()?.timeStamp }
             .filterNotNull()
             .flatMapLatest { launchTime ->
                 flow {
@@ -101,7 +103,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadCanaveralWeather())
             } catch (e: Exception) {
-                e.localizedMessage?.run {
+                e.toMessage().run {
                     showToast(this)
                 }
             }
@@ -114,7 +116,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadStarbaseWeather())
             } catch (e: Exception) {
-                e.localizedMessage?.run {
+                e.toMessage().run {
                     showToast(this)
                 }
             }
@@ -127,7 +129,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadVandenbergWeather())
             } catch (e: Exception) {
-                e.localizedMessage?.run {
+                e.toMessage().run {
                     showToast(this)
                 }
             }

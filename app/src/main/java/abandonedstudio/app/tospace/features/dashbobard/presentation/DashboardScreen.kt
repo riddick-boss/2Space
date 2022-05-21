@@ -84,14 +84,14 @@ fun DashboardScreen(
 
 @Composable
 private fun NextLaunchCard(
-    nextLaunch: SpaceXLaunch?,
+    nextLaunch: Result<SpaceXLaunch>?,
     countDown: String,
     uriHandler: UriHandler,
     context: Context
 ) {
     LaunchCard(
         titleResId = R.string.dashboard_upcoming_launch,
-        launch = nextLaunch,
+        launchResult = nextLaunch,
         countDown = countDown,
         uriHandler = uriHandler,
         context = context
@@ -100,14 +100,14 @@ private fun NextLaunchCard(
 
 @Composable
 private fun PreviousLaunchCard(
-    previousLaunch: SpaceXLaunch?,
+    previousLaunch: Result<SpaceXLaunch>?,
     countDown: String,
     uriHandler: UriHandler,
     context: Context
 ) {
     LaunchCard(
         titleResId = R.string.dashboard_previous_launch,
-        launch = previousLaunch,
+        launchResult = previousLaunch,
         countDown = countDown,
         uriHandler = uriHandler,
         context = context
@@ -117,7 +117,7 @@ private fun PreviousLaunchCard(
 @Composable
 private fun LaunchCard(
     @StringRes titleResId: Int,
-    launch: SpaceXLaunch?,
+    launchResult: Result<SpaceXLaunch>?,
     countDown: String,
     uriHandler: UriHandler,
     context: Context
@@ -151,14 +151,20 @@ private fun LaunchCard(
             )
 
 
-            if (launch == null) {
+            if (launchResult == null) {
                 CircularProgressIndicator(
                     modifier = Modifier
                         .size(56.dp)
                         .align(Alignment.CenterHorizontally)
                 )
+            } else if (launchResult.isFailure) {
+                Text(
+                    text = stringResource(id = R.string.dashboard_failed_to_load_launch_info),
+                    style = MaterialTheme.typography.subtitle1,
+                    color = Color.White
+                )
             } else {
-                launch.Item(launch = launch, uriHandler = uriHandler, context = context)
+                launchResult.getOrNull()?.Item(uriHandler = uriHandler, context = context)
             }
         }
     }

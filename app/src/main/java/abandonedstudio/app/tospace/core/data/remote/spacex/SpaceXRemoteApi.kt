@@ -4,7 +4,7 @@ import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXSi
 
 interface SpaceXRemoteApi {
 
-    suspend fun getLastLaunch(): SpaceXSingleLaunchResponse
-
     suspend fun getNextLaunch(): SpaceXSingleLaunchResponse
+
+    suspend fun getLastLaunch(): SpaceXSingleLaunchResponse
 }
