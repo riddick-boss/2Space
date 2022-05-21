@@ -1,0 +1,54 @@
+{
+  "query": {
+    "upcoming": true
+  },
+  "options": {
+    "limit": 10,
+    "pagination": true,
+    "sort": {
+      "flight_number": "asc"
+    },
+    "populate": [
+      {
+        "path": "cores"
+      },
+      {
+        "path": "launchpad"
+      },
+      {
+        "path": "rocket",
+        "select": {
+          "name": 1
+        }
+      },
+      {
+        "path": "fairings"
+      },
+      {
+        "path": "capsules"
+      },
+      {
+        "path": "payloads"
+      },
+      {
+        "path": "crew",
+        "populate": [
+          {
+            "path": "crew"
+          }
+        ]
+      },
+      {
+        "path": "cores",
+        "populate": [
+          {
+            "path": "core"
+          },
+          {
+            "path": "landpad"
+          }
+        ]
+      }
+    ]
+  }
+}
