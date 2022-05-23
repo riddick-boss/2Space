@@ -3,7 +3,8 @@
     "upcoming": false
   },
   "options": {
-    "limit": 10,
+    "page": 1,
+    "limit": 1,
     "pagination": true,
     "sort": {
       "flight_number": "desc"
@@ -39,15 +40,7 @@
         ]
       },
       {
-        "path": "cores",
-        "populate": [
-          {
-            "path": "core"
-          },
-          {
-            "path": "landpad"
-          }
-        ]
+        "path": "cores"
       }
     ]
   }

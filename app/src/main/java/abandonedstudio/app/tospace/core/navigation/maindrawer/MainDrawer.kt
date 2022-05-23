@@ -3,6 +3,7 @@ package abandonedstudio.app.tospace.core.navigation.maindrawer
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import abandonedstudio.app.tospace.features.dashbobard.presentation.DashboardScreen
+import abandonedstudio.app.tospace.features.launches.presentation.LaunchesScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,12 +31,19 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-enum class MainDrawerScreen(val route: String, @StringRes val titleResId: Int) {
+enum class MainDrawerScreen(val route: String, @StringRes val titleResId: Int, val screen: @Composable () -> Unit) {
 
     DASHBOARD(
         route = "dashboard",
-        titleResId = R.string.main_drawer_dashboard_title
-    )
+        titleResId = R.string.main_drawer_dashboard_title,
+        screen = { DashboardScreen() }
+    ),
+
+    LAUNCHES(
+        route = "launches",
+        titleResId = R.string.main_drawer_launches_title,
+        screen = { LaunchesScreen() }
+    );
 }
 
 @Composable
@@ -71,7 +79,9 @@ private fun DrawerContent(navController: NavController, drawerState: DrawerState
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
             contentDescription = contentDescription(),
-            modifier = Modifier.height(100.dp).padding(start = 16.dp, top = 16.dp, end = 16.dp),
+            modifier = Modifier
+                .height(100.dp)
+                .padding(start = 16.dp, top = 16.dp, end = 16.dp),
             contentScale = ContentScale.Fit
         )
 
@@ -114,9 +124,9 @@ private fun DrawerItem(screen: MainDrawerScreen, onIconClicked: () -> Unit) {
 
 @Composable
 private fun DrawerNavigation(drawerNavController: NavHostController, onIconClicked: () -> Unit) {
-    NavHost(navController = drawerNavController, startDestination = MainDrawerScreen.DASHBOARD.route) {
-        composableScreen(MainDrawerScreen.DASHBOARD, onIconClicked) {
-            DashboardScreen()
+    NavHost(navController = drawerNavController, startDestination = MainDrawerScreen.LAUNCHES.route) {
+        MainDrawerScreen.values().forEach {
+            composableScreen(it, onIconClicked, it.screen)
         }
     }
 }

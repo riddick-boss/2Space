@@ -7,9 +7,29 @@ import androidx.annotation.Keep
 
 @Keep
 @Serializable
-data class SpaceXSingleLaunchResponse(
+data class SpaceXLaunchResponse(
     @SerialName("docs")
-    val docs: List<Doc>
+    val docs: List<Doc?>? = null,
+    @SerialName("hasNextPage")
+    val hasNextPage: Boolean? = null,
+    @SerialName("hasPrevPage")
+    val hasPrevPage: Boolean? = null,
+    @SerialName("limit")
+    val limit: Int? = null,
+    @SerialName("nextPage")
+    val nextPage: Int? = null,
+    @SerialName("offset")
+    val offset: Int? = null,
+    @SerialName("page")
+    val page: Int? = null,
+    @SerialName("pagingCounter")
+    val pagingCounter: Int? = null,
+    @SerialName("prevPage")
+    val prevPage: Int? = null,
+    @SerialName("totalDocs")
+    val totalDocs: Int? = null,
+    @SerialName("totalPages")
+    val totalPages: Int? = null
 ) {
     @Keep
     @Serializable
@@ -292,7 +312,7 @@ data class SpaceXSingleLaunchResponse(
             @SerialName("mass_kg")
             val massKg: Int? = null,
             @SerialName("mass_lbs")
-            val massLbs: Int? = null,
+            val massLbs: Double? = null,
             @SerialName("mean_anomaly")
             val meanAnomaly: Double? = null,
             @SerialName("mean_motion")

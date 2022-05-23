@@ -3,8 +3,8 @@
     "upcoming": true
   },
   "options": {
-    "limit": 10,
-    "pagination": true,
+    "page": 1,
+    "limit": 1,
     "sort": {
       "flight_number": "asc"
     },
