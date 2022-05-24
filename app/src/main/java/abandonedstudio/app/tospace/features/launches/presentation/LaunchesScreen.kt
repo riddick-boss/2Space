@@ -1,44 +1,93 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
-import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Tab
+import androidx.compose.material.TabRow
+import androidx.compose.material.TabRowDefaults
+import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun LaunchesScreen(
     viewModel: LaunchesViewModel = hiltViewModel()
 ) {
+    val tabs = Tab.values().toList()
 
-    val upcomingLaunches = viewModel.upcomingLaunchesFlow.collectAsLazyPagingItems()
+    val pagerState = rememberPagerState()
+    val coroutineScope = rememberCoroutineScope()
 
-    val pastLaunches = viewModel.pastLaunchesFlow.collectAsLazyPagingItems()
+    Column(modifier = Modifier.fillMaxSize()) {
+        Tabs(tabs = tabs, selectedIndex = pagerState.currentPage) {
+            coroutineScope.launch {
+                pagerState.scrollToPage(it)
+            }
+        }
 
-    SwipeRefreshPagingColumn(
-        items = pastLaunches,
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        Titlewd(name = it!!.missionName)
+        Pager(pagerState = pagerState, pagesCount = tabs.size) {
+            tabs[it].content(viewModel)
+        }
     }
 }
 
 @Composable
-fun Titlewd(name: String?) {
-    Text(text = name.orEmpty(), color = Color.White, modifier = Modifier
-        .height(50.dp)
-        .background(
-            Color.Blue
-        ))
+private fun Tabs(
+    tabs: List<Tab>,
+    selectedIndex: Int,
+    onSelected: (index: Int) -> Unit
+) {
+    TabRow(
+        selectedTabIndex = selectedIndex,
+        backgroundColor = Color.Transparent,
+        indicator = {
+            TabRowDefaults.Indicator(
+                modifier = Modifier.tabIndicatorOffset(it[selectedIndex]),
+                color = Color.Blue
+            )
+        }
+    ) {
+        tabs.forEachIndexed { index, tab ->
+            val isSelected = selectedIndex == index
+            Tab(
+                text = {
+                  Text(
+                      text = stringResource(tab.titleResId),
+                      color = Color.White,
+                      fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                  )
+                },
+                selected = isSelected,
+                onClick = { onSelected.invoke(index) }
+            )
+        }
+    }
+}
+
+@ExperimentalPagerApi
+@Composable
+private fun Pager(
+    pagerState: PagerState,
+    pagesCount: Int,
+    content: @Composable (page: Int) -> Unit
+) {
+    HorizontalPager(
+        state = pagerState,
+        count = pagesCount
+    ) { page ->
+        Box(modifier = Modifier.fillMaxSize()) {
+            content.invoke(page)
+        }
+    }
 }

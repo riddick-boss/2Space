@@ -4,7 +4,8 @@ import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.PastSpac
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXDetailedLaunchResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.UpcomingSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
-import abandonedstudio.app.tospace.core.domain.model.Launch
+import abandonedstudio.app.tospace.core.domain.model.PastSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
 
 fun SpaceXDetailedLaunchResponse.toDetailedLaunch(): DetailedLaunch =
@@ -35,24 +36,27 @@ fun SpaceXDetailedLaunchResponse.toDetailedLaunch(): DetailedLaunch =
         )
     }
 
-fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<Launch> =
+fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<UpcomingSpaceXLaunch> =
     DefaultPagingSource.Page(
         page = this.page,
         hasNext = this.hasNextPage,
-        data = this.docs?.map {
-            Launch(
-                missionName = it?.name
+        data = this.docs.map {
+            UpcomingSpaceXLaunch(
+                missionName = it.name,
+                logoImgPath = it.links?.patch?.small,
+                rocket = it.rocket?.name,
+                timeStamp = it.dateUnix
             )
-        } ?: emptyList()
+        }
     )
 
-fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<Launch> =
+fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<PastSpaceXLaunch> =
     DefaultPagingSource.Page(
         page = this.page,
         hasNext = this.hasNextPage,
-        data = this.docs?.map {
-            Launch(
-                missionName = it?.name
+        data = this.docs.map {
+            PastSpaceXLaunch(
+                missionName = it.name
             )
-        } ?: emptyList()
+        }
     )

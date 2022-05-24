@@ -1,5 +1,5 @@
 package abandonedstudio.app.tospace.core.domain.model
 
-data class Launch(
+data class PastSpaceXLaunch(
     val missionName: String?
 )

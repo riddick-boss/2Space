@@ -57,4 +57,8 @@
     <string name="dashboard_vandenberg_region">California</string>
     <string name="dashboard_reference_no_link">No link provided yet</string>
     <string name="dashboard_failed_to_load_launch_info">Failed to load data about launch</string>
+
+    <!--   launches -->
+    <string name="launches_past_title">Past</string>
+    <string name="launches_upcoming_title">Upcoming</string>
 </resources>

@@ -9,7 +9,7 @@ import androidx.annotation.Keep
 @Serializable
 data class PastSpaceXLaunchesResponse(
     @SerialName("docs")
-    val docs: List<Doc?>? = null,
+    val docs: List<Doc>,
     @SerialName("hasNextPage")
     val hasNextPage: Boolean? = null,
     @SerialName("hasPrevPage")
