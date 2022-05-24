@@ -1,5 +1,6 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
+import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,14 +25,12 @@ fun LaunchesScreen(
 
     val pastLaunches = viewModel.pastLaunchesFlow.collectAsLazyPagingItems()
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+    SwipeRefreshPagingColumn(
+        items = pastLaunches,
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(pastLaunches) {
-            Titlewd(name = it?.missionName)
-        }
+        Titlewd(name = it!!.missionName)
     }
 }
 
