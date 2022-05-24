@@ -1,6 +1,5 @@
 package abandonedstudio.app.tospace.features.dashbobard.presentation
 
-import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
 import abandonedstudio.app.tospace.features.dashbobard.domain.DataSource
@@ -26,8 +25,8 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(Result.success(dataSource.loadNextLaunch()))
             } catch (e: Exception) {
-                e.toMessage().run {
-                    showToast(R.string.fetch_fail_message)
+                e.toMessage()?.run {
+                    showToast(this)
                 }
                 emit(Result.failure(e))
             }
@@ -58,8 +57,8 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(Result.success(dataSource.loadLastLaunch()))
             } catch (e: Exception) {
-                e.toMessage().run {
-                    showToast(R.string.fetch_fail_message)
+                e.toMessage()?.run {
+                    showToast(this)
                 }
                 emit(Result.failure(e))
             }
@@ -103,7 +102,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadCanaveralWeather())
             } catch (e: Exception) {
-                e.toMessage().run {
+                e.toMessage()?.run {
                     showToast(this)
                 }
             }
@@ -116,7 +115,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadStarbaseWeather())
             } catch (e: Exception) {
-                e.toMessage().run {
+                e.toMessage()?.run {
                     showToast(this)
                 }
             }
@@ -129,7 +128,7 @@ class DashboardViewModel @Inject constructor(
             try {
                 emit(dataSource.loadVandenbergWeather())
             } catch (e: Exception) {
-                e.toMessage().run {
+                e.toMessage()?.run {
                     showToast(this)
                 }
             }
