@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 
 @Keep
 @Serializable
-data class SpaceXLaunchResponse(
+data class PastSpaceXLaunchesResponse(
     @SerialName("docs")
     val docs: List<Doc?>? = null,
     @SerialName("hasNextPage")
@@ -18,8 +18,6 @@ data class SpaceXLaunchResponse(
     val limit: Int? = null,
     @SerialName("nextPage")
     val nextPage: Int? = null,
-    @SerialName("offset")
-    val offset: Int? = null,
     @SerialName("page")
     val page: Int? = null,
     @SerialName("pagingCounter")
@@ -36,8 +34,12 @@ data class SpaceXLaunchResponse(
     data class Doc(
         @SerialName("auto_update")
         val autoUpdate: Boolean? = null,
+        @SerialName("capsules")
+        val capsules: List<String?>? = null,
         @SerialName("cores")
         val cores: List<Core?>? = null,
+        @SerialName("crew")
+        val crew: List<Crew?>? = null,
         @SerialName("date_local")
         val dateLocal: String? = null,
         @SerialName("date_precision")
@@ -57,7 +59,7 @@ data class SpaceXLaunchResponse(
         @SerialName("launch_library_id")
         val launchLibraryId: String? = null,
         @SerialName("launchpad")
-        val launchpad: Launchpad? = null,
+        val launchpad: String? = null,
         @SerialName("links")
         val links: Links? = null,
         @SerialName("name")
@@ -79,15 +81,13 @@ data class SpaceXLaunchResponse(
         @SerialName("tbd")
         val tbd: Boolean? = null,
         @SerialName("upcoming")
-        val upcoming: Boolean? = null,
-        @SerialName("window")
-        val window: Int? = null
+        val upcoming: Boolean? = null
     ) {
         @Keep
         @Serializable
         data class Core(
             @SerialName("core")
-            val core: Core? = null,
+            val core: String? = null,
             @SerialName("flight")
             val flight: Int? = null,
             @SerialName("gridfins")
@@ -105,33 +105,6 @@ data class SpaceXLaunchResponse(
             @SerialName("reused")
             val reused: Boolean? = null
         ) {
-            @Keep
-            @Serializable
-            data class Core(
-                @SerialName("asds_attempts")
-                val asdsAttempts: Int? = null,
-                @SerialName("asds_landings")
-                val asdsLandings: Int? = null,
-                @SerialName("block")
-                val block: Int? = null,
-                @SerialName("id")
-                val id: String? = null,
-                @SerialName("last_update")
-                val lastUpdate: String? = null,
-                @SerialName("launches")
-                val launches: List<String?>? = null,
-                @SerialName("reuse_count")
-                val reuseCount: Int? = null,
-                @SerialName("rtls_attempts")
-                val rtlsAttempts: Int? = null,
-                @SerialName("rtls_landings")
-                val rtlsLandings: Int? = null,
-                @SerialName("serial")
-                val serial: String? = null,
-                @SerialName("status")
-                val status: String? = null
-            )
-
             @Keep
             @Serializable
             data class Landpad(
@@ -177,6 +150,15 @@ data class SpaceXLaunchResponse(
 
         @Keep
         @Serializable
+        data class Crew(
+            @SerialName("crew")
+            val crew: String? = null,
+            @SerialName("role")
+            val role: String? = null
+        )
+
+        @Keep
+        @Serializable
         data class Fairings(
             @SerialName("recovered")
             val recovered: Boolean? = null,
@@ -187,48 +169,6 @@ data class SpaceXLaunchResponse(
             @SerialName("ships")
             val ships: List<String?>? = null
         )
-
-        @Keep
-        @Serializable
-        data class Launchpad(
-            @SerialName("details")
-            val details: String? = null,
-            @SerialName("full_name")
-            val fullName: String? = null,
-            @SerialName("id")
-            val id: String? = null,
-            @SerialName("images")
-            val images: Images? = null,
-            @SerialName("latitude")
-            val latitude: Double? = null,
-            @SerialName("launch_attempts")
-            val launchAttempts: Int? = null,
-            @SerialName("launch_successes")
-            val launchSuccesses: Int? = null,
-            @SerialName("launches")
-            val launches: List<String?>? = null,
-            @SerialName("locality")
-            val locality: String? = null,
-            @SerialName("longitude")
-            val longitude: Double? = null,
-            @SerialName("name")
-            val name: String? = null,
-            @SerialName("region")
-            val region: String? = null,
-            @SerialName("rockets")
-            val rockets: List<String?>? = null,
-            @SerialName("status")
-            val status: String? = null,
-            @SerialName("timezone")
-            val timezone: String? = null
-        ) {
-            @Keep
-            @Serializable
-            data class Images(
-                @SerialName("large")
-                val large: List<String?>? = null
-            )
-        }
 
         @Keep
         @Serializable
@@ -310,7 +250,7 @@ data class SpaceXLaunchResponse(
             @SerialName("manufacturers")
             val manufacturers: List<String?>? = null,
             @SerialName("mass_kg")
-            val massKg: Int? = null,
+            val massKg: Double? = null,
             @SerialName("mass_lbs")
             val massLbs: Double? = null,
             @SerialName("mean_anomaly")

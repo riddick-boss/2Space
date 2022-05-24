@@ -2,10 +2,10 @@ package abandonedstudio.app.tospace.core.data.remote.spacex.ktor
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
+import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.PastSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXDetailedLaunchResponse
-import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXLaunchResponse
+import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.UpcomingSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.di.ToSpaceApplication
-import android.util.Log
 import androidx.annotation.RawRes
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -40,8 +40,19 @@ class KtorSpaceXRemoteApi @Inject constructor(
         }.body()
     }
 
-    override suspend fun loadUpcomingLaunches(page: Int, limit: Int): SpaceXLaunchResponse {
+    override suspend fun loadUpcomingLaunches(page: Int, limit: Int): UpcomingSpaceXLaunchesResponse {
         val query = paginationQuery(page, limit, R.raw.upcoming_spacex_launches_query_pagination)
+        val body = Json.parseToJsonElement(query)
+        return client.post(
+            Routes.QUERY
+        ) {
+            contentType(ContentType.Application.Json)
+            setBody(body)
+        }.body()
+    }
+
+    override suspend fun loadPastLaunches(page: Int, limit: Int): PastSpaceXLaunchesResponse {
+        val query = paginationQuery(page, limit, R.raw.past_spacex_launches_query_pagination)
         val body = Json.parseToJsonElement(query)
         return client.post(
             Routes.QUERY
@@ -54,8 +65,7 @@ class KtorSpaceXRemoteApi @Inject constructor(
     private fun paginationQuery(page: Int, limit: Int, @RawRes queryResID: Int): String {
         var query = ToSpaceApplication.resources.openRawResource(queryResID).bufferedReader().use { it.readText() }
         query = query.replace("\"page\": 1", "\"page\": $page")
-        query = query.replace("\"limit\": 1", "\"limit\": $limit")
-        Log.d("paginationQuery", query)
+        query = query.replace("\"limit\": 1", "\"limit\": $limit") // TODO
         return query
     }
 }

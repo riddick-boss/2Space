@@ -10,5 +10,7 @@ interface SpaceXRepository {
 
     suspend fun getLastLaunch(): DetailedLaunch
 
-    suspend fun loadUpcomingLaunches(page: Int, limit: Int = 10): DefaultPagingSource.Page<Launch>
+    suspend fun loadUpcomingLaunches(page: Int, limit: Int): DefaultPagingSource.Page<Launch>
+
+    suspend fun loadPastLaunches(page: Int, limit: Int): DefaultPagingSource.Page<Launch>
 }

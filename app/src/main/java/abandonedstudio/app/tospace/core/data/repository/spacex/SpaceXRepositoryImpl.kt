@@ -19,4 +19,7 @@ class SpaceXRepositoryImpl @Inject constructor(
 
     override suspend fun loadUpcomingLaunches(page: Int, limit: Int): DefaultPagingSource.Page<Launch> =
         remoteApi.loadUpcomingLaunches(page, limit).toLaunchPaginationData()
+
+    override suspend fun loadPastLaunches(page: Int, limit: Int): DefaultPagingSource.Page<Launch> =
+        remoteApi.loadPastLaunches(page, limit).toLaunchPaginationData()
 }

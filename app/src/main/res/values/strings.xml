@@ -32,7 +32,7 @@
     <string name="dashboard_payloads">Payloads</string>
     <string name="dashboard_payload_type">Type</string>
     <string name="dashboard_payload_mass">Mass</string>
-    <string name="dashboard_payload_mass_content">%1$d kg</string>
+    <string name="dashboard_payload_mass_content">%1$.1f kg</string>
     <string name="dashboard_payload_orbit">Orbit</string>
     <string name="dashboard_payload_inclination">Inclination</string>
     <string name="dashboard_payload_inclination_content">%1$d °</string>

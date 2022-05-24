@@ -1,7 +1,8 @@
 package abandonedstudio.app.tospace.core.data.repository.spacex
 
+import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.PastSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXDetailedLaunchResponse
-import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXLaunchResponse
+import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.UpcomingSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.model.Launch
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
@@ -34,7 +35,18 @@ fun SpaceXDetailedLaunchResponse.toDetailedLaunch(): DetailedLaunch =
         )
     }
 
-fun SpaceXLaunchResponse.toLaunchPaginationData(): DefaultPagingSource.Page<Launch> =
+fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<Launch> =
+    DefaultPagingSource.Page(
+        page = this.page,
+        hasNext = this.hasNextPage,
+        data = this.docs?.map {
+            Launch(
+                missionName = it?.name
+            )
+        } ?: emptyList()
+    )
+
+fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Page<Launch> =
     DefaultPagingSource.Page(
         page = this.page,
         hasNext = this.hasNextPage,

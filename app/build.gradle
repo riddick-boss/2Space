@@ -113,7 +113,7 @@ dependencies {
     implementation 'androidx.compose.material:material:1.1.1'
     implementation 'androidx.compose.animation:animation:1.1.1'
     implementation 'androidx.compose.ui:ui-tooling:1.1.1'
-    implementation 'com.google.android.material:compose-theme-adapter:1.1.9'
+    implementation 'com.google.android.material:compose-theme-adapter:1.1.10'
 
 //    AndroidX Paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'

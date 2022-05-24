@@ -290,7 +290,7 @@ data class SpaceXDetailedLaunchResponse(
             @SerialName("manufacturers")
             val manufacturers: List<String?>? = null,
             @SerialName("mass_kg")
-            val massKg: Int? = null,
+            val massKg: Double? = null,
             @SerialName("mass_lbs")
             val massLbs: Double? = null,
             @SerialName("mean_anomaly")

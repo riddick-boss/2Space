@@ -5,16 +5,17 @@
   "options": {
     "page": 1,
     "limit": 1,
-    "pagination": true,
     "sort": {
       "flight_number": "desc"
     },
     "populate": [
       {
-        "path": "cores"
-      },
-      {
-        "path": "launchpad"
+        "path": "cores",
+        "populate":[
+          {
+            "path": "landpad"
+          }
+        ]
       },
       {
         "path": "rocket",
@@ -23,24 +24,7 @@
         }
       },
       {
-        "path": "fairings"
-      },
-      {
-        "path": "capsules"
-      },
-      {
         "path": "payloads"
-      },
-      {
-        "path": "crew",
-        "populate": [
-          {
-            "path": "crew"
-          }
-        ]
-      },
-      {
-        "path": "cores"
       }
     ]
   }
