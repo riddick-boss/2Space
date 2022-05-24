@@ -4,5 +4,6 @@ data class UpcomingSpaceXLaunch(
     val missionName: String?,
     val logoImgPath: String?,
     val rocket: String?,
-    val timeStamp: Int?
+    val timeStamp: Int?,
+    val net: Boolean
 )

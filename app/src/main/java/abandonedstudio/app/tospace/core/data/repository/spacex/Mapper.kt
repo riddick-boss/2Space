@@ -45,7 +45,8 @@ fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource
                 missionName = it.name,
                 logoImgPath = it.links?.patch?.small,
                 rocket = it.rocket?.name,
-                timeStamp = it.dateUnix
+                timeStamp = it.dateUnix,
+                net = it.net ?: false
             )
         }
     )
@@ -56,7 +57,45 @@ fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Pag
         hasNext = this.hasNextPage,
         data = this.docs.map {
             PastSpaceXLaunch(
-                missionName = it.name
+                missionName = it.name,
+                logoImgPath = it.links?.patch?.small,
+                rocket = it.rocket?.name,
+                timeStamp = it.dateUnix,
+                links = PastSpaceXLaunch.Links(
+                    wikipedia = it.links?.wikipedia,
+                    yt = it.links?.webcast,
+                    reddit = it.links?.reddit?.campaign
+                ),
+                details = it.details,
+                launchPad = it.launchpad,
+                missionSuccess = it.success,
+                landingSuccess = it.cores?.firstOrNull()?.landingSuccess,
+                fairingsRecovered = it.fairings?.recovered,
+                core = PastSpaceXLaunch.Core(
+                    reused = it.cores?.firstOrNull()?.reused,
+                    flightNum = it.cores?.firstOrNull()?.flight
+                ),
+                landPad = PastSpaceXLaunch.LandPad(
+                    name = it.cores?.firstOrNull()?.landpad?.name,
+                    fullName = it.cores?.firstOrNull()?.landpad?.fullName,
+                    region = it.cores?.firstOrNull()?.landpad?.region
+                ),
+                payloads = it.payloads?.mapNotNull { payload ->
+                    if (payload == null) {
+                        null
+                    } else {
+                        PastSpaceXLaunch.Payload(
+                            type = payload.type,
+                            massKg = payload.massKg,
+                            orbit = payload.orbit,
+                            inclination = payload.inclinationDeg,
+                            periodMin = payload.periodMin,
+                            apoapsisKm = payload.apoapsisKm,
+                            periapsisKm = payload.periapsisKm,
+                            customers = payload.customers ?: emptyList()
+                        )
+                    }
+                } ?: emptyList()
             )
         }
     )
