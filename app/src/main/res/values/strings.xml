@@ -61,4 +61,8 @@
     <!--   launches -->
     <string name="launches_past_title">Past</string>
     <string name="launches_upcoming_title">Upcoming</string>
+    <string name="launches_mission_name">Mission name</string>
+    <string name="launches_rocket">Rocket</string>
+    <string name="launches_time_local">Time (local)</string>
+    <string name="launches_net_time_content">NET %1$s</string>
 </resources>
