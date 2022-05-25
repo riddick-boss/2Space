@@ -64,7 +64,7 @@ data class SpaceXLaunch(
 
     data class Payload(
         val type: String?,
-        val massKg: Int?,
+        val massKg: Double?,
         val orbit: String?,
         val inclination: Double?,
         val periodMin: Double?,

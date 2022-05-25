@@ -1,0 +1,31 @@
+{
+  "query": {
+    "upcoming": false
+  },
+  "options": {
+    "page": 1,
+    "limit": 1,
+    "sort": {
+      "flight_number": "desc"
+    },
+    "populate": [
+      {
+        "path": "cores",
+        "populate":[
+          {
+            "path": "landpad"
+          }
+        ]
+      },
+      {
+        "path": "rocket",
+        "select": {
+          "name": 1
+        }
+      },
+      {
+        "path": "payloads"
+      }
+    ]
+  }
+}

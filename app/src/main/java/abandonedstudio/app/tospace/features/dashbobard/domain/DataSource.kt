@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.domain
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.model.Launch
+import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
@@ -68,7 +68,7 @@ private sealed class Coordinates(val lat: String, val lon: String) {
     object VANDENBERG : Coordinates(lat = "34.6321", lon = "-120.6106")
 }
 
-private fun Launch.toSpacexLaunch() =
+private fun DetailedLaunch.toSpacexLaunch() =
     SpaceXLaunch(
         missionName = missionName,
         logoImgPath = logoImgPath,
@@ -82,9 +82,9 @@ private fun Launch.toSpacexLaunch() =
         payloads = payloads.toSpaceXPayloads()
     )
 
-private fun Launch.Links.toSpaceXLinks() = SpaceXLaunch.Links(wikipedia, yt, reddit)
+private fun DetailedLaunch.Links.toSpaceXLinks() = SpaceXLaunch.Links(wikipedia, yt, reddit)
 
-private fun List<Launch.Payload>.toSpaceXPayloads() =
+private fun List<DetailedLaunch.Payload>.toSpaceXPayloads() =
     this.map {
         SpaceXLaunch.Payload(
             type = it.type,
