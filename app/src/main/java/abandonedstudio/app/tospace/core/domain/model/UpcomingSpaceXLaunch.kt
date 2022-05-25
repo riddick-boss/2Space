@@ -7,8 +7,11 @@ data class UpcomingSpaceXLaunch(
     val logoImgPath: String?,
     val rocket: String?,
     val timeStamp: Int?,
-    val precision: Precision
+    private val precisionFlag: String?
 ) {
+    private val precision: Precision
+        get() = precisionFlag.toPrecision()
+
     val net: Boolean
         get() = precision != Precision.DEFINED
 
@@ -25,15 +28,15 @@ data class UpcomingSpaceXLaunch(
             }
         }
 
-    enum class Precision {
+    private enum class Precision {
         DEFINED, MONTH, UNDEFINED
     }
-}
 
-fun String?.toPrecision() =
-    when (this) {
-        "month" -> UpcomingSpaceXLaunch.Precision.MONTH
-        "day" -> UpcomingSpaceXLaunch.Precision.DEFINED
-        "hour" -> UpcomingSpaceXLaunch.Precision.DEFINED
-        else -> UpcomingSpaceXLaunch.Precision.UNDEFINED
+    private fun String?.toPrecision() =
+        when (this) {
+        "month" -> Precision.MONTH
+        "day" -> Precision.DEFINED
+        "hour" -> Precision.DEFINED
+        else -> Precision.UNDEFINED
     }
+}

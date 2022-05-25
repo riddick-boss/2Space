@@ -44,7 +44,7 @@ fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource
                 logoImgPath = it.links?.patch?.small,
                 rocket = it.rocket?.name,
                 timeStamp = it.dateUnix,
-                precision = it.datePrecision.toPrecision()
+                precisionFlag = it.datePrecision
             )
         }
     )

@@ -62,10 +62,8 @@ class KtorSpaceXRemoteApi @Inject constructor(
         }.body()
     }
 
-    private fun paginationQuery(page: Int, limit: Int, @RawRes queryResID: Int): String {
-        var query = ToSpaceApplication.resources.openRawResource(queryResID).bufferedReader().use { it.readText() }
-        query = query.replace("\"page\": 1", "\"page\": $page")
-        query = query.replace("\"limit\": 1", "\"limit\": $limit") // TODO
-        return query
-    }
+    private fun paginationQuery(page: Int, limit: Int, @RawRes queryResID: Int): String  =
+        ToSpaceApplication.resources.openRawResource(queryResID).bufferedReader().use { it.readText() }
+            .replace("\"page\": 1", "\"page\": $page")
+            .replace("\"limit\": 1", "\"limit\": $limit")
 }
