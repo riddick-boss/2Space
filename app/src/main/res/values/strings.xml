@@ -65,4 +65,10 @@
     <string name="launches_rocket">Rocket</string>
     <string name="launches_time_local">Time (local)</string>
     <string name="launches_net_time_content">NET %1$s</string>
+    <string name="launches_mission_success">Mission: \nsuccess</string>
+    <string name="launches_mission_fail">Mission: \nfail</string>
+    <string name="launches_mission_unknown">Mission: \nunknown</string>
+    <string name="launches_landing_success">Landing: \nsuccess</string>
+    <string name="launches_landing_fail">Landing: \nfail</string>
+    <string name="launches_landing_unknown">Landing: \nunknown</string>
 </resources>

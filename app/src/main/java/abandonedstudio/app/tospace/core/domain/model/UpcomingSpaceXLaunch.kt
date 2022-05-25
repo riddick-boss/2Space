@@ -24,16 +24,16 @@ data class UpcomingSpaceXLaunch(
                 Precision.UNDEFINED -> dateFormat.year
             }
         }
-}
 
-enum class Precision {
-    DEFINED, MONTH, UNDEFINED
+    enum class Precision {
+        DEFINED, MONTH, UNDEFINED
+    }
 }
 
 fun String?.toPrecision() =
     when (this) {
-        "month" -> Precision.MONTH
-        "day" -> Precision.DEFINED
-        "hour" -> Precision.DEFINED
-        else -> Precision.UNDEFINED
+        "month" -> UpcomingSpaceXLaunch.Precision.MONTH
+        "day" -> UpcomingSpaceXLaunch.Precision.DEFINED
+        "hour" -> UpcomingSpaceXLaunch.Precision.DEFINED
+        else -> UpcomingSpaceXLaunch.Precision.UNDEFINED
     }

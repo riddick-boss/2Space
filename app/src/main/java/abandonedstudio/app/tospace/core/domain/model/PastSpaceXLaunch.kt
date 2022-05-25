@@ -1,5 +1,7 @@
 package abandonedstudio.app.tospace.core.domain.model
 
+import abandonedstudio.app.tospace.core.domain.util.DateFormat
+
 data class PastSpaceXLaunch(
     val missionName: String?,
     val logoImgPath: String?,
@@ -42,4 +44,10 @@ data class PastSpaceXLaunch(
         val reused: Boolean?,
         val flightNum: Int?,
     )
+
+    val date: String?
+        get() {
+            if (timeStamp == null) return null
+            return DateFormat(timeStamp).format(DateFormat.Precision.YEAR)
+        }
 }

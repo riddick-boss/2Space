@@ -23,9 +23,7 @@ class LaunchesViewModel @Inject constructor(
 ): AndroidViewModel(application) {
 
     private val pagingConfig = PagingConfig(
-        initialLoadSize = 10,
         pageSize = 10,
-        prefetchDistance = 2,
         enablePlaceholders = true
     )
 
