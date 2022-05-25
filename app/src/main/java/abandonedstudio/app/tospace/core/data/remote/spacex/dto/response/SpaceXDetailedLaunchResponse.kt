@@ -7,7 +7,7 @@ import androidx.annotation.Keep
 
 @Keep
 @Serializable
-data class SpaceXSingleLaunchResponse(
+data class SpaceXDetailedLaunchResponse(
     @SerialName("docs")
     val docs: List<Doc>
 ) {
@@ -290,9 +290,9 @@ data class SpaceXSingleLaunchResponse(
             @SerialName("manufacturers")
             val manufacturers: List<String?>? = null,
             @SerialName("mass_kg")
-            val massKg: Int? = null,
+            val massKg: Double? = null,
             @SerialName("mass_lbs")
-            val massLbs: Int? = null,
+            val massLbs: Double? = null,
             @SerialName("mean_anomaly")
             val meanAnomaly: Double? = null,
             @SerialName("mean_motion")

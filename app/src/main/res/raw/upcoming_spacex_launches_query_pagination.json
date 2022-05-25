@@ -1,0 +1,20 @@
+{
+  "query": {
+    "upcoming": true
+  },
+  "options": {
+    "page": 1,
+    "limit": 1,
+    "sort": {
+      "flight_number": "asc"
+    },
+    "populate": [
+      {
+        "path": "rocket",
+        "select": {
+          "name": 1
+        }
+      }
+    ]
+  }
+}

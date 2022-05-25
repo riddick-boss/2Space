@@ -32,7 +32,7 @@
     <string name="dashboard_payloads">Payloads</string>
     <string name="dashboard_payload_type">Type</string>
     <string name="dashboard_payload_mass">Mass</string>
-    <string name="dashboard_payload_mass_content">%1$d kg</string>
+    <string name="dashboard_payload_mass_content">%1$.1f kg</string>
     <string name="dashboard_payload_orbit">Orbit</string>
     <string name="dashboard_payload_inclination">Inclination</string>
     <string name="dashboard_payload_inclination_content">%1$d °</string>
@@ -57,4 +57,18 @@
     <string name="dashboard_vandenberg_region">California</string>
     <string name="dashboard_reference_no_link">No link provided yet</string>
     <string name="dashboard_failed_to_load_launch_info">Failed to load data about launch</string>
+
+    <!--   launches -->
+    <string name="launches_past_title">Past</string>
+    <string name="launches_upcoming_title">Upcoming</string>
+    <string name="launches_mission_name">Mission name</string>
+    <string name="launches_rocket">Rocket</string>
+    <string name="launches_time_local">Time (local)</string>
+    <string name="launches_net_time_content">NET %1$s</string>
+    <string name="launches_mission_success">Mission: \nsuccess</string>
+    <string name="launches_mission_fail">Mission: \nfail</string>
+    <string name="launches_mission_unknown">Mission: \nunknown</string>
+    <string name="launches_landing_success">Landing: \nsuccess</string>
+    <string name="launches_landing_fail">Landing: \nfail</string>
+    <string name="launches_landing_unknown">Landing: \nunknown</string>
 </resources>
