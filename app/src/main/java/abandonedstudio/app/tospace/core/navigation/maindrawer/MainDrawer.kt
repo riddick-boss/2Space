@@ -124,7 +124,7 @@ private fun DrawerItem(screen: MainDrawerScreen, onIconClicked: () -> Unit) {
 
 @Composable
 private fun DrawerNavigation(drawerNavController: NavHostController, onIconClicked: () -> Unit) {
-    NavHost(navController = drawerNavController, startDestination = MainDrawerScreen.LAUNCHES.route) {
+    NavHost(navController = drawerNavController, startDestination = MainDrawerScreen.DASHBOARD.route) {
         MainDrawerScreen.values().forEach {
             composableScreen(it, onIconClicked, it.screen)
         }
