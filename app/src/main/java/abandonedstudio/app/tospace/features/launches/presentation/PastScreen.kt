@@ -117,13 +117,13 @@ private fun PastLaunchCard(launch: PastSpaceXLaunch) {
             InfoSection(
                 titleResId = R.string.launches_past_rocket,
                 R.string.launches_past_rocket_name to launch.rocket,
-                R.string.launches_past_rocket_reused to if (launch.core.reused == null) null else if (launch.core.reused) "Yes" else "No",
+                R.string.launches_past_rocket_reused to if (launch.core.reused == null) null else if (launch.core.reused) StringUtil.getString(R.string.launches_past_rocket_reused_success) else StringUtil.getString(R.string.launches_past_rocket_reused_fail),
                 R.string.launches_past_rocket_flightNum to launch.core.flightNum?.toString()
             )
 
             InfoSection(
                 titleResId = R.string.launches_past_fairings,
-                R.string.launches_past_fairings_recovered to if (launch.fairingsRecovered == null) null else if (launch.fairingsRecovered) "Yes" else "No"
+                R.string.launches_past_fairings_recovered to if (launch.fairingsRecovered == null) null else if (launch.fairingsRecovered) StringUtil.getString(R.string.launches_past_fairings_recovered_success) else StringUtil.getString(R.string.launches_past_fairings_recovered_fail)
             )
 
             launch.payloads.forEach { payload ->
@@ -166,7 +166,7 @@ private fun InfoSection(@StringRes titleResId: Int, vararg params: Pair</*@Strin
 }
 
 @Composable
-fun ParamRow(@StringRes titleResId: Int, content: String?) {
+private fun ParamRow(@StringRes titleResId: Int, content: String?) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
