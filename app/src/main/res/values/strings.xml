@@ -11,7 +11,7 @@
     <string name="content_description">Content description</string>
 
     <!--   no data -->
-    <string name="no_data_info">N/A</string>
+    <string name="no_data_info">No data</string>
 
     <!--   fetch fail -->
     <string name="fetch_fail_message">Failed to fetch data</string>
