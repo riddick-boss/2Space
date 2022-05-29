@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.abs
 
@@ -20,17 +21,35 @@ class DashboardViewModel @Inject constructor(
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
 
-    val nextLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
-        flow {
-            try {
-                emit(Result.success(dataSource.loadNextLaunch()))
-            } catch (e: Exception) {
-                e.toMessage()?.run {
-                    showToast(this)
-                }
-                emit(Result.failure(e))
-            }
+    private val refreshFlow = MutableSharedFlow<Unit>()
+
+    fun onRefresh() {
+        viewModelScope.launch {
+            refreshFlow.emit(Unit)
         }
+    }
+
+    val refreshCompletedFlow: Flow<Unit> by lazy {
+        combine(nextLaunchFlow, previousLaunchFlow) { t1, t2 -> if (t1 != null && t2 != null) Unit }
+            .shareIn(viewModelScope, SharingStarted.WhileSubscribed())
+    }
+
+    val nextLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
+        refreshFlow
+            .onStart { emit(Unit) }
+            .flatMapLatest {
+                flow {
+                    emit(null)
+                    try {
+                        emit(Result.success(dataSource.loadNextLaunch()))
+                    } catch (e: Exception) {
+                        e.toMessage()?.run {
+                            showToast(this)
+                        }
+                        emit(Result.failure(e))
+                    }
+                }
+            }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
@@ -53,16 +72,21 @@ class DashboardViewModel @Inject constructor(
     }
 
     val previousLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
-        flow {
-            try {
-                emit(Result.success(dataSource.loadLastLaunch()))
-            } catch (e: Exception) {
-                e.toMessage()?.run {
-                    showToast(this)
+        refreshFlow
+            .onStart { emit(Unit) }
+            .flatMapLatest {
+                flow {
+                    emit(null)
+                    try {
+                        emit(Result.success(dataSource.loadLastLaunch()))
+                    } catch (e: Exception) {
+                        e.toMessage()?.run {
+                            showToast(this)
+                        }
+                        emit(Result.failure(e))
+                    }
                 }
-                emit(Result.failure(e))
             }
-        }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 

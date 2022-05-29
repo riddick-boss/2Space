@@ -45,6 +45,7 @@ android {
 
         buildConfigField("String", "OPEN_WEATHER_MAP_API_KEY", localProperties.getProperty('OPEN_WEATHER_MAP_API_KEY', '"noKey"'))
         buildConfigField("String", "NEWS_DATA_IO_API_KEY", localProperties.getProperty('NEWS_DATA_IO_API_KEY', '"noKey"'))
+        buildConfigField("String", "EMAIL", localProperties.getProperty('EMAIL', '""'))
     }
 
     signingConfigs {

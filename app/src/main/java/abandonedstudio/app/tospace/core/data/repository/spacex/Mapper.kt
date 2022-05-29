@@ -65,7 +65,7 @@ fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Pag
                     reddit = it.links?.reddit?.campaign
                 ),
                 details = it.details,
-                launchPad = it.launchpad,
+                launchPad = it.launchpad?.name,
                 missionSuccess = it.success,
                 landingSuccess = it.cores?.firstOrNull()?.landingSuccess,
                 fairingsRecovered = it.fairings?.recovered,

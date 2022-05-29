@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
-import abandonedstudio.app.tospace.core.domain.model.PastSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.features.launches.data.PastLaunch
 import abandonedstudio.app.tospace.features.launches.domain.DataSource
 import abandonedstudio.app.tospace.features.launches.domain.PastLaunchesPagingSource
 import abandonedstudio.app.tospace.features.launches.domain.UpcomingLaunchesPagingSource
@@ -35,7 +35,7 @@ class LaunchesViewModel @Inject constructor(
         }.flow.cachedIn(viewModelScope)
     }
 
-    val pastLaunchesFlow: Flow<PagingData<PastSpaceXLaunch>> by lazy {
+    val pastLaunchesFlow: Flow<PagingData<PastLaunch>> by lazy {
         Pager(pagingConfig) {
             PastLaunchesPagingSource(dataSource)
         }.flow.cachedIn(viewModelScope)
