@@ -35,7 +35,7 @@
     <string name="dashboard_payload_mass_content">%1$.1f kg</string>
     <string name="dashboard_payload_orbit">Orbit</string>
     <string name="dashboard_payload_inclination">Inclination</string>
-    <string name="dashboard_payload_inclination_content">%1$.1f °</string>
+    <string name="dashboard_payload_inclination_content">%1$.1f°</string>
     <string name="dashboard_payload_period">Period</string>
     <string name="dashboard_payload_period_content">%1$.1f min</string>
     <string name="dashboard_payload_customer">Customer</string>
@@ -91,7 +91,7 @@
     <string name="launches_past_payload_mass_content">%1$.1f kg</string>
     <string name="launches_past_payload_orbit">Orbit</string>
     <string name="launches_past_payload_inclination">Inclination</string>
-    <string name="launches_past_payload_inclination_content">%1$.1f °</string>
+    <string name="launches_past_payload_inclination_content">%1$.1f°</string>
     <string name="launches_past_payload_period">Period</string>
     <string name="launches_past_payload_period_content">%1$.1f min</string>
     <string name="launches_past_payload_apoapsis">Apoapsis</string>
