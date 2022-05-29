@@ -2,6 +2,7 @@ package abandonedstudio.app.tospace.core.navigation.maindrawer
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
+import abandonedstudio.app.tospace.features.about.presentation.AboutScreen
 import abandonedstudio.app.tospace.features.dashbobard.presentation.DashboardScreen
 import abandonedstudio.app.tospace.features.launches.presentation.LaunchesScreen
 import androidx.annotation.StringRes
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -31,7 +33,11 @@ import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-enum class MainDrawerScreen(val route: String, @StringRes val titleResId: Int, val screen: @Composable () -> Unit) {
+enum class MainDrawerScreen(
+    val route: String,
+    @StringRes val titleResId: Int,
+    val screen: @Composable () -> Unit
+) {
 
     DASHBOARD(
         route = "dashboard",
@@ -43,6 +49,12 @@ enum class MainDrawerScreen(val route: String, @StringRes val titleResId: Int, v
         route = "launches",
         titleResId = R.string.main_drawer_launches_title,
         screen = { LaunchesScreen() }
+    ),
+
+    ABOUT(
+        route = "about",
+        titleResId = R.string.about_title,
+        screen = { AboutScreen() }
     );
 }
 
@@ -69,54 +81,72 @@ fun MainDrawer() {
 }
 
 @Composable
-private fun DrawerContent(navController: NavController, drawerState: DrawerState, scope: CoroutineScope) {
+private fun DrawerContent(
+    navController: NavController,
+    drawerState: DrawerState,
+    scope: CoroutineScope
+) {
+    val onItemCLicked: (MainDrawerScreen) -> Unit = {
+        navController.navigate(it.route) {
+            navController.graph.startDestinationRoute?.also { route ->
+                popUpTo(route) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+
+        scope.launch {
+            drawerState.close()
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxHeight()
-            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Black))),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+            .background(Brush.verticalGradient(listOf(Color.DarkGray, Color.Black)))
+            .padding(vertical = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.spacex_logo),
             contentDescription = contentDescription(),
             modifier = Modifier
                 .height(100.dp)
-                .padding(start = 16.dp, top = 16.dp, end = 16.dp),
+                .padding(horizontal = 16.dp),
             contentScale = ContentScale.Fit
         )
 
-        MainDrawerScreen.values().forEach {
-            DrawerItem(screen = it) {
-                navController.navigate(it.route) {
-                    navController.graph.startDestinationRoute?.also { route ->
-                        popUpTo(route) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                }
-
-                scope.launch {
-                    drawerState.close()
-                }
-            }
+        MainDrawerScreen.values().filter { it.ordinal != MainDrawerScreen.ABOUT.ordinal }.forEach {
+            DrawerItem(screen = it, onItemClicked = onItemCLicked)
         }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        DrawerItem(
+            screen = MainDrawerScreen.ABOUT,
+            style = MaterialTheme.typography.h5,
+            onItemClicked = onItemCLicked
+        )
     }
 }
 
 @Composable
-private fun DrawerItem(screen: MainDrawerScreen, onIconClicked: () -> Unit) {
+private fun DrawerItem(
+    screen: MainDrawerScreen,
+    style: TextStyle = MaterialTheme.typography.h4,
+    onItemClicked: (MainDrawerScreen) -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp)
-            .clickable(onClick = onIconClicked)
+            .clickable(onClick = { onItemClicked(screen) })
             .padding(horizontal = 16.dp)
     ) {
         Text(
             text = stringResource(id = screen.titleResId),
-            style = MaterialTheme.typography.h4,
+            style = style,
             color = Color.White
         )
     }

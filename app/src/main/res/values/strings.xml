@@ -11,7 +11,7 @@
     <string name="content_description">Content description</string>
 
     <!--   no data -->
-    <string name="no_data_info">No data</string>
+    <string name="no_data_info">N/A</string>
 
     <!--   fetch fail -->
     <string name="fetch_fail_message">Failed to fetch data</string>
@@ -82,9 +82,13 @@
     <string name="launches_past_rocket">Rocket</string>
     <string name="launches_past_rocket_name">Name</string>
     <string name="launches_past_rocket_reused">Reused</string>
+    <string name="launches_past_rocket_reused_success">Yes</string>
+    <string name="launches_past_rocket_reused_fail">No</string>
     <string name="launches_past_rocket_flightNum">Flight num</string>
     <string name="launches_past_fairings">Fairings</string>
     <string name="launches_past_fairings_recovered">Recovered</string>
+    <string name="launches_past_fairings_recovered_success">Yes</string>
+    <string name="launches_past_fairings_recovered_fail">No</string>
     <string name="launches_past_payload">Payload</string>
     <string name="launches_past_payload_type">Type</string>
     <string name="launches_past_payload_mass">Mass</string>
@@ -99,4 +103,16 @@
     <string name="launches_past_payload_periapsis">Periapsis</string>
     <string name="launches_past_payload_periapsis_content">%1$.1f km</string>
     <string name="launches_past_payload_customer">Customer</string>
+
+    <!--   about -->
+    <string name="about_title">About</string>
+    <string name="about_disclaimer">Disclaimer</string>
+    <string name="about_disclaimer_content"> We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Space Exploration Technologies Corp (SpaceX), or any of its subsidiaries or its affiliates. The names SpaceX as well as related names, marks, emblems and images are registered trademarks of their respective owners. This is not an official SpaceX app.</string>
+    <string name="about_mention">Honorable mention</string>
+    <string name="about_mention_spacex_api">SpaceX API</string>
+    <string name="about_mention_open_weather_map_api">OpenWeatherMap API</string>
+    <string name="about_issue_title">Have an issue?\nContact us via:</string>
+    <string name="about_email_subject">2Space app</string>
+    <string name="no_email_provided">Sorry, no email provided</string>
+    <string name="cannot_send_email_info">Sorry, can not send email</string>
 </resources>
