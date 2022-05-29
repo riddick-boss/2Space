@@ -269,7 +269,11 @@ private fun Links(
                 context = context,
                 link = wikipediaLink
             )
-            Reference.YOUTUBE.LinkButton(uriHandler = uriHandler, context = context, link = ytLink)
+            Reference.YOUTUBE.LinkButton(
+                uriHandler = uriHandler,
+                context = context,
+                link = ytLink
+            )
             Reference.REDDIT.LinkButton(
                 uriHandler = uriHandler,
                 context = context,
@@ -293,22 +297,22 @@ private fun MissionLogo(
         elevation = 0.dp
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             if (logoImgPath == null) {
                 Image(
                     painter = painterResource(id = R.drawable.spacex_logo),
                     contentDescription = contentDescription(),
-                    contentScale = ContentScale.Fit
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize().padding(8.dp)
                 )
             } else {
                 SubcomposeAsyncImage(
                     model = logoImgPath,
                     contentDescription = contentDescription(),
-                    contentScale = ContentScale.Fit
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize().padding(8.dp)
                 ) {
                     val state = painter.state
                     if (state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error) {

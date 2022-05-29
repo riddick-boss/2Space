@@ -22,7 +22,7 @@ class LaunchesViewModel @Inject constructor(
     private val dataSource: DataSource
 ): AndroidViewModel(application) {
 
-    private val pagingConfig = PagingConfig(
+    private val upcomingPagingConfig = PagingConfig(
         initialLoadSize = 10,
         pageSize = 10,
         prefetchDistance = 2,
@@ -30,13 +30,20 @@ class LaunchesViewModel @Inject constructor(
     )
 
     val upcomingLaunchesFlow: Flow<PagingData<UpcomingSpaceXLaunch>> by lazy {
-        Pager(pagingConfig) {
+        Pager(upcomingPagingConfig) {
             UpcomingLaunchesPagingSource(dataSource)
         }.flow.cachedIn(viewModelScope)
     }
 
+    private val pastPagingConfig = PagingConfig(
+        initialLoadSize = 5,
+        pageSize = 5,
+        prefetchDistance = 2,
+        enablePlaceholders = true
+    )
+
     val pastLaunchesFlow: Flow<PagingData<PastSpaceXLaunch>> by lazy {
-        Pager(pagingConfig) {
+        Pager(pastPagingConfig) {
             PastLaunchesPagingSource(dataSource)
         }.flow.cachedIn(viewModelScope)
     }

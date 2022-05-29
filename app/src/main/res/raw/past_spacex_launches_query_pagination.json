@@ -25,6 +25,9 @@
       },
       {
         "path": "payloads"
+      },
+      {
+        "path": "launchpad"
       }
     ]
   }

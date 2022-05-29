@@ -96,15 +96,14 @@ private fun MissionLogo(logoImgPath: String?) {
         elevation = 0.dp
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
+            modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Image(
                 painter = if (logoImgPath == null) painterResource(id = R.drawable.spacex_logo) else rememberAsyncImagePainter(model = logoImgPath),
                 contentDescription = contentDescription(),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Fit,
+                modifier = Modifier.fillMaxSize().padding(8.dp)
             )
         }
     }

@@ -59,7 +59,7 @@ data class PastSpaceXLaunchesResponse(
         @SerialName("launch_library_id")
         val launchLibraryId: String? = null,
         @SerialName("launchpad")
-        val launchpad: String? = null,
+        val launchpad: Launchpad? = null,
         @SerialName("links")
         val links: Links? = null,
         @SerialName("name")
@@ -299,6 +299,48 @@ data class PastSpaceXLaunchesResponse(
                 val massReturnedLbs: Double? = null,
                 @SerialName("water_landing")
                 val waterLanding: Boolean? = null
+            )
+        }
+
+        @Keep
+        @Serializable
+        data class Launchpad(
+            @SerialName("details")
+            val details: String? = null,
+            @SerialName("full_name")
+            val fullName: String? = null,
+            @SerialName("id")
+            val id: String? = null,
+            @SerialName("images")
+            val images: Images? = null,
+            @SerialName("latitude")
+            val latitude: Double? = null,
+            @SerialName("launch_attempts")
+            val launchAttempts: Int? = null,
+            @SerialName("launch_successes")
+            val launchSuccesses: Int? = null,
+            @SerialName("launches")
+            val launches: List<String?>? = null,
+            @SerialName("locality")
+            val locality: String? = null,
+            @SerialName("longitude")
+            val longitude: Double? = null,
+            @SerialName("name")
+            val name: String? = null,
+            @SerialName("region")
+            val region: String? = null,
+            @SerialName("rockets")
+            val rockets: List<String?>? = null,
+            @SerialName("status")
+            val status: String? = null,
+            @SerialName("timezone")
+            val timezone: String? = null
+        ) {
+            @Keep
+            @Serializable
+            data class Images(
+                @SerialName("large")
+                val large: List<String?>? = null
             )
         }
 
