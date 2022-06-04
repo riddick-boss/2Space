@@ -60,9 +60,8 @@ class DashboardViewModel @Inject constructor(
             .flatMapLatest { launchTime ->
                 flow {
                     while (true) {
-                        val now = System.currentTimeMillis() / 1000
                         emit(
-                            convertDuration(now = now, launchTime = launchTime)
+                            convertDurationFromNow(launchTime = launchTime)
                         )
                         delay(1000)
                     }
@@ -97,9 +96,8 @@ class DashboardViewModel @Inject constructor(
             .flatMapLatest { launchTime ->
                 flow {
                     while (true) {
-                        val now = System.currentTimeMillis() / 1000
                         emit(
-                            convertDuration(now = now, launchTime = launchTime)
+                            convertDurationFromNow(launchTime = launchTime)
                         )
                         delay(1000)
                     }
@@ -108,11 +106,12 @@ class DashboardViewModel @Inject constructor(
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
     }
 
-    private fun convertDuration(now: Long, launchTime: Int): String {
-        var time = abs(now - launchTime)
-        val days = abs(time / 86_400) // 3600 * 24
+    private fun convertDurationFromNow(launchTime: Long): String {
+        val now = System.currentTimeMillis()
+        var time = abs(now - launchTime) / 1000 // from millis to seconds
+        val days = abs(time / 86_400) // 60sec * 60min * 24h
         time %= 86_400
-        val hours = abs(time / 3600)
+        val hours = abs(time / 3600) // 60sec * 60min
         time %= 3600
         val minutes = abs(time / 60)
         time %= 60

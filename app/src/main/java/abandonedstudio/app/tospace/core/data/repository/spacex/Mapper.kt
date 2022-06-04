@@ -13,7 +13,7 @@ fun SpaceXDetailedLaunchResponse.toDetailedLaunch(): DetailedLaunch =
             logoImgPath = it.links?.patch?.small,
             rocket = it.rocket?.name,
             flightNumber = it.flightNumber,
-            timeStamp = it.dateUnix,
+            timeStamp = it.dateUnix?.let { stamp -> stamp * 1000L }, // from api dateUnix is in seconds, we need it in millis
             links = DetailedLaunch.Links(
                 wikipedia = it.links?.wikipedia,
                 yt = it.links?.webcast,
@@ -43,7 +43,7 @@ fun UpcomingSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource
                 missionName = it.name,
                 logoImgPath = it.links?.patch?.small,
                 rocket = it.rocket?.name,
-                timeStamp = it.dateUnix,
+                timeStamp = it.dateUnix?.let { stamp -> stamp * 1000L }, // from api dateUnix is in seconds, we need it in millis
                 precisionFlag = it.datePrecision
             )
         }
@@ -58,7 +58,7 @@ fun PastSpaceXLaunchesResponse.toLaunchPaginationData(): DefaultPagingSource.Pag
                 missionName = it.name,
                 logoImgPath = it.links?.patch?.small,
                 rocket = it.rocket?.name,
-                timeStamp = it.dateUnix,
+                timeStamp = it.dateUnix?.let { stamp -> stamp * 1000L }, // from api dateUnix is in seconds, we need it in millis
                 links = PastSpaceXLaunch.Links(
                     wikipedia = it.links?.wikipedia,
                     yt = it.links?.webcast,
