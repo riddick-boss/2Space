@@ -75,7 +75,10 @@ private fun DetailedLaunch.toSpacexLaunch() =
         rocket = rocket,
         flightNumber = flightNumber,
         timeStamp = timeStamp,
-        date = timeStamp?.let { DateFormat(it).format(DateFormat.Precision.MONTH) },
+        date = timeStamp?.let {
+            val dateFormat = DateFormat(it)
+            "${dateFormat.dayOfWeekShort}, ${dateFormat.format(DateFormat.Precision.MONTH)}"
+        },
         links = links.toSpaceXLinks(),
         details = details,
         launchPad = launchPad,

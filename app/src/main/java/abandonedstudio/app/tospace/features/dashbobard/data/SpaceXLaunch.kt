@@ -34,7 +34,7 @@ data class SpaceXLaunch(
     val logoImgPath: String?,
     val rocket: String?,
     val flightNumber: Int?,
-    val timeStamp: Int?,
+    val timeStamp: Long?,
     val date: String?,
     val links: Links,
     val details: String?,

@@ -5,7 +5,7 @@ data class DetailedLaunch(
     val logoImgPath: String?,
     val rocket: String?,
     val flightNumber: Int?,
-    val timeStamp: Int?,
+    val timeStamp: Long?,
     val links: Links,
     val details: String?,
     val launchPad: String?,
