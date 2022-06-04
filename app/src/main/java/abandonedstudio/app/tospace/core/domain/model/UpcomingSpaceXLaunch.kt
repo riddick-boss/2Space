@@ -6,7 +6,7 @@ data class UpcomingSpaceXLaunch(
     val missionName: String?,
     val logoImgPath: String?,
     val rocket: String?,
-    val timeStamp: Int?,
+    val timeStamp: Long?,
     private val precisionFlag: String?
 ) {
     private val precision: Precision
@@ -16,17 +16,16 @@ data class UpcomingSpaceXLaunch(
         get() = precision != Precision.DEFINED
 
     val date: String?
-        get() {
-            if (timeStamp == null) return null
+        get() =
+            timeStamp?.let {
+                val dateFormat = DateFormat(timeStamp)
 
-            val dateFormat = DateFormat(timeStamp)
-
-            return when (precision) {
-                Precision.DEFINED -> dateFormat.format(DateFormat.Precision.YEAR)
-                Precision.MONTH -> dateFormat.monthAndYear
-                Precision.UNDEFINED -> dateFormat.year
+                when (precision) {
+                    Precision.DEFINED -> dateFormat.format(DateFormat.Precision.YEAR)
+                    Precision.MONTH -> dateFormat.monthAndYear
+                    Precision.UNDEFINED -> dateFormat.year
+                }
             }
-        }
 
     private enum class Precision {
         DEFINED, MONTH, UNDEFINED

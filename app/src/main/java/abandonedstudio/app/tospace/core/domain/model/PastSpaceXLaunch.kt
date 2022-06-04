@@ -6,7 +6,7 @@ data class PastSpaceXLaunch(
     val missionName: String?,
     val logoImgPath: String?,
     val rocket: String?,
-    val timeStamp: Int?,
+    val timeStamp: Long?,
     val links: Links,
     val details: String?,
     val launchPad: String?,
@@ -46,8 +46,5 @@ data class PastSpaceXLaunch(
     )
 
     val date: String?
-        get() {
-            if (timeStamp == null) return null
-            return DateFormat(timeStamp).format(DateFormat.Precision.YEAR)
-        }
+        get() = timeStamp?.let { DateFormat(it).format(DateFormat.Precision.YEAR) }
 }
