@@ -20,7 +20,7 @@ import javax.inject.Inject
 class LaunchesViewModel @Inject constructor(
     application: Application,
     private val dataSource: DataSource
-): AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 
     private val pagingConfig = PagingConfig(
         initialLoadSize = 10,
