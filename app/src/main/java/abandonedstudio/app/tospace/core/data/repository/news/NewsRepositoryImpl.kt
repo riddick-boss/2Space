@@ -11,4 +11,5 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun loadUpcomingEvents(): List<SpaceEvent> =
         eventsApi.loadUpcomingEvents().toSpaceEvents()
+            .filter { !(it.name?.contains("russian", ignoreCase = true) ?: false) } // boycott! stay strong ukraine!
 }
