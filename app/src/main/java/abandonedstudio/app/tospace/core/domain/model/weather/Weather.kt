@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.domain.model
+package abandonedstudio.app.tospace.core.domain.model.weather
 
 data class Weather(
     val temperature: Double?,

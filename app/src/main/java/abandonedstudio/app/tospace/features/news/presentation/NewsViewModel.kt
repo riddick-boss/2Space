@@ -2,6 +2,7 @@ package abandonedstudio.app.tospace.features.news.presentation
 
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
+import abandonedstudio.app.tospace.features.news.data.Article
 import abandonedstudio.app.tospace.features.news.data.Event
 import abandonedstudio.app.tospace.features.news.domain.DataSource
 import android.app.Application
@@ -24,6 +25,19 @@ class NewsViewModel @Inject constructor(
         flow {
             try {
                 emit(Result.success(dataSource.loadUpcomingLaunches()))
+            } catch (e: Exception) {
+                e.toMessage()?.run {
+                    showToast(this)
+                }
+                emit(Result.failure(e))
+            }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    }
+
+    val articles: StateFlow<Result<List<Article>>?> by lazy {
+        flow {
+            try {
+                emit(Result.success(dataSource.loadArticles()))
             } catch (e: Exception) {
                 e.toMessage()?.run {
                     showToast(this)

@@ -1,5 +1,6 @@
 package abandonedstudio.app.tospace.di
 
+import abandonedstudio.app.tospace.core.data.remote.news.articles.ArticlesRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.news.events.EventsRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.weather.WeatherRemoteApi
@@ -27,6 +28,6 @@ object DomainRepositoryModule {
         SpaceXRepositoryImpl(remoteApi)
 
     @Provides
-    fun provideNewsRepository(eventsApi: EventsRemoteApi) : NewsRepository =
-        NewsRepositoryImpl(eventsApi)
+    fun provideNewsRepository(eventsApi: EventsRemoteApi, articlesApi: ArticlesRemoteApi) : NewsRepository =
+        NewsRepositoryImpl(eventsApi, articlesApi)
 }

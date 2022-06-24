@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.domain.model.news
 
 data class SpaceEvent(
-    val name: String?,
+    val title: String?,
     val description: String?,
     val imageUrl: String?,
     val newsUrl: String?,

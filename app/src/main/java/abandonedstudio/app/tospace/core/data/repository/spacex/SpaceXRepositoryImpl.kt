@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.core.data.repository.spacex
 
 import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
-import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
-import abandonedstudio.app.tospace.core.domain.model.PastSpaceXLaunch
-import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.PastSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
 import javax.inject.Inject

@@ -18,13 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun EventsScreen(viewModel: NewsViewModel) {
+fun ArticlesScreen(viewModel: NewsViewModel) {
 
-    val eventsResult by viewModel.upcomingLaunchesFlow.collectAsState()
+    val articlesResult by viewModel.articles.collectAsState()
 
     val uriHandler = LocalUriHandler.current
 
-    val onEventClicked: (String) -> Unit = {
+    val onArticleClicked: (String) -> Unit = {
         uriHandler.openUri(it)
     }
 
@@ -32,7 +32,7 @@ fun EventsScreen(viewModel: NewsViewModel) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        eventsResult.also { result ->
+        articlesResult.also { result ->
             if (result == null) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(56.dp)
@@ -48,10 +48,10 @@ fun EventsScreen(viewModel: NewsViewModel) {
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         items(events) {
-                            it.Item(onClick = onEventClicked)
+                            it.Item(onClick = onArticleClicked)
                         }
                     }
                 }

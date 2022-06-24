@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.features.news.data
 
-import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -13,25 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 
-data class Event(
+data class Article(
     val title: String?,
-    val description: String?,
+    val summary: String?,
     val imageUrl: String?,
-    val newsUrl: String?,
-    val videoUrl: String?,
-    val type: String?
+    val url: String?
 ) {
 
     @Composable
     fun Item(onClick: (String) -> Unit) {
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().clickable { url?.also { onClick(it) } },
             shape = RoundedCornerShape(8.dp),
             elevation = 0.dp,
             backgroundColor = DarkGrayBackground
@@ -60,34 +57,20 @@ data class Event(
                         )
                     }
 
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .align(Alignment.TopCenter)
-                            .background(Brush.verticalGradient(listOf(Color.Black, Color.Transparent)))
-                            .padding(16.dp),
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        title?.also {
-                            Text(
-                                text = it,
-                                style = MaterialTheme.typography.subtitle1,
-                                color = Color.White,
-                                modifier = Modifier.weight(1f)
-                            )
-                        }
-
-                        type?.also {
-                            Text(
-                                text = it,
-                                style = MaterialTheme.typography.caption,
-                                color = Color.White,
-                            )
-                        }
+                    title?.also {
+                        Text(
+                            text = it,
+                            style = MaterialTheme.typography.subtitle1,
+                            color = Color.White,
+                            modifier = Modifier
+                                .align(Alignment.TopCenter)
+                                .fillMaxWidth()
+                                .background(Brush.verticalGradient(listOf(Color.Black, Color.Transparent)))
+                                .padding(8.dp)
+                        )
                     }
 
-                    description?.also {
+                    summary?.also {
                         Text(
                             text = it,
                             style = MaterialTheme.typography.subtitle2,
@@ -101,27 +84,6 @@ data class Event(
                                 .background(Brush.verticalGradient(listOf(Color.Transparent, Color.Black, Color.Black)))
                                 .padding(8.dp)
                         )
-                    }
-                }
-
-                Row(
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
-                    horizontalArrangement = if (newsUrl != null && videoUrl != null) Arrangement.SpaceBetween else Arrangement.End
-                ) {
-                    newsUrl?.also {
-                        Button(
-                            onClick = { onClick(it) },
-                        ) {
-                            Text(text = stringResource(id = R.string.news_read_more))
-                        }
-                    }
-
-                    videoUrl?.also {
-                        Button(
-                            onClick = { onClick(it) },
-                        ) {
-                            Text(text = stringResource(id = R.string.news_watch))
-                        }
                     }
                 }
             }

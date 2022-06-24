@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.domain
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
