@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Tab
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun LaunchesScreen(
+fun SpaceXScreen(
     viewModel: LaunchesViewModel = hiltViewModel()
 ) {
     val tabs = Tab.values().toList()

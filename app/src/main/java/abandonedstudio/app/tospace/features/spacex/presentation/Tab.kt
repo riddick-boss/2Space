@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import abandonedstudio.app.tospace.R
 import androidx.annotation.StringRes

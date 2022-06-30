@@ -1,10 +1,10 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
-import abandonedstudio.app.tospace.features.launches.data.PastLaunch
-import abandonedstudio.app.tospace.features.launches.domain.DataSource
-import abandonedstudio.app.tospace.features.launches.domain.PastLaunchesPagingSource
-import abandonedstudio.app.tospace.features.launches.domain.UpcomingLaunchesPagingSource
+import abandonedstudio.app.tospace.features.spacex.data.PastLaunch
+import abandonedstudio.app.tospace.features.spacex.domain.DataSource
+import abandonedstudio.app.tospace.features.spacex.domain.PastLaunchesPagingSource
+import abandonedstudio.app.tospace.features.spacex.domain.UpcomingLaunchesPagingSource
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope

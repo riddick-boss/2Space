@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch

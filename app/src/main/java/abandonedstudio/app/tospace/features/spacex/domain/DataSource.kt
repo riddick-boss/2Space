@@ -1,10 +1,10 @@
-package abandonedstudio.app.tospace.features.launches.domain
+package abandonedstudio.app.tospace.features.spacex.domain
 
 import abandonedstudio.app.tospace.core.domain.model.spacex.PastSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
-import abandonedstudio.app.tospace.features.launches.data.PastLaunch
+import abandonedstudio.app.tospace.features.spacex.data.PastLaunch
 import javax.inject.Inject
 
 class DataSource @Inject constructor(

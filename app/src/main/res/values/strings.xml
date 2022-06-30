@@ -4,6 +4,7 @@
     <!--    main drawer -->
     <string name="main_drawer_dashboard_title">Dashboard</string>
     <string name="main_drawer_launches_title">Launches</string>
+    <string name="main_drawer_spacex_title">SpaceX</string>
     <string name="main_drawer_news_title">News</string>
     <string name="main_drawer_contact_title">Contact</string>
 
