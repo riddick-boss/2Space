@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
 import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
 import abandonedstudio.app.tospace.core.presentation.component.TitledTextNoData

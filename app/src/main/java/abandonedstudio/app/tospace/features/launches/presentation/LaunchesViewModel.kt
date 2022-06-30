@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
-import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.features.launches.data.PastLaunch
 import abandonedstudio.app.tospace.features.launches.domain.DataSource
 import abandonedstudio.app.tospace.features.launches.domain.PastLaunchesPagingSource

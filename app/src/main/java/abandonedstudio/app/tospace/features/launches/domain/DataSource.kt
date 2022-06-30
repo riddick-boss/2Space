@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.launches.domain
 
-import abandonedstudio.app.tospace.core.domain.model.launches.PastSpaceXLaunch
-import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.PastSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
 import abandonedstudio.app.tospace.features.launches.data.PastLaunch

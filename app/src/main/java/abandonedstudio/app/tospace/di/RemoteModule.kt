@@ -1,5 +1,7 @@
 package abandonedstudio.app.tospace.di
 
+import abandonedstudio.app.tospace.core.data.remote.launches.LaunchesRemoteApi
+import abandonedstudio.app.tospace.core.data.remote.launches.ktor.KtorLaunchesRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.news.articles.ArticlesRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.news.articles.ktor.KtorArticlesRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.news.events.EventsRemoteApi
@@ -33,4 +35,8 @@ object RemoteModule {
     @Provides
     fun provideArticlesRemoteApi(httpClient: HttpClient): ArticlesRemoteApi =
         KtorArticlesRemoteApi(httpClient)
+
+    @Provides
+    fun provideLaunchesRemoteApi(httpClient: HttpClient): LaunchesRemoteApi =
+        KtorLaunchesRemoteApi(httpClient)
 }
