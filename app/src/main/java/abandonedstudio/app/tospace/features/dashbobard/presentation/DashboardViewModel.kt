@@ -49,8 +49,7 @@ class DashboardViewModel @Inject constructor(
                         emit(Result.failure(e))
                     }
                 }
-            }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
     val nextLaunchCountdown: StateFlow<String> by lazy {
@@ -66,8 +65,7 @@ class DashboardViewModel @Inject constructor(
                         delay(1000)
                     }
                 }
-            }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
     }
 
     val previousLaunchFlow: StateFlow<Result<SpaceXLaunch>?> by lazy {
@@ -85,8 +83,7 @@ class DashboardViewModel @Inject constructor(
                         emit(Result.failure(e))
                     }
                 }
-            }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 
     val previousLaunchCountdown: StateFlow<String> by lazy {
@@ -102,8 +99,7 @@ class DashboardViewModel @Inject constructor(
                         delay(1000)
                     }
                 }
-            }
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), "")
     }
 
     private fun convertDurationFromNow(launchTime: Long): String {

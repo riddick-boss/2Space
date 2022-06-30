@@ -1,5 +1,6 @@
 package abandonedstudio.app.tospace.features.news.presentation
 
+import abandonedstudio.app.tospace.core.domain.model.util.Result
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
 import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
 import abandonedstudio.app.tospace.features.news.data.Article
@@ -9,10 +10,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,29 +20,59 @@ class NewsViewModel @Inject constructor(
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
 
-    val upcomingLaunchesFlow: StateFlow<Result<List<Event>>?> by lazy {
-        flow {
-            try {
-                emit(Result.success(dataSource.loadUpcomingLaunches()))
-            } catch (e: Exception) {
-                e.toMessage()?.run {
-                    showToast(this)
+//    events
+
+    private val upcomingEventsRefreshFlow = MutableSharedFlow<Unit>()
+
+    fun onUpcomingEventsRefresh() {
+        viewModelScope.launch {
+            upcomingEventsRefreshFlow.emit(Unit)
+        }
+    }
+
+    val upcomingEventsFlow: StateFlow<Result<List<Event>>?> by lazy {
+        upcomingEventsRefreshFlow
+            .onStart { emit(Unit) }
+            .flatMapLatest {
+                flow {
+                    emit(null)
+                    try {
+                        emit(Result.Success(dataSource.loadUpcomingEvents()))
+                    } catch (e: Exception) {
+                        e.toMessage()?.run {
+                            showToast(this)
+                        }
+                        emit(Result.Failure(e))
+                    }
                 }
-                emit(Result.failure(e))
-            }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    }
+
+//    articles
+
+    private val articlesRefreshFlow = MutableSharedFlow<Unit>()
+
+    fun onArticlesRefresh() {
+        viewModelScope.launch {
+            articlesRefreshFlow.emit(Unit)
+        }
     }
 
     val articles: StateFlow<Result<List<Article>>?> by lazy {
-        flow {
-            try {
-                emit(Result.success(dataSource.loadArticles()))
-            } catch (e: Exception) {
-                e.toMessage()?.run {
-                    showToast(this)
+        articlesRefreshFlow
+            .onStart { emit(Unit) }
+            .flatMapLatest {
+                flow {
+                    emit(null)
+                    try {
+                        emit(Result.Success(dataSource.loadArticles()))
+                    } catch (e: Exception) {
+                        e.toMessage()?.run {
+                            showToast(this)
+                        }
+                        emit(Result.Failure(e))
+                    }
                 }
-                emit(Result.failure(e))
-            }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+            }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
     }
 }

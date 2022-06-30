@@ -9,7 +9,7 @@ class DataSource @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
 
-    suspend fun loadUpcomingLaunches(): List<Event> =
+    suspend fun loadUpcomingEvents(): List<Event> =
         newsRepository.loadUpcomingEvents().map {
             Event(
                 title = it.title,
