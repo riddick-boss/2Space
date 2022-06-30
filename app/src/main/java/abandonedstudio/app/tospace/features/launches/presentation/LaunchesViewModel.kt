@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
-import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.features.launches.data.PastLaunch
 import abandonedstudio.app.tospace.features.launches.domain.DataSource
 import abandonedstudio.app.tospace.features.launches.domain.PastLaunchesPagingSource
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class LaunchesViewModel @Inject constructor(
     application: Application,
     private val dataSource: DataSource
-): AndroidViewModel(application) {
+) : AndroidViewModel(application) {
 
     private val pagingConfig = PagingConfig(
         initialLoadSize = 10,

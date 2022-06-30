@@ -3,7 +3,9 @@ package abandonedstudio.app.tospace.core.data.repository.spacex
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.PastSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXDetailedLaunchResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.UpcomingSpaceXLaunchesResponse
-import abandonedstudio.app.tospace.core.domain.model.*
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.PastSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
 
 fun SpaceXDetailedLaunchResponse.toDetailedLaunch(): DetailedLaunch =
