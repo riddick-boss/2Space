@@ -30,7 +30,7 @@ fun AllLaunchesResponse.toLaunchesPage(): LaunchesPagingSource.Page<Launch> =
                 infographicUrl = it?.infographic,
                 probability = it?.probability,
                 timeStampMillis = it?.windowStart?.let { start ->
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(start)?.time
+                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(start)?.time
                 }
             )
         } ?: emptyList(),

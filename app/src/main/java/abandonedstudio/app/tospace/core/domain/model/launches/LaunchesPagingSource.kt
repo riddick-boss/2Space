@@ -20,7 +20,7 @@ abstract class LaunchesPagingSource<DATA: Any> : PagingSource<String, DATA>() {
             LoadResult.Error(e)
         }
 
-    abstract fun loadPage(next: String?): Page<DATA>
+    abstract suspend fun loadPage(next: String?): Page<DATA>
 
     data class Page<T>(
         val data: List<T>,

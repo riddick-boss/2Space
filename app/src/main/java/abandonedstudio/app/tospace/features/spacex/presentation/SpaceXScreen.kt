@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun SpaceXScreen(
-    viewModel: LaunchesViewModel = hiltViewModel()
+    viewModel: SpaceXViewModel = hiltViewModel()
 ) {
     val tabs = Tab.values().toList()
 

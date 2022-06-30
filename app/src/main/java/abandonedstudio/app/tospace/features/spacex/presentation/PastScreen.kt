@@ -10,7 +10,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable
 fun PastScreen(
-    viewModel: LaunchesViewModel
+    viewModel: SpaceXViewModel
 ) {
 
     val launches = viewModel.pastLaunchesFlow.collectAsLazyPagingItems()

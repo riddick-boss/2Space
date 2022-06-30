@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class LaunchesViewModel @Inject constructor(
+class SpaceXViewModel @Inject constructor(
     application: Application,
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {

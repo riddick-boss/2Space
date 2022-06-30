@@ -23,7 +23,7 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun UpcomingScreen(
-    viewModel: LaunchesViewModel
+    viewModel: SpaceXViewModel
 ) {
 
     val launches = viewModel.upcomingLaunchesFlow.collectAsLazyPagingItems()
