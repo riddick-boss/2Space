@@ -4,7 +4,8 @@
     <!--    main drawer -->
     <string name="main_drawer_dashboard_title">Dashboard</string>
     <string name="main_drawer_launches_title">Launches</string>
-    <string name="main_drawer_news_title">News</string>
+    <string name="main_drawer_spacex_title">SpaceX</string>
+    <string name="main_drawer_news_title">Events</string>
     <string name="main_drawer_contact_title">Contact</string>
 
     <!--   content description -->
@@ -118,6 +119,7 @@
     <string name="about_mention">Honorable mention</string>
     <string name="about_mention_spacex_api">SpaceX API</string>
     <string name="about_mention_open_weather_map_api">OpenWeatherMap API</string>
+    <string name="about_mention_the_space_devs">The Space Devs</string>
     <string name="about_issue_title">Have an issue?\nContact us via:</string>
     <string name="about_email_subject">2Space app</string>
     <string name="no_email_provided">Sorry, no email provided</string>

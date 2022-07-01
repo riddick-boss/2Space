@@ -1,83 +1,51 @@
 package abandonedstudio.app.tospace.features.launches.domain
 
-import abandonedstudio.app.tospace.core.domain.model.launches.PastSpaceXLaunch
-import abandonedstudio.app.tospace.core.domain.model.launches.UpcomingSpaceXLaunch
-import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
-import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
-import abandonedstudio.app.tospace.features.launches.data.PastLaunch
+import abandonedstudio.app.tospace.core.domain.model.launches.Launch
+import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
+import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.features.launches.data.UpcomingLaunch
 import javax.inject.Inject
 
 class DataSource @Inject constructor(
-    private val spaceXRepository: SpaceXRepository
+    private val launchesRepository: LaunchesRepository
 ) {
-    suspend fun loadUpcomingLaunches(
-        page: Int,
-        limit: Int
-    ): DefaultPagingSource.Page<UpcomingSpaceXLaunch> =
-        spaceXRepository.loadUpcomingLaunches(page, limit)
 
-    suspend fun loadPastLaunches(
-        page: Int,
-        limit: Int
-    ): DefaultPagingSource.Page<PastLaunch> {
-        val response = spaceXRepository.loadPastLaunches(page, limit)
-        return DefaultPagingSource.Page(
-            data = response.data.map { it.toPastLaunch() },
-            page = response.page,
-            hasNext = response.hasNext
+    suspend fun loadUpcomingLaunches(next: String?): LaunchesPagingSource.Page<UpcomingLaunch> {
+        val response = launchesRepository.loadUpcomingLaunches(next)
+        return LaunchesPagingSource.Page(
+            data = response.data.map { it.toUpcomingLaunch() },
+            next = response.next
         )
     }
 }
 
 class UpcomingLaunchesPagingSource(
     private val dataSource: DataSource
-) : DefaultPagingSource<UpcomingSpaceXLaunch>() {
-    override suspend fun loadPage(page: Int, limit: Int): Page<UpcomingSpaceXLaunch> =
-        dataSource.loadUpcomingLaunches(page, limit)
+) : LaunchesPagingSource<UpcomingLaunch>() {
+    override suspend fun loadPage(next: String?): Page<UpcomingLaunch> = dataSource.loadUpcomingLaunches(next)
 }
 
-class PastLaunchesPagingSource(
-    private val dataSource: DataSource
-) : DefaultPagingSource<PastLaunch>() {
-    override suspend fun loadPage(page: Int, limit: Int): Page<PastLaunch> =
-        dataSource.loadPastLaunches(page, limit)
-}
-
-private fun PastSpaceXLaunch.toPastLaunch() =
-    PastLaunch(
-        missionName = this.missionName,
-        logoImgPath = this.logoImgPath,
-        rocket = this.rocket,
-        date = this.date,
-        links = PastLaunch.Links(
-            wikipedia = this.links.wikipedia,
-            yt = this.links.yt,
-            reddit = this.links.reddit
-        ),
-        details = this.details,
-        launchPad = this.launchPad,
-        missionSuccess = this.missionSuccess,
-        landingSuccess = this.landingSuccess,
-        fairingsRecovered = this.fairingsRecovered,
-        core = PastLaunch.Core(
-            reused = this.core.reused,
-            flightNum = this.core.flightNum
-        ),
-        landPad = PastLaunch.LandPad(
-            name = this.landPad.name,
-            fullName = this.landPad.fullName,
-            region = this.landPad.region
-        ),
-        payloads = this.payloads.map { payload ->
-            PastLaunch.Payload(
-                type = payload.type,
-                massKg = payload.massKg,
-                orbit = payload.orbit,
-                inclination = payload.inclination,
-                periodMin = payload.periodMin,
-                apoapsisKm = payload.apoapsisKm,
-                periapsisKm = payload.periapsisKm,
-                customers = payload.customers
+private fun Launch.toUpcomingLaunch() =
+    UpcomingLaunch(
+        id = id,
+        name = name,
+        status = status?.let { status ->
+            UpcomingLaunch.LaunchStatus(
+                id = status.id,
+                name = status.name,
+                shortName = status.shortName,
+                description = status.description
             )
-        }
+        },
+        launchPad = launchPad?.let { pad ->
+            UpcomingLaunch.LaunchPad(
+                name = pad.name,
+                location = pad.location
+            )
+        },
+        description = description,
+        imageUrl = imageUrl,
+        infographicUrl = infographicUrl,
+        probability = probability,
+        timeStamp = timeStamp
     )
