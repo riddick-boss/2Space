@@ -44,3 +44,6 @@ obj/
 
 # Local properties
 /releasekeystore.properties
+
+# google services
+/app/google-services.json
