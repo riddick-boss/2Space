@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.domain.model
+package abandonedstudio.app.tospace.core.domain.model.spacex
 
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
 

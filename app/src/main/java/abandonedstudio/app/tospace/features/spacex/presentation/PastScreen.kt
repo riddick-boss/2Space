@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
 import androidx.compose.foundation.layout.*
@@ -10,7 +10,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable
 fun PastScreen(
-    viewModel: LaunchesViewModel
+    viewModel: SpaceXViewModel
 ) {
 
     val launches = viewModel.pastLaunchesFlow.collectAsLazyPagingItems()

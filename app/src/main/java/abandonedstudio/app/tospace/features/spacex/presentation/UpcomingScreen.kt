@@ -1,7 +1,7 @@
-package abandonedstudio.app.tospace.features.launches.presentation
+package abandonedstudio.app.tospace.features.spacex.presentation
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
 import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
 import abandonedstudio.app.tospace.core.presentation.component.TitledTextNoData
@@ -23,7 +23,7 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun UpcomingScreen(
-    viewModel: LaunchesViewModel
+    viewModel: SpaceXViewModel
 ) {
 
     val launches = viewModel.upcomingLaunchesFlow.collectAsLazyPagingItems()

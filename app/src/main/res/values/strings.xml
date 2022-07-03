@@ -4,7 +4,8 @@
     <!--    main drawer -->
     <string name="main_drawer_dashboard_title">Dashboard</string>
     <string name="main_drawer_launches_title">Launches</string>
-    <string name="main_drawer_news_title">News</string>
+    <string name="main_drawer_spacex_title">SpaceX</string>
+    <string name="main_drawer_news_title">Events</string>
     <string name="main_drawer_contact_title">Contact</string>
 
     <!--   content description -->
@@ -104,6 +105,13 @@
     <string name="launches_past_payload_periapsis_content">%1$.1f km</string>
     <string name="launches_past_payload_customer">Customer</string>
 
+    <!--   news -->
+    <string name="news_events_title">Events</string>
+    <string name="news_articles_title">Articles</string>
+    <string name="news_failed_to_load_data">Failed to load data</string>
+    <string name="news_read_more">Read more</string>
+    <string name="news_watch">Watch</string>
+
     <!--   about -->
     <string name="about_title">About</string>
     <string name="about_disclaimer">Disclaimer</string>
@@ -111,8 +119,12 @@
     <string name="about_mention">Honorable mention</string>
     <string name="about_mention_spacex_api">SpaceX API</string>
     <string name="about_mention_open_weather_map_api">OpenWeatherMap API</string>
+    <string name="about_mention_the_space_devs">The Space Devs</string>
     <string name="about_issue_title">Have an issue?\nContact us via:</string>
     <string name="about_email_subject">2Space app</string>
     <string name="no_email_provided">Sorry, no email provided</string>
     <string name="cannot_send_email_info">Sorry, can not send email</string>
+
+    <!--   notification -->
+    <string name="notification_all_launches_channel_name">All launches</string>
 </resources>

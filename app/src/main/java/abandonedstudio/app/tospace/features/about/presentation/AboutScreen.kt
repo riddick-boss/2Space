@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 private object Links {
     const val SPACEX_API_LINK = "https://github.com/r-spacex/SpaceX-API"
     const val OPEN_WEATHER_MAP_API_LINK = "https://openweathermap.org/"
+    const val THE_SPACE_DEVS_LINK = "https://thespacedevs.com/"
 }
 
 @Composable
@@ -90,6 +91,11 @@ private fun MentionItem() {
         HyperLinkText(
             textResId = R.string.about_mention_open_weather_map_api,
             link = Links.OPEN_WEATHER_MAP_API_LINK,
+            uriHandler = uriHandler
+        )
+        HyperLinkText(
+            textResId = R.string.about_mention_the_space_devs,
+            link = Links.THE_SPACE_DEVS_LINK,
             uriHandler = uriHandler
         )
     }

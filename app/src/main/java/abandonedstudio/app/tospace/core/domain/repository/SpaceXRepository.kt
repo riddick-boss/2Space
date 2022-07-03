@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.core.domain.repository
 
-import abandonedstudio.app.tospace.core.domain.model.DetailedLaunch
-import abandonedstudio.app.tospace.core.domain.model.PastSpaceXLaunch
-import abandonedstudio.app.tospace.core.domain.model.UpcomingSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.DetailedLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.PastSpaceXLaunch
+import abandonedstudio.app.tospace.core.domain.model.spacex.UpcomingSpaceXLaunch
 import abandonedstudio.app.tospace.core.domain.util.DefaultPagingSource
 
 interface SpaceXRepository {
