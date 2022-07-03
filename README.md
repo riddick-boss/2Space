@@ -1,7 +1,13 @@
 # 2Space
 #### Android app for every space enthusiast. Check upcoming and past SpaceX launches and find out more about each flight (e.g. data about payload).
 
-#### App is published on Google Play [here](https://play.google.com/store/apps/details?id=abandonedstudio.app.tospace).
+#### App is published on Google Play.
+
+<a href="https://play.google.com/store/apps/details?id=abandonedstudio.app.tospace">
+    <img alt="Get it on Google Play"
+        height="80"
+        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
+</a>  
 
 Used:
 - Kotlin
@@ -10,6 +16,7 @@ Used:
 - [Ktor](https://ktor.io/)
 - [Accompanist library](https://github.com/google/accompanist)
 - Pagination
+- Firebase Cloud Messaging
 - MVVM architecture
 - Git flow workflow
 
