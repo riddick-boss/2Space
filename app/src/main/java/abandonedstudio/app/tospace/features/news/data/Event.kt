@@ -48,7 +48,7 @@ data class Event(
                             model = it,
                             contentDescription = contentDescription(),
                             contentScale = ContentScale.FillWidth,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 250.dp),
                             loading = {
                                 Box(
                                     contentAlignment = Alignment.Center,

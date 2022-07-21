@@ -29,10 +29,29 @@ fun AllLaunchesResponse.toLaunchesPage(): LaunchesPagingSource.Page<Launch> =
                 imageUrl = it?.image,
                 infographicUrl = it?.infographic,
                 probability = it?.probability,
-                timeStampMillis = it?.windowStart?.let { start ->
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(start)?.time
-                }
+                timeStampMillis = calculateTimeStamp(it?.windowStart, it?.windowEnd)
             )
         } ?: emptyList(),
         next = next
     )
+
+
+private fun calculateTimeStamp(windowStart: String?, windowEnd: String?): Long? {
+    if (windowStart == null && windowEnd == null) return null
+
+    val now = System.currentTimeMillis()
+
+    val start = windowStart?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it)?.time } // convert window start to millis
+
+    if (start != null && start > now) { // if window start has not started yet
+        return start
+    }
+
+    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it)?.time } // convert window start to millis
+
+    if (end != null && end > now) { // if window end has not started yet
+        return end
+    }
+
+    return start
+}
