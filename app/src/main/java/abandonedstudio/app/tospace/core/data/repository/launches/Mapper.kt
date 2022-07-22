@@ -4,6 +4,8 @@ import abandonedstudio.app.tospace.core.data.remote.launches.dto.AllLaunchesResp
 import abandonedstudio.app.tospace.core.domain.model.launches.Launch
 import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
 import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.util.*
 
 fun AllLaunchesResponse.toLaunchesPage(): LaunchesPagingSource.Page<Launch> =
     LaunchesPagingSource.Page(
@@ -41,13 +43,13 @@ private fun calculateTimeStamp(windowStart: String?, windowEnd: String?): Long? 
 
     val now = System.currentTimeMillis()
 
-    val start = windowStart?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it)?.time } // convert window start to millis
+    val start = windowStart?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = TimeZone.getTimeZone(ZoneId.of("UTC")) }.parse(it)?.time } // convert window start to millis
 
     if (start != null && start > now) { // if window start has not started yet
         return start
     }
 
-    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(it)?.time } // convert window start to millis
+    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = TimeZone.getTimeZone(ZoneId.of("UTC")) }.parse(it)?.time } // convert window start to millis
 
     if (end != null && end > now) { // if window end has not started yet
         return end

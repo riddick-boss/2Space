@@ -27,6 +27,7 @@ class ToSpaceApplication : Application() {
         super.onCreate()
         ToSpaceApplication.resources = resources
 
+        notificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.APP_UPDATE_TOPIC_VALUE))
         notificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.ALL_LAUNCHES_TOPIC_VALUE))
 
         allLaunchesNotificationCenter.start.launchIn(scope)
