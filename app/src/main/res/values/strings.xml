@@ -142,4 +142,10 @@
     <string name="app_brief_tts_init_failed">Cannot read brief, initialization failed</string>
     <string name="app_brief_tts_reading_failed">Failed to read brief!</string>
     <!--   app brief tts -->
+
+    <!--   app brief screen -->
+    <string name="app_brief_screen_title">App brief</string>
+    <string name="app_brief_screen_play_button">Play</string>
+    <string name="app_brief_screen_playing_message">App brief is playing, you can safely close app now and enjoy space brief!</string>
+    <!--   app brief screen -->
 </resources>

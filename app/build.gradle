@@ -50,6 +50,7 @@ android {
         buildConfigField("String", "EMAIL", localProperties.getProperty('EMAIL', '""'))
         buildConfigField("String", "ALL_LAUNCHES_TOPIC_VALUE", localProperties.getProperty('ALL_LAUNCHES_TOPIC_VALUE', '"all_launches"'))
         buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
+        buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
     }
 
     signingConfigs {
