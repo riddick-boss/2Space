@@ -12,11 +12,18 @@ class NewsRepositoryImpl @Inject constructor(
     private val articlesApi: ArticlesRemoteApi
 ) : NewsRepository {
 
+    private fun fckRussia(title: String?): Boolean =
+        !(title?.contains("russian", ignoreCase = true) ?: false)
+
     override suspend fun loadUpcomingEvents(): List<SpaceEvent> =
         eventsApi.loadUpcomingEvents().toSpaceEvents()
-            .filter { !(it.title?.contains("russian", ignoreCase = true) ?: false) } // boycott! stay strong ukraine!
+            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
 
     override suspend fun loadArticles(): List<SpaceArticle> =
         articlesApi.loadArticles().toSpaceArticles()
-            .filter { !(it.title?.contains("russian", ignoreCase = true) ?: false) } // boycott! stay strong ukraine!
+            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
+
+    override suspend fun loadArticles(number: Int): List<SpaceArticle> =
+        articlesApi.loadArticles(number).toSpaceArticles()
+            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
 }

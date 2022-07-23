@@ -13,4 +13,7 @@ class KtorArticlesRemoteApi @Inject constructor(
 
     override suspend fun loadArticles(): List<ArticlesResponseItem> =
         client.get(Routes.ARTICLES_URL).body()
+
+    override suspend fun loadArticles(number: Int): List<ArticlesResponseItem> =
+        client.get(Routes.articlesUrl(number)).body()
 }

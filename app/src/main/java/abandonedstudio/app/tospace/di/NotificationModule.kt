@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.di
 
-import abandonedstudio.app.tospace.core.presentation.notification.manager.NotificationSettingsManager
+import abandonedstudio.app.tospace.core.presentation.notification.manager.PushNotificationSettingsManager
 import abandonedstudio.app.tospace.core.service.fcm.FCMManager
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
@@ -22,5 +22,5 @@ object NotificationModule {
     fun provideFirebaseMessaging(): FirebaseMessaging = FirebaseMessaging.getInstance()
 
     @Provides
-    fun provideNotificationSettingsManager(firebaseMessaging: FirebaseMessaging): NotificationSettingsManager = FCMManager(firebaseMessaging)
+    fun provideNotificationSettingsManager(firebaseMessaging: FirebaseMessaging): PushNotificationSettingsManager = FCMManager(firebaseMessaging)
 }

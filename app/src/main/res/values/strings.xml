@@ -127,4 +127,19 @@
 
     <!--   notification -->
     <string name="notification_all_launches_channel_name">All launches</string>
+    <string name="notification_app_brief_voice_assistant_service_channel_name">App brief voice assistant</string>
+    <!--   notification -->
+
+    <!--   app brief voice service -->
+    <string name="app_brief_voice_service_label">App brief voice assistant</string>
+    <string name="app_brief_voice_service_notification_title">App brief</string>
+    <string name="app_brief_voice_service_notification_body">Reading…</string>
+    <string name="app_brief_voice_service_notification_action_stop">Stop</string>
+    <!--   app brief voice service -->
+
+    <!--   app brief tts -->
+    <string name="app_brief_tts_language_not_supported">Cannot read brief, language not supported!</string>
+    <string name="app_brief_tts_init_failed">Cannot read brief, initialization failed</string>
+    <string name="app_brief_tts_reading_failed">Failed to read brief!</string>
+    <!--   app brief tts -->
 </resources>
