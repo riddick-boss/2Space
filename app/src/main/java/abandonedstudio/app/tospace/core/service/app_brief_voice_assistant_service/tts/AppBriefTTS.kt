@@ -1,7 +1,8 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service
+package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.AppBriefSpeechSource
 import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class AppBriefTTS @Inject constructor(
     @ApplicationContext private val context: Context,
     private val dataSource: DataSource
-) : TextToSpeech.OnInitListener {
+) : AppBriefSpeechSource, TextToSpeech.OnInitListener {
 
     private val scope = MainScope()
 
@@ -61,7 +62,7 @@ class AppBriefTTS @Inject constructor(
         }
     }
 
-    suspend fun speakOut() {
+    override suspend fun speakOut() {
         isInitialized.filter { it }.first() // await for initialization
         try {
             val toSpeak = dataSource.getContentToSpeak(articlesNumber = ARTICLES_TO_READ_NUMBER)
@@ -73,7 +74,7 @@ class AppBriefTTS @Inject constructor(
         return speakingDone.first() // await for speaking completion
     }
 
-    fun onDestroy() {
+    override fun onDestroy() {
         tts.stop()
         tts.shutdown()
     }

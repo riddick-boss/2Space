@@ -135,6 +135,7 @@
     <string name="app_brief_voice_service_notification_title">App brief</string>
     <string name="app_brief_voice_service_notification_body">Reading…</string>
     <string name="app_brief_voice_service_notification_action_stop">Stop</string>
+    <string name="app_brief_voice_service_service_start_error_message">Failed to start space briefing!</string>
     <!--   app brief voice service -->
 
     <!--   app brief tts -->
@@ -146,6 +147,6 @@
     <!--   app brief screen -->
     <string name="app_brief_screen_title">App brief</string>
     <string name="app_brief_screen_play_button">Play</string>
-    <string name="app_brief_screen_playing_message">App brief is playing, you can safely close app now and enjoy space brief!</string>
+    <string name="app_brief_screen_playing_message">When brief is playing, you can safely close app and enjoy space updates!</string>
     <!--   app brief screen -->
 </resources>

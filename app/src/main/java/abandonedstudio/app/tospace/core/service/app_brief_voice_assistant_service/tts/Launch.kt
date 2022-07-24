@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service
+package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
 import kotlin.math.abs

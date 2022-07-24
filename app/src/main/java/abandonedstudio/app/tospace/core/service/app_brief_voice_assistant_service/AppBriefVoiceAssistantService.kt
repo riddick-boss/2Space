@@ -26,8 +26,7 @@ class AppBriefVoiceAssistantService : Service() {
     }
 
     @Inject lateinit var notificationCenter: AppBriefVoiceAssistantNotificationCenter
-    @Inject lateinit var appBriefServiceManager: AppBriefServiceManager
-    @Inject lateinit var appBriefTTS: AppBriefTTS
+    @Inject lateinit var appBriefSpeechSource: AppBriefSpeechSource
 
     override fun onBind(p0: Intent?): IBinder? = null
 
@@ -36,11 +35,12 @@ class AppBriefVoiceAssistantService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action != null && intent.action.equals(ACTION_STOP)) {
             stopService()
+            return START_NOT_STICKY
         }
 
         startForeground()
         scope.launch {
-            appBriefTTS.speakOut()
+            appBriefSpeechSource.speakOut()
             stopService()
         }
 
@@ -49,8 +49,7 @@ class AppBriefVoiceAssistantService : Service() {
 
     override fun onDestroy() {
         scope.cancel()
-        appBriefTTS.onDestroy()
-        appBriefServiceManager.onServiceStop()
+        appBriefSpeechSource.onDestroy()
         super.onDestroy()
     }
 
@@ -61,6 +60,5 @@ class AppBriefVoiceAssistantService : Service() {
 
     private fun startForeground() {
         startForeground(notificationCenter.notificationId, notificationCenter.notification)
-        appBriefServiceManager.onServiceStart()
     }
 }
