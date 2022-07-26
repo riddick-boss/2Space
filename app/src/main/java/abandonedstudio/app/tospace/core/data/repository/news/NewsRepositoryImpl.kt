@@ -19,10 +19,6 @@ class NewsRepositoryImpl @Inject constructor(
         eventsApi.loadUpcomingEvents().toSpaceEvents()
             .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
 
-    override suspend fun loadArticles(): List<SpaceArticle> =
-        articlesApi.loadArticles().toSpaceArticles()
-            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
-
     override suspend fun loadArticles(number: Int): List<SpaceArticle> =
         articlesApi.loadArticles(number).toSpaceArticles()
             .filter { fckRussia(it.title) } // boycott! stay strong ukraine!

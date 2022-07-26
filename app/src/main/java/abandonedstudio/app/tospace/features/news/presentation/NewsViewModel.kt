@@ -20,6 +20,10 @@ class NewsViewModel @Inject constructor(
     private val dataSource: DataSource
 ) : AndroidViewModel(application) {
 
+    companion object {
+        private const val ARTICLES_NUMBER = 40
+    }
+
 //    events
 
     private val upcomingEventsRefreshFlow = MutableSharedFlow<Unit>()
@@ -65,7 +69,7 @@ class NewsViewModel @Inject constructor(
                 flow {
                     emit(null)
                     try {
-                        emit(Result.Success(dataSource.loadArticles()))
+                        emit(Result.Success(dataSource.loadArticles(ARTICLES_NUMBER)))
                     } catch (e: Exception) {
                         e.toMessage()?.run {
                             showToast(this)

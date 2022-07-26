@@ -1,7 +1,9 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
+import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
 import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.di.ToSpaceApplication
 import javax.inject.Inject
 
 class DataSource @Inject constructor(
@@ -23,7 +25,11 @@ class DataSource @Inject constructor(
 
     private suspend fun convertArticlesToTTS(number: Int): String {
         val articlesTTSes = loadArticles(number)?.map { it.tts }
-        return articlesTTSes?.joinToString(prefix = "... Articles are: ... ", postfix = " ... End of articles.", separator = "... Next article: ") ?: "... Couldn't load articles. ..." //TODO: string resources
+        return articlesTTSes?.joinToString(
+            prefix = ToSpaceApplication.resources.getString(R.string.app_brief_tts_articles_prefix),
+            postfix = ToSpaceApplication.resources.getString(R.string.app_brief_tts_articles_postfix),
+            separator = ToSpaceApplication.resources.getString(R.string.app_brief_tts_articles_separator)
+        ) ?: ToSpaceApplication.resources.getString(R.string.app_brief_tts_loading_articles_failed)
     }
 
     private suspend fun loadUpcomingLaunch(): Launch? =
@@ -36,5 +42,5 @@ class DataSource @Inject constructor(
         }
 
     private suspend fun convertLaunchToTTS(): String =
-        loadUpcomingLaunch()?.tts ?: "... Couldn't load next launch. ... "
+        loadUpcomingLaunch()?.tts ?: ToSpaceApplication.resources.getString(R.string.app_brief_tts_loading_next_launch_failed)
 }

@@ -49,7 +49,7 @@ class KtorArticlesRemoteApiTest {
     fun loadingArticlesProperly() = runBlocking {
         var exception: Exception? = null
         try {
-            val data = api.loadArticles()
+            val data = api.loadArticles(2) // just random number
             println(data.toString())
         } catch (e: Exception) {
             exception = e

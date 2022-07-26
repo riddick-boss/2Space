@@ -7,8 +7,5 @@ interface NewsRepository {
 
     suspend fun loadUpcomingEvents(): List<SpaceEvent>
 
-    @Deprecated(message = "Use newer fun", replaceWith = ReplaceWith(" loadArticles(number: Int)"))
-    suspend fun loadArticles(): List<SpaceArticle>
-
     suspend fun loadArticles(number: Int): List<SpaceArticle>
 }
