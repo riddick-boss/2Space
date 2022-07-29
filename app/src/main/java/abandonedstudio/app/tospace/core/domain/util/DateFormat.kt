@@ -5,7 +5,7 @@ import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DateFormat(timeStampMillis: Long) {
+class DateFormat(timeStampMillis: Long) { // this class may be open in future if needed
 
     enum class Precision {
         MONTH, YEAR
