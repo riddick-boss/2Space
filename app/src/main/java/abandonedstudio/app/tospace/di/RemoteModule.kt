@@ -16,6 +16,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 
+//TODO: change to @Binds
+
 @Module
 @InstallIn(SingletonComponent::class)
 object RemoteModule {

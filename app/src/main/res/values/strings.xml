@@ -160,5 +160,9 @@
     <string name="app_brief_screen_title">App brief</string>
     <string name="app_brief_screen_play_button">Play</string>
     <string name="app_brief_screen_playing_message">When brief is playing, you can safely close app and enjoy space updates!</string>
+    <string name="app_brief_screen_setting_save_error_message">Failed to save settings!</string>
+    <string name="app_brief_screen_launches_setting_title">Launches</string>
+    <string name="app_brief_screen_articles_setting_title">Articles</string>
+    <string name="app_brief_screen_articles_number_setting_title">Articles to read:</string>
     <!--   app brief screen -->
 </resources>

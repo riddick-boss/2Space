@@ -5,17 +5,17 @@ import abandonedstudio.app.tospace.core.data.remote.news.articles.ArticlesRemote
 import abandonedstudio.app.tospace.core.data.remote.news.events.EventsRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.weather.WeatherRemoteApi
+import abandonedstudio.app.tospace.core.data.repository.app_brief_preferences.AppBriefPreferencesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.launches.LaunchesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.news.NewsRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.spacex.SpaceXRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.weather.WeatherRepositoryImpl
-import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
-import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
-import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
-import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
+import abandonedstudio.app.tospace.core.domain.repository.*
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 
 @Module
@@ -37,4 +37,12 @@ object DomainRepositoryModule {
     @Provides
     fun provideLaunchesRepository(remoteApi: LaunchesRemoteApi): LaunchesRepository =
         LaunchesRepositoryImpl(remoteApi)
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+abstract class DomainRepositoryModuleVMComponent {
+
+    @Binds
+    abstract fun bindAppBriefPreferencesRepository(impl: AppBriefPreferencesRepositoryImpl): AppBriefPreferencesRepository
 }

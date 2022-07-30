@@ -51,6 +51,7 @@ android {
         buildConfigField("String", "ALL_LAUNCHES_TOPIC_VALUE", localProperties.getProperty('ALL_LAUNCHES_TOPIC_VALUE', '"all_launches"'))
         buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
         buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
+        buildConfigField("String", "DATASTORE_PREFERENCES_NAME", localProperties.getProperty('DATASTORE_PREFERENCES_NAME', '"DATASTORE_PREFERENCES_NAME"'))
     }
 
     signingConfigs {
@@ -127,6 +128,8 @@ dependencies {
 //    Swipe refresh
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
 
+//    Number picker
+    implementation "com.chargemap.compose:numberpicker:1.0.3"
 
 //    AndroidX paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'

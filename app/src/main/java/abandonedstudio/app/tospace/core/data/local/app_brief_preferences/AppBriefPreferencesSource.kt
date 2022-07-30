@@ -14,5 +14,5 @@ interface AppBriefPreferencesSource {
 
     suspend fun saveNewsToReadNumber(number: Int)
 
-    val articlesToReadNumber: Int?
+    val articlesToReadNumber: Flow<Int?>
 }
