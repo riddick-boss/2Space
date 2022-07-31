@@ -1,10 +1,5 @@
 package abandonedstudio.app.tospace.di
 
-import abandonedstudio.app.tospace.core.data.remote.launches.LaunchesRemoteApi
-import abandonedstudio.app.tospace.core.data.remote.news.articles.ArticlesRemoteApi
-import abandonedstudio.app.tospace.core.data.remote.news.events.EventsRemoteApi
-import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
-import abandonedstudio.app.tospace.core.data.remote.weather.WeatherRemoteApi
 import abandonedstudio.app.tospace.core.data.repository.app_brief_preferences.AppBriefPreferencesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.launches.LaunchesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.news.NewsRepositoryImpl
@@ -13,34 +8,25 @@ import abandonedstudio.app.tospace.core.data.repository.weather.WeatherRepositor
 import abandonedstudio.app.tospace.core.domain.repository.*
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ServiceComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
-object DomainRepositoryModule {
+@InstallIn(ViewModelComponent::class, ServiceComponent::class)
+abstract class DomainRepositoryModuleViewModelComponent {
 
-    @Provides
-    fun provideWeatherRepository(remoteApi: WeatherRemoteApi): WeatherRepository =
-        WeatherRepositoryImpl(remoteApi)
+    @Binds
+    abstract fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
 
-    @Provides
-    fun provideSpaceXRepository(remoteApi: SpaceXRemoteApi): SpaceXRepository =
-        SpaceXRepositoryImpl(remoteApi)
+    @Binds
+    abstract fun bindSpaceXRepository(impl: SpaceXRepositoryImpl): SpaceXRepository
 
-    @Provides
-    fun provideNewsRepository(eventsApi: EventsRemoteApi, articlesApi: ArticlesRemoteApi): NewsRepository =
-        NewsRepositoryImpl(eventsApi, articlesApi)
+    @Binds
+    abstract fun bindNewsRepository(impl: NewsRepositoryImpl): NewsRepository
 
-    @Provides
-    fun provideLaunchesRepository(remoteApi: LaunchesRemoteApi): LaunchesRepository =
-        LaunchesRepositoryImpl(remoteApi)
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class DomainRepositoryModule2 {
+    @Binds
+    abstract fun bindLaunchesRepository(impl: LaunchesRepositoryImpl): LaunchesRepository
 
     @Binds
     abstract fun bindAppBriefPreferencesRepository(impl: AppBriefPreferencesRepositoryImpl): AppBriefPreferencesRepository

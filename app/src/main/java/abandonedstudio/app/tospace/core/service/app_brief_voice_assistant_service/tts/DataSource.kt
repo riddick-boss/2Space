@@ -4,7 +4,7 @@ import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
 import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
 import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
-import abandonedstudio.app.tospace.di.ToSpaceApplication
+import abandonedstudio.app.tospace.ToSpaceApplication
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -13,6 +13,9 @@ class DataSource @Inject constructor(
     private val launchesRepository: LaunchesRepository,
     private val appBriefPreferencesRepository: AppBriefPreferencesRepository
 ) {
+    companion object {
+        private const val READING_SHORT_BREAK = " ... "
+    }
 
     suspend fun getContentToSpeak(): String {
         val builder = StringBuilder()
@@ -24,7 +27,7 @@ class DataSource @Inject constructor(
         }
 
         if (shouldReadArticles) {
-            builder.append(" ... ") // add pause when reading
+            builder.append(READING_SHORT_BREAK) // add pause when reading
 
             val articlesNumber = appBriefPreferencesRepository.articlesToRead.first()
             builder.append(convertArticlesToTTS(number = articlesNumber))

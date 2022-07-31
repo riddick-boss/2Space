@@ -5,6 +5,7 @@ import abandonedstudio.app.tospace.core.service.fcm.FCMManager
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessaging
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,14 +14,16 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NotificationModule {
+abstract class NotificationModule {
 
-    @Provides
-    fun provideNotificationManagerCompat(@ApplicationContext context: Context): NotificationManagerCompat = NotificationManagerCompat.from(context)
+    @Binds
+    abstract fun bindNotificationSettingsManager(impl: FCMManager): PushNotificationSettingsManager
 
-    @Provides
-    fun provideFirebaseMessaging(): FirebaseMessaging = FirebaseMessaging.getInstance()
+    companion object {
+        @Provides
+        fun provideNotificationManagerCompat(@ApplicationContext context: Context): NotificationManagerCompat = NotificationManagerCompat.from(context)
 
-    @Provides
-    fun provideNotificationSettingsManager(firebaseMessaging: FirebaseMessaging): PushNotificationSettingsManager = FCMManager(firebaseMessaging)
+        @Provides
+        fun provideFirebaseMessaging(): FirebaseMessaging = FirebaseMessaging.getInstance()
+    }
 }

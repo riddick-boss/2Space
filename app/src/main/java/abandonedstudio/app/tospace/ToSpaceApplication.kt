@@ -1,6 +1,5 @@
-package abandonedstudio.app.tospace.di
+package abandonedstudio.app.tospace
 
-import abandonedstudio.app.tospace.BuildConfig
 import abandonedstudio.app.tospace.core.presentation.notification.AllLaunchesNotificationCenter
 import abandonedstudio.app.tospace.core.presentation.notification.NotificationConstants
 import abandonedstudio.app.tospace.core.presentation.notification.manager.PushNotificationSettingsManager
@@ -26,7 +25,7 @@ class ToSpaceApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ToSpaceApplication.resources = resources
+        Companion.resources = resources
 
         pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.APP_UPDATE_TOPIC_VALUE))
         pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.ALL_LAUNCHES_TOPIC_VALUE))

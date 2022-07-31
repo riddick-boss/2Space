@@ -2,7 +2,7 @@ package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_servi
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
-import abandonedstudio.app.tospace.di.ToSpaceApplication
+import abandonedstudio.app.tospace.ToSpaceApplication
 import kotlin.math.abs
 
 data class Launch(private val name: String, private val description: String?, private val timeStamp: DateFormat?, private val timeStampMillis: Long?) {
