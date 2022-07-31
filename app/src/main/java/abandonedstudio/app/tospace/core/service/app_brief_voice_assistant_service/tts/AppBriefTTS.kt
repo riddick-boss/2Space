@@ -65,7 +65,7 @@ class AppBriefTTS @Inject constructor(
     override suspend fun speakOut() {
         isInitialized.filter { it }.first() // await for initialization
         try {
-            val toSpeak = dataSource.getContentToSpeak(articlesNumber = ARTICLES_TO_READ_NUMBER)
+            val toSpeak = dataSource.getContentToSpeak()
             tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED)
         } catch (e: Exception) {
             context.showToast(R.string.app_brief_tts_reading_failed)
@@ -77,9 +77,5 @@ class AppBriefTTS @Inject constructor(
     override fun onDestroy() {
         tts.stop()
         tts.shutdown()
-    }
-
-    companion object {
-        private const val ARTICLES_TO_READ_NUMBER = 5
     }
 }

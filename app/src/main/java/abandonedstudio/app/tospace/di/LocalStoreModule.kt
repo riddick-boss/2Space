@@ -5,10 +5,10 @@ import abandonedstudio.app.tospace.core.data.local.app_brief_preferences.datasto
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class LocalStoreModule {
 
     @Binds

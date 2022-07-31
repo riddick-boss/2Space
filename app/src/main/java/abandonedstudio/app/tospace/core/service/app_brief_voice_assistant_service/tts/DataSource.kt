@@ -1,18 +1,36 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.R
+import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
 import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
 import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
 import abandonedstudio.app.tospace.di.ToSpaceApplication
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class DataSource @Inject constructor(
     private val newsRepository: NewsRepository,
-    private val launchesRepository: LaunchesRepository
+    private val launchesRepository: LaunchesRepository,
+    private val appBriefPreferencesRepository: AppBriefPreferencesRepository
 ) {
 
-    suspend fun getContentToSpeak(articlesNumber: Int): String =
-        "${convertLaunchToTTS()} ... ${convertArticlesToTTS(articlesNumber)}"
+    suspend fun getContentToSpeak(): String {
+        val builder = StringBuilder()
+        val shouldReadLaunches = appBriefPreferencesRepository.launchesStatus.first()
+        val shouldReadArticles = appBriefPreferencesRepository.newsStatus.first()
+
+        if (shouldReadLaunches) {
+            builder.append(convertLaunchToTTS())
+        }
+
+        if (shouldReadArticles) {
+            builder.append(" ... ") // add pause when reading
+
+            val articlesNumber = appBriefPreferencesRepository.articlesToRead.first()
+            builder.append(convertArticlesToTTS(number = articlesNumber))
+        }
+        return builder.toString()
+    }
 
     private suspend fun loadArticles(number: Int): List<Article>? =
         try {

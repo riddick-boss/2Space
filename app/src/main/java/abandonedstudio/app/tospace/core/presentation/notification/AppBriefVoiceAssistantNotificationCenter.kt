@@ -31,6 +31,7 @@ class AppBriefVoiceAssistantNotificationCenter @Inject constructor(
         .setOngoing(true)
         .setAutoCancel(false)
         .setShowWhen(false)
+        .setSilent(true)
         .addAction(R.drawable.ic_twotone_stop_24, context.getString(R.string.app_brief_voice_service_notification_action_stop), appBriefServiceManager.intentStop)
         .build()
 

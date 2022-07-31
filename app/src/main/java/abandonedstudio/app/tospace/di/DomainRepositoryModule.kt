@@ -15,7 +15,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 
 @Module
@@ -40,8 +39,8 @@ object DomainRepositoryModule {
 }
 
 @Module
-@InstallIn(ViewModelComponent::class)
-abstract class DomainRepositoryModuleVMComponent {
+@InstallIn(SingletonComponent::class)
+abstract class DomainRepositoryModule2 {
 
     @Binds
     abstract fun bindAppBriefPreferencesRepository(impl: AppBriefPreferencesRepositoryImpl): AppBriefPreferencesRepository
