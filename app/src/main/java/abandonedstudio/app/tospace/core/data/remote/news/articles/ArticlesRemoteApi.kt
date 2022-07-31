@@ -4,5 +4,5 @@ import abandonedstudio.app.tospace.core.data.remote.news.articles.dto.ArticlesRe
 
 interface ArticlesRemoteApi {
 
-    suspend fun loadArticles(): List<ArticlesResponseItem>
+    suspend fun loadArticles(number: Int): List<ArticlesResponseItem>
 }

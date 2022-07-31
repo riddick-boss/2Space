@@ -6,4 +6,6 @@ import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSour
 interface LaunchesRepository {
 
     suspend fun loadUpcomingLaunches(next: String?): LaunchesPagingSource.Page<Launch>
+
+    suspend fun loadUpcomingLaunch(): Launch
 }

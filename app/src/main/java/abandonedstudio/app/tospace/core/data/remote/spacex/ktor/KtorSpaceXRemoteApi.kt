@@ -5,7 +5,7 @@ import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.PastSpaceXLaunchesResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.SpaceXDetailedLaunchResponse
 import abandonedstudio.app.tospace.core.data.remote.spacex.dto.response.UpcomingSpaceXLaunchesResponse
-import abandonedstudio.app.tospace.di.ToSpaceApplication
+import abandonedstudio.app.tospace.ToSpaceApplication
 import androidx.annotation.RawRes
 import io.ktor.client.*
 import io.ktor.client.call.*

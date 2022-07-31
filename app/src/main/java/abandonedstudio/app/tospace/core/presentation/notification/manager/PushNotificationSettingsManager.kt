@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.core.presentation.notification.manager
 
-interface NotificationSettingsManager {
+interface PushNotificationSettingsManager {
 
     fun subscribeToTopic(topic: Topic)
 

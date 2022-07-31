@@ -19,7 +19,8 @@ fun EventsScreen(viewModel: NewsViewModel) {
     
     SwipeRefreshResultLazyColumn(
         result = eventsResult,
-        onRefresh = viewModel::onUpcomingEventsRefresh
+        onRefresh = viewModel::onUpcomingEventsRefresh,
+        key = { it.hashCode() }
     ) {
         it.Item(onClick = onEventClicked)
     }

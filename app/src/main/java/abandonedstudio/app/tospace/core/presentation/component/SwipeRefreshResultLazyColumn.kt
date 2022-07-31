@@ -18,6 +18,7 @@ fun <DATA, RESULT: Result<List<DATA>>> SwipeRefreshResultLazyColumn(
     modifier: Modifier = Modifier.fillMaxSize(),
     paddingValues: PaddingValues = PaddingValues(16.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(16.dp),
+    key: ((DATA) -> Any)? = null,
     onRefresh: () -> Unit,
     content: @Composable (data: DATA) -> Unit
 ) {
@@ -56,7 +57,7 @@ fun <DATA, RESULT: Result<List<DATA>>> SwipeRefreshResultLazyColumn(
                         verticalArrangement = verticalArrangement
                     ) {
                         list?.also {
-                            items(list) { item ->
+                            items(list, key) { item ->
                                 content(item)
                             }
                         } ?: item("empty_item") {

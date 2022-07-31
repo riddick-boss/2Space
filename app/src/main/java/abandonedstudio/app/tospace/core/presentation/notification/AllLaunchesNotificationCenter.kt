@@ -10,10 +10,8 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filterNotNull
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -24,11 +22,13 @@ class AllLaunchesNotificationCenter @Inject constructor(
     fcmServiceAdapter: FCMServiceAdapter
 ) {
 
+    private val scope = MainScope()
+
     val start: Flow<Unit> by lazy {
         fcmServiceAdapter
             .onMessageReceived
             .map {
-                val notificationId = it.data[ALL_LAUNCHES_NOTIFICATION_ID]
+                val notificationId = it.data[ALL_LAUNCHES_NOTIFICATION_ID_PAYLOAD]
                 val title = it.notification?.title
                 val body = it.notification?.body
 
@@ -43,6 +43,7 @@ class AllLaunchesNotificationCenter @Inject constructor(
                 showNotification(messageId, title, body)
             }
             .map {  }
+            .shareIn(scope, SharingStarted.WhileSubscribed())
     }
 
     private fun createNotification(title: String, body: String): Notification = NotificationCompat
@@ -62,9 +63,8 @@ class AllLaunchesNotificationCenter @Inject constructor(
     }
 
     private fun registerNotificationChannel() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            return
-        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
+
         val channel = NotificationChannel(
             NotificationConstants.ALL_LAUNCHES_NOTIFICATION_CHANNEL_ID,
             context.getString(R.string.notification_all_launches_channel_name),
@@ -74,7 +74,7 @@ class AllLaunchesNotificationCenter @Inject constructor(
     }
 
     companion object {
-        private const val ALL_LAUNCHES_NOTIFICATION_ID = "all_launches_notification_id"
+        private const val ALL_LAUNCHES_NOTIFICATION_ID_PAYLOAD = "all_launches_notification_id"
     }
 
     init {

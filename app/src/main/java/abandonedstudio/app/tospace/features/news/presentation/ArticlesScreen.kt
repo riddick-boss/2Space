@@ -19,7 +19,8 @@ fun ArticlesScreen(viewModel: NewsViewModel) {
 
     SwipeRefreshResultLazyColumn(
         result = articlesResult,
-        onRefresh = viewModel::onArticlesRefresh
+        onRefresh = viewModel::onArticlesRefresh,
+        key = { it.hashCode() }
     ) {
         it.Item(onClick = onArticleClicked)
     }

@@ -49,6 +49,9 @@ android {
         buildConfigField("String", "NEWS_DATA_IO_API_KEY", localProperties.getProperty('NEWS_DATA_IO_API_KEY', '"noKey"'))
         buildConfigField("String", "EMAIL", localProperties.getProperty('EMAIL', '""'))
         buildConfigField("String", "ALL_LAUNCHES_TOPIC_VALUE", localProperties.getProperty('ALL_LAUNCHES_TOPIC_VALUE', '"all_launches"'))
+        buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
+        buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
+        buildConfigField("String", "DATASTORE_PREFERENCES_NAME", localProperties.getProperty('DATASTORE_PREFERENCES_NAME', '"DATASTORE_PREFERENCES_NAME"'))
     }
 
     signingConfigs {
@@ -119,15 +122,18 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
     implementation 'com.google.android.material:compose-theme-adapter:1.1.14'
 
-//    Accompanist pager
-    implementation "com.google.accompanist:accompanist-pager:0.23.1"
+//    Accompanist
+//    Pager
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+//    Swipe refresh
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+
+//    Number picker
+    implementation "com.chargemap.compose:numberpicker:1.0.3"
 
 //    AndroidX paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
     implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
-
-//    Swipe refresh
-    implementation "com.google.accompanist:accompanist-swiperefresh:0.23.1"
 
 //    Coil
     implementation "io.coil-kt:coil-compose:2.1.0"
@@ -165,6 +171,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
+
+//    Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
 //    LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'

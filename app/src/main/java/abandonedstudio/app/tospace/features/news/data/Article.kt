@@ -3,7 +3,6 @@ package abandonedstudio.app.tospace.features.news.data
 import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -25,13 +24,15 @@ data class Article(
     val url: String?
 ) {
 
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     fun Item(onClick: (String) -> Unit) {
         Card(
-            modifier = Modifier.fillMaxWidth().clickable { url?.also { onClick(it) } },
+            modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp),
             elevation = 0.dp,
-            backgroundColor = DarkGrayBackground
+            backgroundColor = DarkGrayBackground,
+            onClick = { url?.also { onClick(it) } }
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth()
@@ -45,7 +46,7 @@ data class Article(
                             model = it,
                             contentDescription = contentDescription(),
                             contentScale = ContentScale.FillWidth,
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 250.dp),
                             loading = {
                                 Box(
                                     contentAlignment = Alignment.Center,

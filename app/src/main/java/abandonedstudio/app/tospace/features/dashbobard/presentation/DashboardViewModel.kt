@@ -112,7 +112,7 @@ class DashboardViewModel @Inject constructor(
         val minutes = abs(time / 60)
         time %= 60
         val seconds = abs(time)
-        val prefix = if (launchTime > now) "T+" else "T-"
+        val prefix = if (launchTime > now) "T-" else "T+"
         return "$prefix${days}d, ${hours}h, ${minutes}min, ${seconds}s"
     }
 

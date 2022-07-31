@@ -10,33 +10,28 @@ import abandonedstudio.app.tospace.core.data.remote.spacex.SpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.spacex.ktor.KtorSpaceXRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.weather.WeatherRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.weather.ktor.KtorWeatherRemoteApi
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import io.ktor.client.*
+import dagger.hilt.android.components.ServiceComponent
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
-object RemoteModule {
+@InstallIn(ViewModelComponent::class, ServiceComponent::class)
+abstract class RemoteModule {
 
-    @Provides
-    fun provideWeatherRemoteApi(httpClient: HttpClient): WeatherRemoteApi =
-        KtorWeatherRemoteApi(httpClient)
+    @Binds
+    abstract fun bindWeatherRemoteApi(impl: KtorWeatherRemoteApi): WeatherRemoteApi
 
-    @Provides
-    fun provideSpaceXRemoteApi(httpClient: HttpClient): SpaceXRemoteApi =
-        KtorSpaceXRemoteApi(httpClient)
+    @Binds
+    abstract fun bindSpaceXRemoteApi(impl: KtorSpaceXRemoteApi): SpaceXRemoteApi
 
-    @Provides
-    fun provideEventsRemoteApi(httpClient: HttpClient): EventsRemoteApi =
-        KtorEventsRemoteApi(httpClient)
+    @Binds
+    abstract fun bindEventsRemoteApi(impl: KtorEventsRemoteApi): EventsRemoteApi
 
-    @Provides
-    fun provideArticlesRemoteApi(httpClient: HttpClient): ArticlesRemoteApi =
-        KtorArticlesRemoteApi(httpClient)
+    @Binds
+    abstract fun bindArticlesRemoteApi(impl: KtorArticlesRemoteApi): ArticlesRemoteApi
 
-    @Provides
-    fun provideLaunchesRemoteApi(httpClient: HttpClient): LaunchesRemoteApi =
-        KtorLaunchesRemoteApi(httpClient)
+    @Binds
+    abstract fun bindLaunchesRemoteApi(impl: KtorLaunchesRemoteApi): LaunchesRemoteApi
 }

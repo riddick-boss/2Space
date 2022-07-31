@@ -5,7 +5,7 @@ import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DateFormat(timeStampMillis: Long) {
+class DateFormat(timeStampMillis: Long) { // this class may be open in future if needed
 
     enum class Precision {
         MONTH, YEAR
@@ -19,6 +19,9 @@ class DateFormat(timeStampMillis: Long) {
 
     private val date = Date(timeStampMillis)
 
+    val hoursAndMinutes: String
+        get() = SimpleDateFormat("HH:mm", Locale.US).format(date)
+
     val dayOfWeekShort: String
         get() = SimpleDateFormat("EEE", Locale.US).format(date)
 
@@ -31,8 +34,14 @@ class DateFormat(timeStampMillis: Long) {
     val month: String
         get() = SimpleDateFormat("MM", locale).format(date)
 
+    val monthName: String
+        get() = SimpleDateFormat("MMMM", Locale.US).format(date)
+
     val year: String
         get() = SimpleDateFormat("yyyy", locale).format(date)
+
+    val yearShort: String
+        get() = SimpleDateFormat("yy", locale).format(date)
 
     val monthAndYear: String
         get() = SimpleDateFormat("MM/yyyy", locale).format(date)
