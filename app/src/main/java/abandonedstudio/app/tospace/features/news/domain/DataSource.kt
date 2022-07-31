@@ -21,8 +21,8 @@ class DataSource @Inject constructor(
             )
         }
 
-    suspend fun loadArticles(): List<Article> =
-        newsRepository.loadArticles().map {
+    suspend fun loadArticles(number: Int): List<Article> =
+        newsRepository.loadArticles(number).map {
             Article(
                 title = it.title,
                 summary = it.summary,

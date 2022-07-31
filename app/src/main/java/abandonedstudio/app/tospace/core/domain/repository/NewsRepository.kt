@@ -7,5 +7,5 @@ interface NewsRepository {
 
     suspend fun loadUpcomingEvents(): List<SpaceEvent>
 
-    suspend fun loadArticles(): List<SpaceArticle>
+    suspend fun loadArticles(number: Int): List<SpaceArticle>
 }

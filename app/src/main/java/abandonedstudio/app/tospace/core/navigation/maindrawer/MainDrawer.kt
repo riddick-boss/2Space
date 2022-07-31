@@ -3,10 +3,11 @@ package abandonedstudio.app.tospace.core.navigation.maindrawer
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.presentation.util.contentDescription
 import abandonedstudio.app.tospace.features.about.presentation.AboutScreen
-import abandonedstudio.app.tospace.features.news.presentation.NewsScreen
+import abandonedstudio.app.tospace.features.app_brief_tts.presentation.AppBriefScreen
 import abandonedstudio.app.tospace.features.dashbobard.presentation.DashboardScreen
-import abandonedstudio.app.tospace.features.spacex.presentation.SpaceXScreen
 import abandonedstudio.app.tospace.features.launches.presentation.LaunchesScreen
+import abandonedstudio.app.tospace.features.news.presentation.NewsScreen
+import abandonedstudio.app.tospace.features.spacex.presentation.SpaceXScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -69,6 +70,12 @@ enum class MainDrawerScreen(
         route = "about",
         titleResId = R.string.about_title,
         screen = { AboutScreen() }
+    ),
+
+    APP_BRIEF(
+        route = "app_brief",
+        titleResId = R.string.app_brief_screen_title,
+        screen = { AppBriefScreen() }
     );
 }
 

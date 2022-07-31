@@ -12,4 +12,7 @@ class LaunchesRepositoryImpl @Inject constructor(
 
     override suspend fun loadUpcomingLaunches(next: String?): LaunchesPagingSource.Page<Launch> =
         launchesRemoteApi.loadUpcomingLaunches(next).toLaunchesPage()
+
+    override suspend fun loadUpcomingLaunch(): Launch =
+        launchesRemoteApi.loadUpcomingLaunches(null).toLaunchesPage().data.first()
 }

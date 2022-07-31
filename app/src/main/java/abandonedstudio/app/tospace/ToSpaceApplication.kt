@@ -1,8 +1,8 @@
-package abandonedstudio.app.tospace.di
+package abandonedstudio.app.tospace
 
 import abandonedstudio.app.tospace.core.presentation.notification.AllLaunchesNotificationCenter
 import abandonedstudio.app.tospace.core.presentation.notification.NotificationConstants
-import abandonedstudio.app.tospace.core.presentation.notification.manager.NotificationSettingsManager
+import abandonedstudio.app.tospace.core.presentation.notification.manager.PushNotificationSettingsManager
 import abandonedstudio.app.tospace.core.presentation.notification.manager.Topic
 import android.app.Application
 import android.content.res.Resources
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class ToSpaceApplication : Application() {
 
     @Inject lateinit var allLaunchesNotificationCenter: AllLaunchesNotificationCenter
-    @Inject lateinit var notificationSettingsManager: NotificationSettingsManager
+    @Inject lateinit var pushNotificationSettingsManager: PushNotificationSettingsManager
 
     private val scope = MainScope()
 
@@ -25,10 +25,13 @@ class ToSpaceApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ToSpaceApplication.resources = resources
+        Companion.resources = resources
 
-        notificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.APP_UPDATE_TOPIC_VALUE))
-        notificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.ALL_LAUNCHES_TOPIC_VALUE))
+        pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.APP_UPDATE_TOPIC_VALUE))
+        pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.ALL_LAUNCHES_TOPIC_VALUE))
+        if (BuildConfig.DEBUG) {
+            pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.DEBUG_TOPIC_VALUE))
+        }
 
         allLaunchesNotificationCenter.start.launchIn(scope)
     }

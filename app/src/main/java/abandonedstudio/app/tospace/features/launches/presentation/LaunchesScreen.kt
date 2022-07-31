@@ -18,7 +18,8 @@ fun LaunchesScreen(
     SwipeRefreshPagingColumn(
         items = launches,
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        key = { it.hashCode() }
     ) {
         it!!.Item()
     }

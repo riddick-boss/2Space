@@ -127,4 +127,42 @@
 
     <!--   notification -->
     <string name="notification_all_launches_channel_name">All launches</string>
+    <string name="notification_app_brief_voice_assistant_service_channel_name">App brief voice assistant</string>
+    <!--   notification -->
+
+    <!--   app brief voice service -->
+    <string name="app_brief_voice_service_label">App brief voice assistant</string>
+    <string name="app_brief_voice_service_notification_title">App brief</string>
+    <string name="app_brief_voice_service_notification_body">Reading…</string>
+    <string name="app_brief_voice_service_notification_action_stop">Stop</string>
+    <string name="app_brief_voice_service_service_start_error_message">Failed to start space briefing!</string>
+    <!--   app brief voice service -->
+
+    <!--   app brief tts -->
+    <string name="app_brief_tts_language_not_supported">Cannot read brief, language not supported!</string>
+    <string name="app_brief_tts_init_failed">Cannot read brief, initialization failed</string>
+    <string name="app_brief_tts_reading_failed">Failed to read brief!</string>
+    <string name="app_brief_tts_articles_prefix">… Articles are: … </string>
+    <string name="app_brief_tts_articles_postfix"> … End of articles.</string>
+    <string name="app_brief_tts_articles_separator">… Next article: … </string>
+    <string name="app_brief_tts_loading_articles_failed">… Couldn\'t load articles. …</string>
+    <string name="app_brief_tts_loading_next_launch_failed">… Couldn\'t load next launch. … </string>
+    <string name="app_brief_tts_launch_timestamp">Scheduled for %1$s %2$s %3$s, %4$s</string>
+    <string name="app_brief_tts_launch_no_description">Not provided</string>
+    <string name="app_brief_tts_launch_from_now_days"> %1$s days </string>
+    <string name="app_brief_tts_launch_from_now_hours"> %1$s hours </string>
+    <string name="app_brief_tts_launch_from_now_minutes"> %1$s minutes </string>
+    <string name="app_brief_tts_launch_from_now">, which is %1$s %2$s %3$s from now</string>
+    <string name="app_brief_tts_launch_tts">… Upcoming launch is: … %1$s. %2$s %3$s. Details: %4$s …</string>
+    <!--   app brief tts -->
+
+    <!--   app brief screen -->
+    <string name="app_brief_screen_title">App brief</string>
+    <string name="app_brief_screen_play_button">Play</string>
+    <string name="app_brief_screen_playing_message">When brief is playing, you can safely close app and enjoy space updates!</string>
+    <string name="app_brief_screen_setting_save_error_message">Failed to save settings!</string>
+    <string name="app_brief_screen_launches_setting_title">Launches</string>
+    <string name="app_brief_screen_articles_setting_title">Articles</string>
+    <string name="app_brief_screen_articles_number_setting_title">Articles to read:</string>
+    <!--   app brief screen -->
 </resources>
