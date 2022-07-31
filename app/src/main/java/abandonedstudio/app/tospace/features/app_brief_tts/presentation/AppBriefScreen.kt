@@ -27,6 +27,7 @@ fun AppBriefScreen(
     val launchesStatus by viewModel.launchesStatus.collectAsState()
     val articlesStatus by viewModel.articlesStatus.collectAsState()
     val articlesToReadNumber by viewModel.articlesToReadNumber.collectAsState()
+    val playAppBriefButtonVisible by viewModel.playAppBriefButtonVisible.collectAsState()
 
     Column(
         modifier = Modifier
@@ -76,22 +77,24 @@ fun AppBriefScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            OutlinedButton(
-                onClick = viewModel::onPlayBriefClicked,
-                shape = RoundedCornerShape(50),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Color.Transparent,
-                ),
-                border = BorderStroke(2.dp, Color.Yellow),
-                modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .padding(24.dp)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.app_brief_screen_play_button),
-                    color = Color.Yellow,
-                    style = MaterialTheme.typography.h5
-                )
+            if (playAppBriefButtonVisible) {
+                OutlinedButton(
+                    onClick = viewModel::onPlayBriefClicked,
+                    shape = RoundedCornerShape(50),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color.Transparent,
+                    ),
+                    border = BorderStroke(2.dp, Color.Yellow),
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
+                        .padding(24.dp)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.app_brief_screen_play_button),
+                        color = Color.Yellow,
+                        style = MaterialTheme.typography.h5
+                    )
+                }
             }
         }
     }

@@ -68,6 +68,11 @@ class AppBriefViewModel @Inject constructor(
         }
     }
 
+    val playAppBriefButtonVisible: StateFlow<Boolean> by lazy {
+        combine(launchesStatus, articlesStatus) { t1, t2 -> t1 || t2 }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
+    }
+
     fun onPlayBriefClicked() {
         appBriefServiceManager.startService()
     }
