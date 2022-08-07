@@ -1,7 +1,6 @@
 package abandonedstudio.app.tospace.core.data.remote.news.events.ktor
 
 import abandonedstudio.app.tospace.BuildConfig
-import android.util.Log
 import com.google.common.truth.Truth
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -26,7 +25,7 @@ class KtorEventsRemoteApiTest {
                 level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Log.i("CustomKtorHttpLogger", message)
+                        println("CustomKtorHttpLogger: $message")
                     }
 
                 }
@@ -46,7 +45,7 @@ class KtorEventsRemoteApiTest {
     }
 
     @Test
-    fun loadingUpcomingEventsProperly() = runBlocking {
+    fun `fetching and parsing upcoming events without errors`() = runBlocking {
         var exception: Exception? = null
         try {
             val data = api.loadUpcomingEvents()
