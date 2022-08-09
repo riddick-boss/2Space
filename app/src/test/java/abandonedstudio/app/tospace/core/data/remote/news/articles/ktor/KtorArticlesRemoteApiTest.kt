@@ -1,7 +1,6 @@
 package abandonedstudio.app.tospace.core.data.remote.news.articles.ktor
 
 import abandonedstudio.app.tospace.BuildConfig
-import android.util.Log
 import com.google.common.truth.Truth
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -26,7 +25,7 @@ class KtorArticlesRemoteApiTest {
                 level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Log.i("CustomKtorHttpLogger", message)
+                        println("CustomKtorHttpLogger: $message")
                     }
 
                 }
@@ -46,10 +45,10 @@ class KtorArticlesRemoteApiTest {
     }
 
     @Test
-    fun loadingArticlesProperly() = runBlocking {
+    fun `fetching and parsing articles without errors`() = runBlocking {
         var exception: Exception? = null
         try {
-            val data = api.loadArticles(2) // just random number
+            val data = api.loadArticles(2) // it is just random number
             println(data.toString())
         } catch (e: Exception) {
             exception = e

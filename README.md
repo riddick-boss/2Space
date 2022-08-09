@@ -22,7 +22,16 @@ Used:
 
 ## General info
 
-App is organized in MVVM architecture. Kotlin Flows were used to achieve reactive approach. Data is fetched from [SpaceX Api](https://github.com/r-spacex/SpaceX-API) with usage of Ktor (this enables to use code in kotlin multiplatform app in future). Whole app is organized with intent to create archtecture like in multi-module approach - that is why there are packages like: data, domain, presentation/feature. Also, SOLID rules were applied.
+App is organized in MVVM architecture. Kotlin Coroutines and Flows were used to achieve reactive approach. Data is fetched from apis (like [SpaceX Api](https://github.com/r-spacex/SpaceX-API)) with usage of Ktor (this enables to use code in kotlin multiplatform app in future). Whole app is organized with intent to be clean, scalable and easy to refactor. Also, SOLID rules were applied.
+
+## Screenshots
+
+| ![Dashboard](/screenshots/dashboard.jpg) | ![Launches](/screenshots/launches.jpg) | ![Events](/screenshots/events.jpg) |
+|-|-|-|
+
+## Checkout also
+
+Checkout [my other repo](https://github.com/riddick-boss/2SpaceMessagingCenter), which contains server side code of the project. Its purpose is to fetch info about upcoming launches and send FCM notifications if necessary. Android app subscripes to this topic and shows notifications. Written in [Go](https://go.dev/).
 
 ## Tests
 
@@ -30,7 +39,6 @@ Tests were created with usage of Truth library.
 
 Sample test:
 ```kotlin
-
     @Before
     fun setUp() {
         httpClient = HttpClient(Android) {
@@ -38,7 +46,7 @@ Sample test:
                 level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Log.i("CustomKtorHttpLogger", message)
+                        println("CustomKtorHttpLogger: $message")
                     }
 
                 }
@@ -49,7 +57,7 @@ Sample test:
                 })
             }
         }
-        api = KtorSpaceXRemoteApi(httpClient)
+        api = KtorLaunchesRemoteApi(httpClient)
     }
 
     @After
@@ -58,11 +66,10 @@ Sample test:
     }
 
     @Test
-    fun fetchingLastLaunchProperly() = runBlocking {
+    fun `fetching and parsing upcoming launches without errors`() = runBlocking {
         var exception: Exception? = null
         try {
-            val data = api.getLastLaunch()
-            println(data.toString())
+            val data = api.loadUpcomingLaunches(null)
         } catch (e: Exception) {
             exception = e
         }
