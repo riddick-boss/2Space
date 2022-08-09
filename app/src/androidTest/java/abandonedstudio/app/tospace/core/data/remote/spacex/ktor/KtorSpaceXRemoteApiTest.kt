@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.data.remote.spacex.ktor
 
 import abandonedstudio.app.tospace.BuildConfig
-import android.util.Log
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -13,7 +13,9 @@ import kotlinx.serialization.json.Json
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class KtorSpaceXRemoteApiTest {
 
     private lateinit var httpClient: HttpClient
@@ -26,7 +28,7 @@ class KtorSpaceXRemoteApiTest {
                 level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Log.i("CustomKtorHttpLogger", message)
+                        println("CustomKtorHttpLogger: $message")
                     }
 
                 }
@@ -46,7 +48,7 @@ class KtorSpaceXRemoteApiTest {
     }
 
     @Test
-    fun fetchingLastLaunchProperly() = runBlocking {
+    fun fetchingAndParsingLastLaunchWithoutErrors() = runBlocking {
         var exception: Exception? = null
         try {
             val data = api.getLastLaunch()
@@ -58,7 +60,7 @@ class KtorSpaceXRemoteApiTest {
     }
 
     @Test
-    fun fetchingNextLaunchProperly() = runBlocking {
+    fun fetchingAndParsingNextLaunchWithoutErrors() = runBlocking {
         var exception: Exception? = null
         try {
             val data = api.getNextLaunch()
