@@ -6,7 +6,6 @@
     <string name="main_drawer_launches_title">Launches</string>
     <string name="main_drawer_spacex_title">SpaceX</string>
     <string name="main_drawer_news_title">Events</string>
-    <string name="main_drawer_contact_title">Contact</string>
 
     <!--   content description -->
     <string name="content_description">Content description</string>
@@ -108,7 +107,6 @@
     <!--   news -->
     <string name="news_events_title">Events</string>
     <string name="news_articles_title">Articles</string>
-    <string name="news_failed_to_load_data">Failed to load data</string>
     <string name="news_read_more">Read more</string>
     <string name="news_watch">Watch</string>
 

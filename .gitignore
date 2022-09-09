@@ -47,3 +47,4 @@ obj/
 
 # google services
 /app/google-services.json
+/app/src/debug/google-services.json
