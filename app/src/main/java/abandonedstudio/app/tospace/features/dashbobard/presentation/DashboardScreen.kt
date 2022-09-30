@@ -26,26 +26,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
 
-    val nextLaunch by viewModel.nextLaunchFlow.collectAsState()
-    val nextLaunchCountdown by viewModel.nextLaunchCountdown.collectAsState()
-    val previousLaunch by viewModel.previousLaunchFlow.collectAsState()
-    val previousLaunchCountdown by viewModel.previousLaunchCountdown.collectAsState()
+    val nextLaunch by viewModel.nextLaunchFlow.collectAsStateWithLifecycle()
+    val nextLaunchCountdown by viewModel.nextLaunchCountdown.collectAsStateWithLifecycle()
+    val previousLaunch by viewModel.previousLaunchFlow.collectAsStateWithLifecycle()
+    val previousLaunchCountdown by viewModel.previousLaunchCountdown.collectAsStateWithLifecycle()
 
-    val capeCanaveralWeather by viewModel.capeCanaveralWeather.collectAsState()
-    val starbaseWeather by viewModel.starbaseWeather.collectAsState()
-    val vandenbergWeather by viewModel.vandenbergWeather.collectAsState()
+    val capeCanaveralWeather by viewModel.capeCanaveralWeather.collectAsStateWithLifecycle()
+    val starbaseWeather by viewModel.starbaseWeather.collectAsStateWithLifecycle()
+    val vandenbergWeather by viewModel.vandenbergWeather.collectAsStateWithLifecycle()
 
-    val showWeatherContent by viewModel.showWeatherContent.collectAsState()
+    val showWeatherContent by viewModel.showWeatherContent.collectAsStateWithLifecycle()
 
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current

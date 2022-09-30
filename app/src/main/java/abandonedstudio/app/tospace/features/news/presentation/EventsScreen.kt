@@ -2,14 +2,16 @@ package abandonedstudio.app.tospace.features.news.presentation
 
 import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshResultLazyColumn
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun EventsScreen(viewModel: NewsViewModel) {
 
-    val eventsResult by viewModel.upcomingEventsFlow.collectAsState()
+    val eventsResult by viewModel.upcomingEventsFlow.collectAsStateWithLifecycle()
 
     val uriHandler = LocalUriHandler.current
 
