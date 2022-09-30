@@ -20,6 +20,8 @@ class AppBriefViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+    val articlesToReadRange = 1..20
+
     val launchesStatus: StateFlow<Boolean> by lazy {
         appBriefPreferencesRepository
             .launchesStatus
