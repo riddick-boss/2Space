@@ -77,6 +77,8 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://ll.thespacedevs.com/"')
         }
 
         debug {
@@ -87,6 +89,8 @@ android {
 
             manifestPlaceholders.APP_NAME_SUFFIX = " Debug"
 //            applicationIdSuffix '.debug'
+
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://lldev.thespacedevs.com/"')
         }
     }
     compileOptions {

@@ -2,7 +2,7 @@ package abandonedstudio.app.tospace.features.dashbobard.domain
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.core.domain.model.spacex.DetailedLaunch
-import abandonedstudio.app.tospace.core.domain.repository.SpaceXRepository
+import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
 import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import abandonedstudio.app.tospace.core.domain.util.DateFormat
 import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
@@ -12,18 +12,18 @@ import javax.inject.Inject
 
 class DataSource @Inject constructor(
     private val weatherRepository: WeatherRepository,
-    private val spaceXRepository: SpaceXRepository
+    private val launchesRepository: LaunchesRepository
 ) {
     private val noData = StringUtil.getString(R.string.no_data_info)
 
     suspend fun loadLastLaunch(): SpaceXLaunch =
-        spaceXRepository
-            .getLastLaunch()
+        launchesRepository
+            .fetchPreviousLaunch()
             .toSpacexLaunch()
 
     suspend fun loadNextLaunch(): SpaceXLaunch =
-        spaceXRepository
-            .getNextLaunch()
+        launchesRepository
+            .fetchNextLaunch()
             .toSpacexLaunch()
 
     private suspend fun loadWeather(coordinates: Coordinates): FacilityWeather =
