@@ -55,4 +55,16 @@ class KtorLaunchesRemoteApiTest {
         }
         Truth.assertThat(exception).isNull()
     }
+
+    @Test
+    fun `fetching and parsing upcoming launch without errors`() = runBlocking {
+        var exception: Exception? = null
+        try {
+            val data = api.fetchNextLaunch()
+            println(data.toString())
+        } catch (e: Exception) {
+            exception = e
+        }
+        Truth.assertThat(exception).isNull()
+    }
 }
