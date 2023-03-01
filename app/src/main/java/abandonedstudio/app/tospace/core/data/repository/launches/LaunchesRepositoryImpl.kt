@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.core.data.repository.launches
 
 import abandonedstudio.app.tospace.core.data.remote.launches.LaunchesRemoteApi
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.model.launches.Launch
 import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
-import abandonedstudio.app.tospace.core.domain.model.spacex.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
 import javax.inject.Inject
 

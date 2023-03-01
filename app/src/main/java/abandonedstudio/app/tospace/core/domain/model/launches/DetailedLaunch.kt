@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.domain.model.spacex
+package abandonedstudio.app.tospace.core.domain.model.launches
 
 data class DetailedLaunch(
     val missionName: String?,
