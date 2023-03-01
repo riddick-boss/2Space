@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.core.domain.repository
 
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.model.launches.Launch
 import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
-import abandonedstudio.app.tospace.core.domain.model.spacex.DetailedLaunch
 
 interface LaunchesRepository {
 

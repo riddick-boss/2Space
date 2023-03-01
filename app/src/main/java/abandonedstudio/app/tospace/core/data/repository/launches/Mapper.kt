@@ -2,9 +2,9 @@ package abandonedstudio.app.tospace.core.data.repository.launches
 
 import abandonedstudio.app.tospace.core.data.remote.launches.dto.AllLaunchesResponse
 import abandonedstudio.app.tospace.core.data.remote.launches.dto.LaunchDetailedResponse
+import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
 import abandonedstudio.app.tospace.core.domain.model.launches.Launch
 import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
-import abandonedstudio.app.tospace.core.domain.model.spacex.DetailedLaunch
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.util.*

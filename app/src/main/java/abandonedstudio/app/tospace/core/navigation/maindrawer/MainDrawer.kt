@@ -7,7 +7,6 @@ import abandonedstudio.app.tospace.features.app_brief_tts.presentation.AppBriefS
 import abandonedstudio.app.tospace.features.dashbobard.presentation.DashboardScreen
 import abandonedstudio.app.tospace.features.launches.presentation.LaunchesScreen
 import abandonedstudio.app.tospace.features.news.presentation.NewsScreen
-import abandonedstudio.app.tospace.features.spacex.presentation.SpaceXScreen
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,12 +45,6 @@ enum class MainDrawerScreen(
         route = "dashboard",
         titleResId = R.string.main_drawer_dashboard_title,
         screen = { DashboardScreen() }
-    ),
-
-    SPACEX(
-        route = "spacex",
-        titleResId = R.string.main_drawer_spacex_title,
-        screen = { SpaceXScreen() }
     ),
 
     LAUNCHES(

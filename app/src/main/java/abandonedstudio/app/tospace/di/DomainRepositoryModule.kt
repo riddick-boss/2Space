@@ -3,9 +3,11 @@ package abandonedstudio.app.tospace.di
 import abandonedstudio.app.tospace.core.data.repository.app_brief_preferences.AppBriefPreferencesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.launches.LaunchesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.news.NewsRepositoryImpl
-import abandonedstudio.app.tospace.core.data.repository.spacex.SpaceXRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.weather.WeatherRepositoryImpl
-import abandonedstudio.app.tospace.core.domain.repository.*
+import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,9 +20,6 @@ abstract class DomainRepositoryModuleViewModelComponent {
 
     @Binds
     abstract fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
-
-    @Binds
-    abstract fun bindSpaceXRepository(impl: SpaceXRepositoryImpl): SpaceXRepository
 
     @Binds
     abstract fun bindNewsRepository(impl: NewsRepositoryImpl): NewsRepository
