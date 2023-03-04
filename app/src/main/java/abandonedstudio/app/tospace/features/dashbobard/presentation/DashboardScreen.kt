@@ -1,6 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.presentation
 
 import abandonedstudio.app.tospace.R
+import abandonedstudio.app.tospace.core.presentation.component.SwipeRefresh
 import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.features.dashbobard.data.Facility
 import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
@@ -11,10 +12,8 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,14 +25,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel()
@@ -61,14 +57,14 @@ fun DashboardScreen(
         }.launchIn(this)
     }
 
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(isRefreshing),
-        modifier = Modifier.fillMaxSize(),
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing,
         onRefresh = {
             isRefreshing = true
             viewModel.onRefresh()
-        }
-    ) {
+        })
+
+    SwipeRefresh(isRefreshing = isRefreshing, pullRefreshState = pullRefreshState) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(16.dp),

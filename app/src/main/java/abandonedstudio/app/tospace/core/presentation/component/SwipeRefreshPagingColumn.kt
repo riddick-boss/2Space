@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,11 +19,10 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.items
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun <T: Any> SwipeRefreshPagingColumn(
+fun <T : Any> SwipeRefreshPagingColumn(
     items: LazyPagingItems<T>,
     key: ((item: T) -> Any)? = null,
     contentPadding: PaddingValues,
@@ -38,14 +39,14 @@ fun <T: Any> SwipeRefreshPagingColumn(
         isRefreshing = false
     }
 
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(isRefreshing),
-        modifier = Modifier.fillMaxSize(),
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing,
         onRefresh = {
             isRefreshing = true
             items.refresh()
-        }
-    ) {
+        })
+
+    SwipeRefresh(isRefreshing = isRefreshing, pullRefreshState = pullRefreshState) {
         if (!isRefreshing && items.itemSnapshotList.isEmpty() && items.loadState.refresh is LoadState.Loading) {
             InitialProgressBar()
         }
@@ -90,6 +91,10 @@ private fun AppendProgressBar() {
 
 private fun showErrorToastIfNecessary(states: CombinedLoadStates, context: Context) {
     if (states.append is LoadState.Error || states.prepend is LoadState.Error || states.refresh is LoadState.Error) {
-        Toast.makeText(context, StringUtil.getString(R.string.fetch_fail_message), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            context,
+            StringUtil.getString(R.string.fetch_fail_message),
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

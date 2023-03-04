@@ -16,11 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.chargemap.compose.numberpicker.NumberPicker
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun AppBriefScreen(
     viewModel: AppBriefViewModel = hiltViewModel()

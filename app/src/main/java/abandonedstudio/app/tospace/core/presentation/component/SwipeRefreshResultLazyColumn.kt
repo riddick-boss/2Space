@@ -5,17 +5,17 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun <DATA, RESULT: Result<List<DATA>>> SwipeRefreshResultLazyColumn(
     result: RESULT?,
-    modifier: Modifier = Modifier.fillMaxSize(),
     paddingValues: PaddingValues = PaddingValues(16.dp),
     verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(16.dp),
     key: ((DATA) -> Any)? = null,
@@ -29,15 +29,15 @@ fun <DATA, RESULT: Result<List<DATA>>> SwipeRefreshResultLazyColumn(
         isRefreshing = false
     }
 
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing,
+        onRefresh = {
+            isRefreshing = true
+            onRefresh()
+        })
+
     result.also {
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing),
-            modifier = modifier,
-            onRefresh = {
-                isRefreshing = true
-                onRefresh()
-            }
-        ) {
+        SwipeRefresh(isRefreshing = isRefreshing, pullRefreshState = pullRefreshState) {
             if (it == null) {
                 if (!isRefreshing) {
                     Box(
