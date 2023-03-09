@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.core.data.remote.news.articles.ktor
 
+import abandonedstudio.app.tospace.BuildConfig
+
 object Routes {
 
-    private const val BASE_URL = "https://api.spaceflightnewsapi.net/v3/"
-
     fun articlesUrl(articlesNumber: Int): String =
-        "${BASE_URL}articles?_limit=$articlesNumber"
+        "${BuildConfig.SPACE_FLIGHT_NEWS_URL}articles?_limit=$articlesNumber"
 }

@@ -52,6 +52,8 @@ android {
         buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
         buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
         buildConfigField("String", "DATASTORE_PREFERENCES_NAME", localProperties.getProperty('DATASTORE_PREFERENCES_NAME', '"DATASTORE_PREFERENCES_NAME"'))
+        buildConfigField("String", "SPACE_FLIGHT_NEWS_URL", '"https://api.spaceflightnewsapi.net/v3/"')
+        buildConfigField("String", "OPEN_WEATHER_URL", '"https://api.openweathermap.org/data/2.5/"')
     }
 
     signingConfigs {
@@ -78,7 +80,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 
-            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://ll.thespacedevs.com/"')
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://ll.thespacedevs.com/2.2.0/"')
         }
 
         debug {
@@ -90,7 +92,7 @@ android {
             manifestPlaceholders.APP_NAME_SUFFIX = " Debug"
 //            applicationIdSuffix '.debug'
 
-            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://lldev.thespacedevs.com/"')
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://lldev.thespacedevs.com/2.2.0/"')
         }
     }
     compileOptions {
