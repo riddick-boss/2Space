@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.di
 
 import abandonedstudio.app.tospace.core.presentation.notification.manager.PushNotificationSettingsManager
-import abandonedstudio.app.tospace.core.service.fcm.FCMManager
+import abandonedstudio.app.tospace.core.presentation.notification.fcm.FCMManager
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessaging

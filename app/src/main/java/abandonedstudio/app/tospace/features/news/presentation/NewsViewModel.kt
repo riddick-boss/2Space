@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.features.news.presentation
 
-import abandonedstudio.app.tospace.core.domain.model.util.Result
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
-import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
+import abandonedstudio.app.tospace.domain.model.util.Result
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
+import abandonedstudio.app.tospace.domain.infrastructure.extension.toMessage
 import abandonedstudio.app.tospace.features.news.data.Article
 import abandonedstudio.app.tospace.features.news.data.Event
 import abandonedstudio.app.tospace.features.news.domain.DataSource

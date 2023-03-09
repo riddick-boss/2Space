@@ -11,6 +11,6 @@ interface PushNotificationSettingsManager {
 value class Topic(val value: String) {
 
     init {
-        require(value.isNotBlank()) { throw IllegalArgumentException("FCM topic cannot be blank!") }
+        require(value.isNotBlank()) { throw IllegalArgumentException("Topic cannot be blank!") }
     }
 }

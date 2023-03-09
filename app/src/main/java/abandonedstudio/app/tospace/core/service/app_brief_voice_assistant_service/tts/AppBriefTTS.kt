@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
 import abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.AppBriefSpeechSource
 import android.content.Context
 import android.speech.tts.TextToSpeech

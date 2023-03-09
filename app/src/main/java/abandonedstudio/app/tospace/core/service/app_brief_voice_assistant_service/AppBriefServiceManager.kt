@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
 import android.app.PendingIntent
 import android.content.Context
 import androidx.core.content.ContextCompat

@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.presentation
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
+import abandonedstudio.app.tospace.domain.ui.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.features.dashbobard.data.Facility
 import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
 import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch

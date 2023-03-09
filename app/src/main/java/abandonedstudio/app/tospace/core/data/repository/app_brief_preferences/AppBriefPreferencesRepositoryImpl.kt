@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.core.data.repository.app_brief_preferences
 
 import abandonedstudio.app.tospace.core.data.local.app_brief_preferences.AppBriefPreferencesSource
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

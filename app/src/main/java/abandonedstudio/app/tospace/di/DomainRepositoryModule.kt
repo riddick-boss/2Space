@@ -4,10 +4,10 @@ import abandonedstudio.app.tospace.core.data.repository.app_brief_preferences.Ap
 import abandonedstudio.app.tospace.core.data.repository.launches.LaunchesRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.news.NewsRepositoryImpl
 import abandonedstudio.app.tospace.core.data.repository.weather.WeatherRepositoryImpl
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
-import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
-import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
-import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

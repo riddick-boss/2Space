@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.DateFormat
+import abandonedstudio.app.tospace.domain.model.util.DateFormat
 import abandonedstudio.app.tospace.ToSpaceApplication
 import kotlin.math.abs
 

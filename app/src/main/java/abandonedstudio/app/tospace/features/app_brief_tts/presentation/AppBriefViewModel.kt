@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.features.app_brief_tts.presentation
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
 import abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.AppBriefServiceManager
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

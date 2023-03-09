@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.presentation
 
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
-import abandonedstudio.app.tospace.core.domain.util.extension.toMessage
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
+import abandonedstudio.app.tospace.domain.infrastructure.extension.toMessage
 import abandonedstudio.app.tospace.features.dashbobard.domain.DataSource
 import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
 import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch

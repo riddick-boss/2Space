@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
-import abandonedstudio.app.tospace.core.presentation.component.TitledTextNoData
-import abandonedstudio.app.tospace.core.presentation.util.contentDescription
+import abandonedstudio.app.tospace.domain.infrastructure.StringUtil
+import abandonedstudio.app.tospace.domain.ui.component.TitledTextNoData
+import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateContentSize

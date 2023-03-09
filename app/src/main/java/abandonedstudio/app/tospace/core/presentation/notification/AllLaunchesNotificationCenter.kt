@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.core.presentation.notification
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.service.fcm.FCMServiceAdapter
+import abandonedstudio.app.tospace.core.presentation.notification.fcm.FCMServiceAdapter
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager

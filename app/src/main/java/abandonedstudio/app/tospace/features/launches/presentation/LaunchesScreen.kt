@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.features.launches.presentation
 
-import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshPagingColumn
+import abandonedstudio.app.tospace.domain.ui.component.SwipeRefreshPagingColumn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable

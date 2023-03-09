@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
-import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
-import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.domain.repository.NewsRepository
 import abandonedstudio.app.tospace.ToSpaceApplication
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
