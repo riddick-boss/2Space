@@ -19,8 +19,8 @@ class DataSource @Inject constructor(
 
     suspend fun getContentToSpeak(): String {
         val builder = StringBuilder()
-        val shouldReadLaunches = appBriefPreferencesRepository.launchesStatus.first()
-        val shouldReadArticles = appBriefPreferencesRepository.newsStatus.first()
+        val shouldReadLaunches = appBriefPreferencesRepository.areLaunchesEnabled.first()
+        val shouldReadArticles = appBriefPreferencesRepository.areNewsEnabled.first()
 
         if (shouldReadLaunches) {
             builder.append(convertLaunchToTTS())

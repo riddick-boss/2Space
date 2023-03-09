@@ -10,11 +10,11 @@ interface AppBriefPreferencesRepository {
 
     suspend fun saveLaunchesStatus(enabled: Boolean)
 
-    val launchesStatus: Flow<Boolean>
+    val areLaunchesEnabled: Flow<Boolean>
 
     suspend fun saveNewsStatus(enabled: Boolean)
 
-    val newsStatus: Flow<Boolean>
+    val areNewsEnabled: Flow<Boolean>
 
     suspend fun saveNewsToReadNumber(number: Int)
 

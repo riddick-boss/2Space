@@ -15,15 +15,15 @@ class AppBriefPreferencesRepositoryImpl @Inject constructor(
         appBriefPreferencesSource.saveLaunchesStatus(enabled)
     }
 
-    override val launchesStatus: Flow<Boolean>
-        get() = appBriefPreferencesSource.launchesStatus.map { it ?: false }
+    override val areLaunchesEnabled: Flow<Boolean>
+        get() = appBriefPreferencesSource.areLaunchesEnabled.map { it ?: false }
 
     override suspend fun saveNewsStatus(enabled: Boolean) {
         appBriefPreferencesSource.saveNewsStatus(enabled)
     }
 
-    override val newsStatus: Flow<Boolean>
-        get() = appBriefPreferencesSource.newsStatus.map { it ?: false }
+    override val areNewsEnabled: Flow<Boolean>
+        get() = appBriefPreferencesSource.areNewsEnabled.map { it ?: false }
 
     override suspend fun saveNewsToReadNumber(number: Int) {
         appBriefPreferencesSource.saveNewsToReadNumber(number)

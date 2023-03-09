@@ -24,7 +24,7 @@ class AppBriefViewModel @Inject constructor(
 
     val launchesStatus: StateFlow<Boolean> by lazy {
         appBriefPreferencesRepository
-            .launchesStatus
+            .areLaunchesEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 
@@ -40,7 +40,7 @@ class AppBriefViewModel @Inject constructor(
 
     val articlesStatus: StateFlow<Boolean> by lazy {
         appBriefPreferencesRepository
-            .newsStatus
+            .areNewsEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 
