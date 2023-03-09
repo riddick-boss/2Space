@@ -1,8 +1,8 @@
-package abandonedstudio.app.tospace.core.presentation.notification
+package abandonedstudio.app.tospace.domain.infrastructure.notification
 
 import abandonedstudio.app.tospace.BuildConfig
 
-object NotificationConstants {
+object NotificationProperties {
     const val ALL_LAUNCHES_NOTIFICATION_CHANNEL_ID = "ALL_LAUNCHES_NOTIFICATION_CHANNEL_ID"
     const val APP_BRIEF_VOICE_ASSISTANT_SERVICE_NOTIFICATION_CHANNEL_ID = "APP_BRIEF_VOICE_ASSISTANT_SERVICE_NOTIFICATION_CHANNEL_ID"
 

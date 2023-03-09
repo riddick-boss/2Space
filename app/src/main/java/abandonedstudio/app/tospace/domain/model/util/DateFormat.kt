@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.domain.model.util
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.domain.infrastructure.StringUtil
+import abandonedstudio.app.tospace.domain.infrastructure.util.StringUtil
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -1,6 +1,11 @@
-package abandonedstudio.app.tospace.core.presentation.notification.manager
+package abandonedstudio.app.tospace.domain.infrastructure.notification.push
 
 interface PushNotificationSettingsManager {
+
+    /**
+     * subscribes to all available topics
+     */
+    fun subscribeToTopics()
 
     fun subscribeToTopic(topic: Topic)
 

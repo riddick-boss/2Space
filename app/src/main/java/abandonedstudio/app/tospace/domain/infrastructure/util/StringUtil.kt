@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.domain.infrastructure
+package abandonedstudio.app.tospace.domain.infrastructure.util
 
 import abandonedstudio.app.tospace.ToSpaceApplication
 import androidx.annotation.StringRes

@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.domain.infrastructure.StringUtil
+import abandonedstudio.app.tospace.domain.infrastructure.util.StringUtil
 import abandonedstudio.app.tospace.domain.ui.component.TitledTextNoData
 import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import android.content.Context

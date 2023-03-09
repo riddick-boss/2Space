@@ -1,8 +1,8 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
+package abandonedstudio.app.tospace.core.app_brief.speech_source.tts
 
 import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
-import abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.AppBriefSpeechSource
+import abandonedstudio.app.tospace.core.app_brief.speech_source.AppBriefSpeechSource
 import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
@@ -74,7 +74,7 @@ class AppBriefTTS @Inject constructor(
         return speakingDone.first() // await for speaking completion
     }
 
-    override fun onDestroy() {
+    override fun destroy() {
         tts.stop()
         tts.shutdown()
     }

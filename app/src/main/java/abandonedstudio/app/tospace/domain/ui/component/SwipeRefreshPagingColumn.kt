@@ -1,7 +1,7 @@
 package abandonedstudio.app.tospace.domain.ui.component
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.domain.infrastructure.StringUtil
+import abandonedstudio.app.tospace.domain.infrastructure.util.StringUtil
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.layout.*

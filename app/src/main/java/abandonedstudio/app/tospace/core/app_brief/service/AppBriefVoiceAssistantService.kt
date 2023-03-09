@@ -1,6 +1,7 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service
+package abandonedstudio.app.tospace.core.app_brief.service
 
-import abandonedstudio.app.tospace.core.presentation.notification.AppBriefVoiceAssistantNotificationCenter
+import abandonedstudio.app.tospace.core.notification.center.AppBriefVoiceAssistantNotificationCenter
+import abandonedstudio.app.tospace.core.app_brief.speech_source.AppBriefSpeechSource
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -49,7 +50,7 @@ class AppBriefVoiceAssistantService : Service() {
 
     override fun onDestroy() {
         scope.cancel()
-        appBriefSpeechSource.onDestroy()
+        appBriefSpeechSource.destroy()
         super.onDestroy()
     }
 

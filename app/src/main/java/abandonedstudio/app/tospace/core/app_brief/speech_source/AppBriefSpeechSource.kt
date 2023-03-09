@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service
+package abandonedstudio.app.tospace.core.app_brief.speech_source
 
 interface AppBriefSpeechSource {
 
@@ -7,5 +7,5 @@ interface AppBriefSpeechSource {
     /**
      * optional, by default does nothing
      */
-    fun onDestroy() = run { }
+    fun destroy() = run { }
 }

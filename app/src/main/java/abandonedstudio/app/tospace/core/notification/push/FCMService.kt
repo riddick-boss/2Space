@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.presentation.notification.fcm
+package abandonedstudio.app.tospace.core.notification.push
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

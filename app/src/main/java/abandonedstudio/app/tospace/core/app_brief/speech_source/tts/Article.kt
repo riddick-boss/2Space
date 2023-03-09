@@ -1,4 +1,4 @@
-package abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.tts
+package abandonedstudio.app.tospace.core.app_brief.speech_source.tts
 
 data class Article(private val title: String, private val description: String?) {
 
