@@ -1,11 +1,6 @@
 package abandonedstudio.app.tospace.domain.infrastructure.paging
 
-import androidx.paging.PagingSource
-import androidx.paging.PagingState
-
-abstract class LaunchesPagingSource<DATA: Any> : PagingSource<String, DATA>() {
-
-    override fun getRefreshKey(state: PagingState<String, DATA>): String? = null
+abstract class LaunchesPagingSource<DATA: Any> : DefaultPagingSource<String, DATA>() {
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, DATA> =
         try {
