@@ -26,14 +26,14 @@ class DataStoreManager @Inject constructor(
         dataStore.edit { it[LAUNCHES_STATE_KEY] = enabled }
     }
 
-    override val launchesStatus: Flow<Boolean?>
+    override val areLaunchesEnabled: Flow<Boolean?>
         get() = dataStore.data.map { it[LAUNCHES_STATE_KEY] }.distinctUntilChanged()
 
     override suspend fun saveNewsStatus(enabled: Boolean) {
         dataStore.edit { it[NEWS_STATE_KEY] = enabled }
     }
 
-    override val newsStatus: Flow<Boolean?>
+    override val areNewsEnabled: Flow<Boolean?>
         get() = dataStore.data.map { it[NEWS_STATE_KEY] }.distinctUntilChanged()
 
     override suspend fun saveNewsToReadNumber(number: Int) {

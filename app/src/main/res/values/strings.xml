@@ -149,9 +149,9 @@
     <string name="app_brief_tts_loading_next_launch_failed">… Couldn\'t load next launch. … </string>
     <string name="app_brief_tts_launch_timestamp">Scheduled for %1$s %2$s %3$s, %4$s</string>
     <string name="app_brief_tts_launch_no_description">Not provided</string>
-    <string name="app_brief_tts_launch_from_now_days"> %1$s days </string>
-    <string name="app_brief_tts_launch_from_now_hours"> %1$s hours </string>
-    <string name="app_brief_tts_launch_from_now_minutes"> %1$s minutes </string>
+    <string name="app_brief_tts_launch_from_now_days"> %1$d days </string>
+    <string name="app_brief_tts_launch_from_now_hours"> %1$d hours </string>
+    <string name="app_brief_tts_launch_from_now_minutes"> %1$d minutes </string>
     <string name="app_brief_tts_launch_from_now">, which is %1$s %2$s %3$s from now</string>
     <string name="app_brief_tts_launch_tts">… Upcoming launch is: … %1$s. %2$s %3$s. Details: %4$s …</string>
     <!--   app brief tts -->

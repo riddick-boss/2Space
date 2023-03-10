@@ -1,22 +1,25 @@
 package abandonedstudio.app.tospace.features.app_brief_tts.presentation
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository
-import abandonedstudio.app.tospace.core.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
-import abandonedstudio.app.tospace.core.service.app_brief_voice_assistant_service.AppBriefServiceManager
+import abandonedstudio.app.tospace.domain.infrastructure.app_brief.AppBriefManager
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository
+import abandonedstudio.app.tospace.domain.repository.AppBriefPreferencesRepository.Companion.DEFAULT_ARTICLES_TO_READ_NUMBER
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AppBriefViewModel @Inject constructor(
     private val appBriefPreferencesRepository: AppBriefPreferencesRepository,
-    private val appBriefServiceManager: AppBriefServiceManager,
+    private val appBriefManager: AppBriefManager,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -24,7 +27,7 @@ class AppBriefViewModel @Inject constructor(
 
     val launchesStatus: StateFlow<Boolean> by lazy {
         appBriefPreferencesRepository
-            .launchesStatus
+            .areLaunchesEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 
@@ -40,7 +43,7 @@ class AppBriefViewModel @Inject constructor(
 
     val articlesStatus: StateFlow<Boolean> by lazy {
         appBriefPreferencesRepository
-            .newsStatus
+            .areNewsEnabled
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     }
 
@@ -76,6 +79,6 @@ class AppBriefViewModel @Inject constructor(
     }
 
     fun onPlayBriefClicked() {
-        appBriefServiceManager.startService()
+        appBriefManager.start()
     }
 }

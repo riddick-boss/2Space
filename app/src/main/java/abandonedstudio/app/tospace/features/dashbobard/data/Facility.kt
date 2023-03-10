@@ -1,9 +1,9 @@
 package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.presentation.component.CenteredTitledText
-import abandonedstudio.app.tospace.core.presentation.component.TitledText
-import abandonedstudio.app.tospace.core.presentation.util.contentDescription
+import abandonedstudio.app.tospace.domain.ui.component.CenteredTitledText
+import abandonedstudio.app.tospace.domain.ui.component.TitledText
+import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image

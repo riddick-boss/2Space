@@ -2,9 +2,9 @@ package abandonedstudio.app.tospace.core.data.repository.news
 
 import abandonedstudio.app.tospace.core.data.remote.news.articles.ArticlesRemoteApi
 import abandonedstudio.app.tospace.core.data.remote.news.events.EventsRemoteApi
-import abandonedstudio.app.tospace.core.domain.model.news.SpaceArticle
-import abandonedstudio.app.tospace.core.domain.model.news.SpaceEvent
-import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.domain.model.news.SpaceArticle
+import abandonedstudio.app.tospace.domain.model.news.SpaceEvent
+import abandonedstudio.app.tospace.domain.repository.NewsRepository
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
@@ -12,14 +12,14 @@ class NewsRepositoryImpl @Inject constructor(
     private val articlesApi: ArticlesRemoteApi
 ) : NewsRepository {
 
-    private fun fckRussia(title: String?): Boolean =
+    private fun FCK_russia(title: String?): Boolean =
         !(title?.contains("russian", ignoreCase = true) ?: false)
 
     override suspend fun loadUpcomingEvents(): List<SpaceEvent> =
         eventsApi.loadUpcomingEvents().toSpaceEvents()
-            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
+            .filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
 
     override suspend fun loadArticles(number: Int): List<SpaceArticle> =
         articlesApi.loadArticles(number).toSpaceArticles()
-            .filter { fckRussia(it.title) } // boycott! stay strong ukraine!
+            .filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
 }

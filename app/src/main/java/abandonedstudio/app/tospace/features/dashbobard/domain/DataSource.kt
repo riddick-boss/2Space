@@ -1,11 +1,11 @@
 package abandonedstudio.app.tospace.features.dashbobard.domain
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.model.launches.DetailedLaunch
-import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
-import abandonedstudio.app.tospace.core.domain.repository.WeatherRepository
-import abandonedstudio.app.tospace.core.domain.util.DateFormat
-import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
+import abandonedstudio.app.tospace.domain.model.launches.DetailedLaunch
+import abandonedstudio.app.tospace.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.domain.repository.WeatherRepository
+import abandonedstudio.app.tospace.domain.model.util.DateFormat
+import abandonedstudio.app.tospace.domain.infrastructure.util.StringUtil
 import abandonedstudio.app.tospace.features.dashbobard.data.FacilityWeather
 import abandonedstudio.app.tospace.features.dashbobard.data.SpaceXLaunch
 import javax.inject.Inject

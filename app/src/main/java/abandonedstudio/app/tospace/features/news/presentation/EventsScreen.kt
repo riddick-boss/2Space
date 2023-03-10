@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.features.news.presentation
 
-import abandonedstudio.app.tospace.core.presentation.component.SwipeRefreshResultLazyColumn
+import abandonedstudio.app.tospace.domain.ui.component.SwipeRefreshResultLazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalUriHandler

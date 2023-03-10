@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.features.launches.data
 
-import abandonedstudio.app.tospace.core.domain.util.DateFormat
-import abandonedstudio.app.tospace.core.presentation.theme.DarkGrayBackground
-import abandonedstudio.app.tospace.core.presentation.util.contentDescription
+import abandonedstudio.app.tospace.domain.model.util.DateFormat
+import abandonedstudio.app.tospace.domain.ui.theme.DarkGrayBackground
+import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card

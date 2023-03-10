@@ -1,9 +1,7 @@
 package abandonedstudio.app.tospace
 
-import abandonedstudio.app.tospace.core.presentation.notification.AllLaunchesNotificationCenter
-import abandonedstudio.app.tospace.core.presentation.notification.NotificationConstants
-import abandonedstudio.app.tospace.core.presentation.notification.manager.PushNotificationSettingsManager
-import abandonedstudio.app.tospace.core.presentation.notification.manager.Topic
+import abandonedstudio.app.tospace.domain.infrastructure.notification.center.AllLaunchesNotificationCenter
+import abandonedstudio.app.tospace.domain.infrastructure.notification.push.PushNotificationSettingsManager
 import android.app.Application
 import android.content.res.Resources
 import dagger.hilt.android.HiltAndroidApp
@@ -27,11 +25,7 @@ class ToSpaceApplication : Application() {
         super.onCreate()
         Companion.resources = resources
 
-        pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.APP_UPDATE_TOPIC_VALUE))
-        pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.ALL_LAUNCHES_TOPIC_VALUE))
-        if (BuildConfig.DEBUG) {
-            pushNotificationSettingsManager.subscribeToTopic(Topic(NotificationConstants.DEBUG_TOPIC_VALUE))
-        }
+        pushNotificationSettingsManager.subscribeToTopics()
 
         allLaunchesNotificationCenter.start.launchIn(scope)
     }
