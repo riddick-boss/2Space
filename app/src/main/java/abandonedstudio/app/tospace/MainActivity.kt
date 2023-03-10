@@ -6,9 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import abandonedstudio.app.tospace.core.presentation.theme.ToSpaceTheme
-import abandonedstudio.app.tospace.core.presentation.util.contentDescription
-import abandonedstudio.app.tospace.core.navigation.maindrawer.MainDrawer
+import abandonedstudio.app.tospace.domain.ui.navigation.MainDrawer
+import abandonedstudio.app.tospace.domain.ui.theme.ToSpaceTheme
+import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.layout.ContentScale

@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.features.launches.domain
 
-import abandonedstudio.app.tospace.core.domain.model.launches.Launch
-import abandonedstudio.app.tospace.core.domain.model.launches.LaunchesPagingSource
-import abandonedstudio.app.tospace.core.domain.repository.LaunchesRepository
+import abandonedstudio.app.tospace.domain.model.launches.Launch
+import abandonedstudio.app.tospace.domain.infrastructure.paging.LaunchesPagingSource
+import abandonedstudio.app.tospace.domain.repository.LaunchesRepository
 import abandonedstudio.app.tospace.features.launches.data.UpcomingLaunch
 import javax.inject.Inject
 

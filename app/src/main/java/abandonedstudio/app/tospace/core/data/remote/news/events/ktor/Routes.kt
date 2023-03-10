@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.core.data.remote.news.events.ktor
 
+import abandonedstudio.app.tospace.BuildConfig
+
 object Routes {
 
-    private const val BASE_URL = "https://ll.thespacedevs.com/2.2.0/"
-
-    const val EVENTS_URL = "${BASE_URL}event/upcoming/?limit=40"
+    const val EVENTS_URL = "${BuildConfig.SPACE_DEVS_BASE_URL}event/upcoming/?limit=40"
 }

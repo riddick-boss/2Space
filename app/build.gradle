@@ -22,12 +22,12 @@ def androidGitVersionCode = androidGitVersion.code()
 def androidGitVersionName = androidGitVersion.name()
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "abandonedstudio.app.tospace"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode androidGitVersionCode
         versionName androidGitVersionName
         manifestPlaceholders = [
@@ -52,6 +52,8 @@ android {
         buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
         buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
         buildConfigField("String", "DATASTORE_PREFERENCES_NAME", localProperties.getProperty('DATASTORE_PREFERENCES_NAME', '"DATASTORE_PREFERENCES_NAME"'))
+        buildConfigField("String", "SPACE_FLIGHT_NEWS_URL", '"https://api.spaceflightnewsapi.net/v3/"')
+        buildConfigField("String", "OPEN_WEATHER_URL", '"https://api.openweathermap.org/data/2.5/"')
     }
 
     signingConfigs {
@@ -77,6 +79,8 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://ll.thespacedevs.com/2.2.0/"')
         }
 
         debug {
@@ -86,6 +90,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             manifestPlaceholders.APP_NAME_SUFFIX = " Debug"
+//            applicationIdSuffix '.debug'
+
+            buildConfigField("String", "SPACE_DEVS_BASE_URL", '"https://lldev.thespacedevs.com/2.2.0/"')
         }
     }
     compileOptions {
@@ -99,7 +106,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerExtensionVersion '1.3.0'
     }
     packagingOptions {
         resources {
@@ -111,16 +118,17 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
 
 //    Compose
-    implementation 'androidx.activity:activity-compose:1.5.0'
+    implementation 'androidx.activity:activity-compose:1.6.0'
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation "androidx.compose.animation:animation:$compose_version"
     implementation "androidx.compose.ui:ui-tooling:$compose_version"
-    implementation 'com.google.android.material:compose-theme-adapter:1.1.14'
+    implementation 'com.google.android.material:compose-theme-adapter:1.1.19'
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha02"
 
 //    Accompanist
 //    Pager
@@ -133,7 +141,7 @@ dependencies {
 
 //    AndroidX paging
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
-    implementation 'androidx.paging:paging-compose:1.0.0-alpha15'
+    implementation 'androidx.paging:paging-compose:1.0.0-alpha16'
 
 //    Coil
     implementation "io.coil-kt:coil-compose:2.1.0"
@@ -167,7 +175,7 @@ dependencies {
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
 
 //    Firebase
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation platform('com.google.firebase:firebase-bom:30.5.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-messaging-ktx'
@@ -178,7 +186,7 @@ dependencies {
 //    LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
-//   Local Unit Tests
+//    Unit Tests
     implementation "androidx.test:core:1.4.0"
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.hamcrest:hamcrest-all:1.3"

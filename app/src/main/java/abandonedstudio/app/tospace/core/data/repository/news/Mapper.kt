@@ -2,8 +2,8 @@ package abandonedstudio.app.tospace.core.data.repository.news
 
 import abandonedstudio.app.tospace.core.data.remote.news.articles.dto.ArticlesResponseItem
 import abandonedstudio.app.tospace.core.data.remote.news.events.dto.TheSpaceDevsEventResponse
-import abandonedstudio.app.tospace.core.domain.model.news.SpaceArticle
-import abandonedstudio.app.tospace.core.domain.model.news.SpaceEvent
+import abandonedstudio.app.tospace.domain.model.news.SpaceArticle
+import abandonedstudio.app.tospace.domain.model.news.SpaceEvent
 
 fun TheSpaceDevsEventResponse.toSpaceEvents(): List<SpaceEvent> =
     this.results?.map {

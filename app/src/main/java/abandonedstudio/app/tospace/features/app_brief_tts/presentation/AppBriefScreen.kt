@@ -16,18 +16,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.chargemap.compose.numberpicker.NumberPicker
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun AppBriefScreen(
     viewModel: AppBriefViewModel = hiltViewModel()
 ) {
-    val articlesToReadRange = 1..20
-
-    val launchesStatus by viewModel.launchesStatus.collectAsState()
-    val articlesStatus by viewModel.articlesStatus.collectAsState()
-    val articlesToReadNumber by viewModel.articlesToReadNumber.collectAsState()
-    val playAppBriefButtonVisible by viewModel.playAppBriefButtonVisible.collectAsState()
+    val launchesStatus by viewModel.launchesStatus.collectAsStateWithLifecycle()
+    val articlesStatus by viewModel.articlesStatus.collectAsStateWithLifecycle()
+    val articlesToReadNumber by viewModel.articlesToReadNumber.collectAsStateWithLifecycle()
+    val playAppBriefButtonVisible by viewModel.playAppBriefButtonVisible.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -55,7 +56,7 @@ fun AppBriefScreen(
                 NumberSetting(
                     titleResId = R.string.app_brief_screen_articles_number_setting_title,
                     number = articlesToReadNumber,
-                    range = articlesToReadRange,
+                    range = viewModel.articlesToReadRange,
                     onNumberSelected = viewModel::onArticlesToReadNumberChange
                 )
             }

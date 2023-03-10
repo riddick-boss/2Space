@@ -1,8 +1,8 @@
 package abandonedstudio.app.tospace.features.dashbobard.data
 
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.extension.showToast
-import abandonedstudio.app.tospace.core.presentation.util.contentDescription
+import abandonedstudio.app.tospace.domain.infrastructure.extension.showToast
+import abandonedstudio.app.tospace.domain.ui.util.contentDescription
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.PaddingValues

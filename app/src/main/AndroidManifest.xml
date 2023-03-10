@@ -31,7 +31,7 @@
         </activity>
 
         <service
-            android:name=".core.service.fcm.FCMService"
+            android:name=".core.notification.push.FCMService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -39,7 +39,7 @@
         </service>
 
         <service
-            android:name=".core.service.app_brief_voice_assistant_service.AppBriefVoiceAssistantService"
+            android:name=".core.app_brief.service.AppBriefVoiceAssistantService"
             android:exported="false"
             android:label="@string/app_brief_voice_service_label" />
     </application>

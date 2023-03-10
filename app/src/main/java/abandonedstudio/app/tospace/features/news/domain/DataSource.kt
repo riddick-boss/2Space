@@ -1,6 +1,6 @@
 package abandonedstudio.app.tospace.features.news.domain
 
-import abandonedstudio.app.tospace.core.domain.repository.NewsRepository
+import abandonedstudio.app.tospace.domain.repository.NewsRepository
 import abandonedstudio.app.tospace.features.news.data.Article
 import abandonedstudio.app.tospace.features.news.data.Event
 import javax.inject.Inject

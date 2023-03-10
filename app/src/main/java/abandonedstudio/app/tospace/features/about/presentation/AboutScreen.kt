@@ -2,8 +2,7 @@ package abandonedstudio.app.tospace.features.about.presentation
 
 import abandonedstudio.app.tospace.BuildConfig
 import abandonedstudio.app.tospace.R
-import abandonedstudio.app.tospace.core.domain.util.resources.StringUtil
-import abandonedstudio.app.tospace.core.presentation.theme.HyperLinkColor
+import abandonedstudio.app.tospace.domain.ui.theme.HyperLinkColor
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -152,14 +151,14 @@ private fun composeEmail(context: Context, emails: Array<String>) {
     val intent = Intent(Intent.ACTION_SENDTO).apply {
         data = Uri.parse("mailto:") // only email apps
         putExtra(Intent.EXTRA_EMAIL, emails)
-        putExtra(Intent.EXTRA_SUBJECT, StringUtil.getString(R.string.about_email_subject))
+        putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.about_email_subject))
     }
     try {
         context.startActivity(intent)
     } catch (e: Exception) {
         Toast.makeText(
             context,
-            StringUtil.getString(R.string.cannot_send_email_info),
+            context.getString(R.string.cannot_send_email_info),
             Toast.LENGTH_SHORT
         ).show()
     }
