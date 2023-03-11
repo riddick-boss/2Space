@@ -22,6 +22,9 @@ class DateFormat(timeStampMillis: Long) { // this class may be open in future if
     val hoursAndMinutes: String
         get() = SimpleDateFormat("HH:mm", Locale.US).format(date)
 
+    val hoursAndMinutes12: String
+        get() = SimpleDateFormat("h:mm a", Locale.US).format(date)
+
     val dayOfWeekShort: String
         get() = SimpleDateFormat("EEE", Locale.US).format(date)
 

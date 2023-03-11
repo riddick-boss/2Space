@@ -11,10 +11,10 @@ data class Launch(private val name: String, private val description: String?, pr
 
     private val _description: String = description ?: ToSpaceApplication.resources.getString(R.string.app_brief_tts_launch_no_description)
 
-    private val _timeStamp: String = timeStamp?.let { ToSpaceApplication.resources.getString(R.string.app_brief_tts_launch_timestamp, it.day, it.monthName, it.yearShort, it.hoursAndMinutes) }.orEmpty()
+    private val _timeStamp: String = timeStamp?.let { ToSpaceApplication.resources.getString(R.string.app_brief_tts_launch_timestamp, it.day, it.monthName, it.hoursAndMinutes12) }.orEmpty()
 
-    private val _fromNow: String = timeStampMillis?.let {
-        var time = abs(now - timeStampMillis) / 1000 // from millis to seconds
+    private val _fromNow: String = timeStampMillis?.let { millis ->
+        var time = abs(now - millis) / 1000 // from millis to seconds
         val days = abs(time / 86_400).let { if (it <= 0) "" else ToSpaceApplication.resources.getString(R.string.app_brief_tts_launch_from_now_days, it) } // 60sec * 60min * 24h
         time %= 86_400
         val hours = abs(time / 3600).let { if (it <= 0) "" else ToSpaceApplication.resources.getString(R.string.app_brief_tts_launch_from_now_hours, it) } // 60sec * 60min
