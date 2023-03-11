@@ -75,7 +75,7 @@ private fun calculateTimeStamp(windowStart: String?, windowEnd: String?): Long? 
         return start
     }
 
-    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = zone }.parse(it)?.time } // convert window start to millis
+    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = zone }.parse(it)?.time } // convert window end to millis
 
     if (end != null && end > now) { // if window end has not started yet
         return end
