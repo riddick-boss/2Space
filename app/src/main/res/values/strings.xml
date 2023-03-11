@@ -147,7 +147,7 @@
     <string name="app_brief_tts_articles_separator">… Next article: … </string>
     <string name="app_brief_tts_loading_articles_failed">… Couldn\'t load articles. …</string>
     <string name="app_brief_tts_loading_next_launch_failed">… Couldn\'t load next launch. … </string>
-    <string name="app_brief_tts_launch_timestamp">Scheduled for %1$s %2$s %3$s, %4$s</string>
+    <string name="app_brief_tts_launch_timestamp">Scheduled for %1$s %2$s, at %3$s</string>
     <string name="app_brief_tts_launch_no_description">Not provided</string>
     <string name="app_brief_tts_launch_from_now_days"> %1$d days </string>
     <string name="app_brief_tts_launch_from_now_hours"> %1$d hours </string>

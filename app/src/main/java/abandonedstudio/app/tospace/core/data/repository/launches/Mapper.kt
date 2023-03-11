@@ -5,6 +5,7 @@ import abandonedstudio.app.tospace.core.data.remote.launches.dto.LaunchDetailedR
 import abandonedstudio.app.tospace.domain.model.launches.DetailedLaunch
 import abandonedstudio.app.tospace.domain.model.launches.Launch
 import abandonedstudio.app.tospace.domain.infrastructure.paging.LaunchesPagingSource
+import android.os.Build
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.util.*
@@ -62,13 +63,19 @@ private fun calculateTimeStamp(windowStart: String?, windowEnd: String?): Long? 
 
     val now = System.currentTimeMillis()
 
-    val start = windowStart?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = TimeZone.getTimeZone(ZoneId.of("UTC")) }.parse(it)?.time } // convert window start to millis
+    val zone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        TimeZone.getTimeZone(ZoneId.of("UTC"))
+    } else {
+        TimeZone.getDefault()
+    }
+
+    val start = windowStart?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = zone }.parse(it)?.time } // convert window start to millis
 
     if (start != null && start > now) { // if window start has not started yet
         return start
     }
 
-    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = TimeZone.getTimeZone(ZoneId.of("UTC")) }.parse(it)?.time } // convert window start to millis
+    val end = windowEnd?.let { SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").apply { timeZone = zone }.parse(it)?.time } // convert window end to millis
 
     if (end != null && end > now) { // if window end has not started yet
         return end
