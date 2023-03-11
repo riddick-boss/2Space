@@ -13,7 +13,7 @@ class NewsRepositoryImpl @Inject constructor(
 ) : NewsRepository {
 
     private fun FCK_russia(title: String?): Boolean =
-        !(title?.contains("russian", ignoreCase = true) ?: false)
+        !(title?.contains("russia", ignoreCase = true) ?: false)
 
     override suspend fun loadUpcomingEvents(): List<SpaceEvent> =
         eventsApi.loadUpcomingEvents().toSpaceEvents()
