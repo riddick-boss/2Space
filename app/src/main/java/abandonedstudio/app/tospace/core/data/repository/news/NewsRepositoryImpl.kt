@@ -9,17 +9,21 @@ import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
     private val eventsApi: EventsRemoteApi,
-    private val articlesApi: ArticlesRemoteApi
+    private val articlesApi: ArticlesRemoteApi,
+    private val mapper: NewsMapper
 ) : NewsRepository {
 
     private fun FCK_russia(title: String?): Boolean =
         !(title?.contains("russia", ignoreCase = true) ?: false)
 
-    override suspend fun loadUpcomingEvents(): List<SpaceEvent> =
-        eventsApi.loadUpcomingEvents().toSpaceEvents()
-            .filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+    override suspend fun loadUpcomingEvents(): List<SpaceEvent> {
+        val events = eventsApi.loadUpcomingEvents()
+        return mapper.toSpaceEvents(events).filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+    }
 
-    override suspend fun loadArticles(number: Int): List<SpaceArticle> =
-        articlesApi.loadArticles(number).toSpaceArticles()
-            .filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+
+    override suspend fun loadArticles(number: Int): List<SpaceArticle> {
+        val articles = articlesApi.loadArticles(number)
+        return mapper.toSpaceArticles(articles).filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+    }
 }
