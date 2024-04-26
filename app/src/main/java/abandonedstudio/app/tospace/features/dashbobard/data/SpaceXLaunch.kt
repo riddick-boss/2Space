@@ -312,13 +312,13 @@ private fun MissionLogo(
                     model = logoImgPath,
                     contentDescription = contentDescription(),
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize().padding(8.dp)
+                    modifier = Modifier.padding(8.dp)
                 ) {
                     val state = painter.state
                     if (state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error) {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(modifier = Modifier.size(32.dp))
                     } else {
-                        SubcomposeAsyncImageContent()
+                        SubcomposeAsyncImageContent(modifier =  Modifier.fillMaxSize())
                     }
                 }
             }
