@@ -18,12 +18,12 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun loadUpcomingEvents(): List<SpaceEvent> {
         val events = eventsApi.loadUpcomingEvents()
-        return mapper.toSpaceEvents(events).filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+        return mapper.toSpaceEvents(events).filter { FCK_russia(it.title) } // fck rus! stay strong Ukraine!
     }
 
 
     override suspend fun loadArticles(number: Int): List<SpaceArticle> {
         val articles = articlesApi.loadArticles(number)
-        return mapper.toSpaceArticles(articles).filter { FCK_russia(it.title) } // boycott! stay strong Ukraine!
+        return mapper.toSpaceArticles(articles).filter { FCK_russia(it.title) } // fck rus! stay strong Ukraine!
     }
 }
