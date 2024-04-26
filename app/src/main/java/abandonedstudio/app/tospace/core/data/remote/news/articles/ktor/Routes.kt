@@ -5,5 +5,5 @@ import abandonedstudio.app.tospace.BuildConfig
 object Routes {
 
     fun articlesUrl(articlesNumber: Int): String =
-        "${BuildConfig.SPACE_FLIGHT_NEWS_URL}articles?_limit=$articlesNumber"
+        "${BuildConfig.SPACE_FLIGHT_NEWS_URL}articles/?limit=$articlesNumber&offset=0"
 }

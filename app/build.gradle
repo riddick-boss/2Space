@@ -52,7 +52,7 @@ android {
         buildConfigField("String", "APP_UPDATE_TOPIC_VALUE", localProperties.getProperty('APP_UPDATE_TOPIC_VALUE', '"app_update"'))
         buildConfigField("String", "DEBUG_TOPIC_VALUE", localProperties.getProperty('DEBUG_TOPIC_VALUE', '"debug_topic"'))
         buildConfigField("String", "DATASTORE_PREFERENCES_NAME", localProperties.getProperty('DATASTORE_PREFERENCES_NAME', '"DATASTORE_PREFERENCES_NAME"'))
-        buildConfigField("String", "SPACE_FLIGHT_NEWS_URL", '"https://api.spaceflightnewsapi.net/v3/"')
+        buildConfigField("String", "SPACE_FLIGHT_NEWS_URL", '"https://api.spaceflightnewsapi.net/v4/"')
         buildConfigField("String", "OPEN_WEATHER_URL", '"https://api.openweathermap.org/data/2.5/"')
     }
 

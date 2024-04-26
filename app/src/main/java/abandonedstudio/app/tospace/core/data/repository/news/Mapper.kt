@@ -17,12 +17,14 @@ fun TheSpaceDevsEventResponse.toSpaceEvents(): List<SpaceEvent> =
         )
     } ?: emptyList()
 
-fun List<ArticlesResponseItem>.toSpaceArticles() =
-    this.map {
-        SpaceArticle(
-            title = it.title,
-            summary = it.summary,
-            imageUrl = it.imageUrl,
-            url = it.url
-        )
+fun ArticlesResponseItem.toSpaceArticles() =
+    this.let { response ->
+        response.results?.map {
+            SpaceArticle(
+                title = it?.title,
+                summary = it?.summary,
+                imageUrl = it?.imageUrl,
+                url = it?.url
+            )
+        } ?: emptyList()
     }
