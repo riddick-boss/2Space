@@ -41,39 +41,43 @@ Sample test:
 ```kotlin
     @Before
     fun setUp() {
-        httpClient = HttpClient(Android) {
-            install(Logging) {
-                level = if(BuildConfig.DEBUG) LogLevel.ALL else LogLevel.NONE
-                logger = object : Logger {
-                    override fun log(message: String) {
-                        println("CustomKtorHttpLogger: $message")
-                    }
-
-                }
-            }
-            install(ContentNegotiation) {
-                json(Json {
-                    ignoreUnknownKeys = true
-                })
-            }
+        eventsApi = mock {
+            onBlocking { loadUpcomingEvents() } doReturn mock()
         }
-        api = KtorLaunchesRemoteApi(httpClient)
+        articlesApi = mock {
+            onBlocking { loadArticles(any()) } doReturn mock()
+        }
+        mapper = mock {
+            on { toSpaceEvents(any()) } doReturn listOf(
+                SpaceEvent(title = "title1", description = "desc1", imageUrl = null, newsUrl = null, videoUrl = null, type = null)
+            )
+            on { toSpaceArticles(any()) } doReturn listOf(
+                SpaceArticle(title = "title1", summary = "summary1", imageUrl = null, url = null)
+            )
+        }
+        repository = NewsRepositoryImpl(
+            eventsApi = eventsApi,
+            articlesApi = articlesApi,
+            mapper = mapper
+        )
     }
-
+    
     @After
     fun tearDown() {
-        httpClient.close()
+        unmockkAll()
     }
 
     @Test
-    fun `fetching and parsing upcoming launches without errors`() = runBlocking {
-        var exception: Exception? = null
-        try {
-            val data = api.loadUpcomingLaunches(null)
-        } catch (e: Exception) {
-            exception = e
-        }
-        Truth.assertThat(exception).isNull()
+    fun `loadArticles calls articles api`(): Unit = runBlocking {
+        val numOfArticles = 10
+        repository.loadArticles(numOfArticles)
+        verify(articlesApi).loadArticles(numOfArticles)
+    }
+    
+    @Test
+    fun `loadArticles calls mapper`(): Unit = runBlocking {
+        repository.loadArticles(1)
+        verify(mapper).toSpaceArticles(any())
     }
 ```
 
