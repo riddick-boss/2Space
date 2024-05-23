@@ -22,7 +22,10 @@ class LaunchesRepositoryImplTest {
 
     @Before
     fun setUp() {
-        api = mock()
+        api = mock {
+            onBlocking { loadUpcomingLaunches(any()) } doReturn mock()
+            onBlocking { loadUpcomingLaunches(null) } doReturn mock()
+        }
         mapper = mock {
             on { toLaunchesPage(any()) } doReturn LaunchesPagingSource.Page(data = listOf(
                 Launch("","",Launch.LaunchStatus(0, "", "", ""),Launch.LaunchPad("", ""),"","","",0,0)
@@ -59,10 +62,9 @@ class LaunchesRepositoryImplTest {
         verify(api).loadUpcomingLaunches(next)
     }
 
-//    @Test
-//    fun `loadUpcomingLaunch calls api loadUpcomingLaunch`(): Unit = runBlocking {
-//        //need to resolve nullPointerException
-//        repository.loadUpcomingLaunch()
-//        verify(api).loadUpcomingLaunches(null)
-//    }
+    @Test
+    fun `loadUpcomingLaunch calls api loadUpcomingLaunch`(): Unit = runBlocking {
+        repository.loadUpcomingLaunch()
+        verify(api).loadUpcomingLaunches(null)
+    }
 }
