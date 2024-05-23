@@ -122,7 +122,7 @@ private fun ContactItem() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = R.string.about_issue_title),
+            text = stringResource(id = R.string.about_contact_us),
             style = MaterialTheme.typography.subtitle1,
             color = Color.White
         )
