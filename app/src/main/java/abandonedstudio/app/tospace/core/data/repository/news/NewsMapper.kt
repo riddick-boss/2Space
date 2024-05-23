@@ -7,8 +7,8 @@ import abandonedstudio.app.tospace.domain.model.news.SpaceEvent
 import javax.inject.Inject
 
 class NewsMapper @Inject constructor() {
-    fun toSpaceEvents(response: TheSpaceDevsEventResponse): List<SpaceEvent> = response.let { resp ->
-        resp.results?.map {
+    fun toSpaceEvents(response: TheSpaceDevsEventResponse): List<SpaceEvent> =
+        response.results?.map {
             SpaceEvent(
                 title = it?.name,
                 description = it?.description,
@@ -18,16 +18,13 @@ class NewsMapper @Inject constructor() {
                 type = it?.type?.name
             )
         } ?: emptyList()
-    }
 
-    fun toSpaceArticles(response: List<ArticlesResponseItem>) = response.let { resp ->
-        resp.map {
-            SpaceArticle(
-                title = it.title,
-                summary = it.summary,
-                imageUrl = it.imageUrl,
-                url = it.url
-            )
-        }
-    }
+    fun toSpaceArticles(response: ArticlesResponseItem): List<SpaceArticle> = response.results?.map {
+        SpaceArticle(
+            title = it?.title,
+            summary = it?.summary,
+            imageUrl = it?.imageUrl,
+            url = it?.url
+        )
+    } ?: emptyList()
 }
