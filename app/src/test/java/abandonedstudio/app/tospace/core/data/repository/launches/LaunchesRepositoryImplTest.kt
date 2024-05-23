@@ -3,7 +3,6 @@ package abandonedstudio.app.tospace.core.data.repository.launches
 import abandonedstudio.app.tospace.core.data.remote.launches.LaunchesRemoteApi
 import abandonedstudio.app.tospace.domain.infrastructure.paging.LaunchesPagingSource
 import abandonedstudio.app.tospace.domain.model.launches.Launch
-import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -30,7 +29,7 @@ class LaunchesRepositoryImplTest {
             on { toLaunchesPage(any()) } doReturn LaunchesPagingSource.Page(data = listOf(
                 Launch("","",Launch.LaunchStatus(0, "", "", ""),Launch.LaunchPad("", ""),"","","",0,0)
             ), next = null)
-            on { toDetailedLaunch(any()) } doReturn mockk(relaxed = true)
+            on { toDetailedLaunch(any()) } doReturn mock()
         }
         repository = LaunchesRepositoryImpl(
             launchesRemoteApi = api,
