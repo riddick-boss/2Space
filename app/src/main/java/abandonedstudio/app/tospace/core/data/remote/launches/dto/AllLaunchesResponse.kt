@@ -42,6 +42,8 @@ data class AllLaunchesResponse(
         val name: String? = null,
         @SerialName("net")
         val net: String? = null,
+        @SerialName("net_precision")
+        val netPrecision: NetPrecision? = null,
         @SerialName("pad")
         val pad: Pad? = null,
         @SerialName("probability")
@@ -101,6 +103,15 @@ data class AllLaunchesResponse(
                 val name: String? = null
             )
         }
+
+        @Keep
+        @Serializable
+        data class NetPrecision(
+            @SerialName("id")
+            val id: Int? = null,
+            @SerialName("abbrev")
+            val abbrev: String? = null
+        )
 
         @Keep
         @Serializable

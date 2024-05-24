@@ -165,4 +165,8 @@
     <string name="app_brief_screen_articles_setting_title">Articles</string>
     <string name="app_brief_screen_articles_number_setting_title">Articles to read:</string>
     <!--   app brief screen -->
+
+    <!--   upcoming launch -->
+    <string name="upcoming_launch_start_time_unknown">Unknown start time</string>
+    <!--   upcoming launch -->
 </resources>
