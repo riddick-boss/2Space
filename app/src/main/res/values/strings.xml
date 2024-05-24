@@ -120,7 +120,7 @@
     <string name="about_mention_spacex_api">SpaceX API</string>
     <string name="about_mention_open_weather_map_api">OpenWeatherMap API</string>
     <string name="about_mention_the_space_devs">The Space Devs</string>
-    <string name="about_issue_title">Have an issue?\nContact us via:</string>
+    <string name="about_contact_us">Contact us via:</string>
     <string name="about_email_subject">2Space app</string>
     <string name="no_email_provided">Sorry, no email provided</string>
     <string name="cannot_send_email_info">Sorry, can not send email</string>
@@ -165,4 +165,8 @@
     <string name="app_brief_screen_articles_setting_title">Articles</string>
     <string name="app_brief_screen_articles_number_setting_title">Articles to read:</string>
     <!--   app brief screen -->
+
+    <!--   upcoming launch -->
+    <string name="upcoming_launch_start_time_unknown">Unknown start time</string>
+    <!--   upcoming launch -->
 </resources>

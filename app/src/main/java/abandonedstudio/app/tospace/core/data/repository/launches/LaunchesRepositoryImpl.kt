@@ -8,18 +8,27 @@ import abandonedstudio.app.tospace.domain.repository.LaunchesRepository
 import javax.inject.Inject
 
 class LaunchesRepositoryImpl @Inject constructor(
-    private val launchesRemoteApi: LaunchesRemoteApi
+    private val launchesRemoteApi: LaunchesRemoteApi,
+    private val mapper: LaunchesMapper
 ) : LaunchesRepository {
 
-    override suspend fun fetchNextLaunch(): DetailedLaunch =
-        launchesRemoteApi.fetchNextLaunch().toDetailedLaunch()
+    override suspend fun fetchNextLaunch(): DetailedLaunch {
+        val nextLaunch = launchesRemoteApi.fetchNextLaunch()
+        return mapper.toDetailedLaunch(nextLaunch)
+    }
 
-    override suspend fun fetchPreviousLaunch(): DetailedLaunch =
-        launchesRemoteApi.fetchPreviousLaunch().toDetailedLaunch()
+    override suspend fun fetchPreviousLaunch(): DetailedLaunch {
+        val prevLaunch = launchesRemoteApi.fetchPreviousLaunch()
+        return mapper.toDetailedLaunch(prevLaunch)
+    }
 
-    override suspend fun loadUpcomingLaunches(next: String?): LaunchesPagingSource.Page<Launch> =
-        launchesRemoteApi.loadUpcomingLaunches(next).toLaunchesPage()
+    override suspend fun loadUpcomingLaunches(next: String?): LaunchesPagingSource.Page<Launch> {
+        val upcomingLaunches = launchesRemoteApi.loadUpcomingLaunches(next)
+        return mapper.toLaunchesPage(upcomingLaunches)
+    }
 
-    override suspend fun loadUpcomingLaunch(): Launch =
-        launchesRemoteApi.loadUpcomingLaunches(null).toLaunchesPage().data.first()
+    override suspend fun loadUpcomingLaunch(): Launch {
+        val upcomingLaunches = launchesRemoteApi.loadUpcomingLaunches(null)
+        return mapper.toLaunchesPage(upcomingLaunches).data.first()
+    }
 }
