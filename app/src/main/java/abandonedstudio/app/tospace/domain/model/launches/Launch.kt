@@ -11,7 +11,8 @@ data class Launch(
     val imageUrl: String?,
     val infographicUrl: String?,
     val probability: Int?,
-    val timeStampMillis: Long?
+    val timeStampMillis: Long?,
+    val netPrecision: Int?
 ) {
 
     data class LaunchStatus(

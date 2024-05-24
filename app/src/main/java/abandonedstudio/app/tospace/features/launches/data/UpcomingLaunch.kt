@@ -1,9 +1,15 @@
 package abandonedstudio.app.tospace.features.launches.data
 
-import abandonedstudio.app.tospace.domain.model.util.DateFormat
+import abandonedstudio.app.tospace.R
 import abandonedstudio.app.tospace.domain.ui.theme.DarkGrayBackground
 import abandonedstudio.app.tospace.domain.ui.util.contentDescription
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
@@ -15,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
@@ -28,7 +35,7 @@ data class UpcomingLaunch(
     val imageUrl: String?,
     val infographicUrl: String?,
     val probability: Int?,
-    val timeStamp: DateFormat? // TODO: String?
+    val startTime: String?
 ) {
 
     data class LaunchStatus(
@@ -74,7 +81,9 @@ private fun UpcomingLaunchCard(launch: UpcomingLaunch) {
                         model = it,
                         contentDescription = contentDescription(),
                         contentScale = ContentScale.FillWidth,
-                        modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(8.dp)),
                         loading = {
                             Box(
                                 contentAlignment = Alignment.Center,
@@ -95,14 +104,12 @@ private fun UpcomingLaunchCard(launch: UpcomingLaunch) {
                     )
                 }
 
-                launch.timeStamp?.format(DateFormat.Precision.YEAR)?.also {
-                    Text(
-                        text = it,
-                        color = Color.White,
-                        style = MaterialTheme.typography.subtitle1,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+                Text(
+                    text = launch.startTime ?: stringResource(id = R.string.upcoming_launch_start_time_unknown),
+                    color = Color.White,
+                    style = MaterialTheme.typography.subtitle1,
+                    fontWeight = FontWeight.Bold
+                )
 
                 launch.description?.also {
                     Text(

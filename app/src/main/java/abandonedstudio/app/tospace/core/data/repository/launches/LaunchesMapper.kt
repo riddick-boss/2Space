@@ -57,7 +57,8 @@ class LaunchesMapper @Inject constructor() {
                     imageUrl = result?.image,
                     infographicUrl = result?.infographic,
                     probability = result?.probability,
-                    timeStampMillis = calculateTimeStamp(result?.windowStart, result?.windowEnd)
+                    timeStampMillis = calculateTimeStamp(result?.windowStart, result?.windowEnd),
+                    netPrecision = result?.netPrecision?.id
                 )
             } ?: emptyList(),
             next = it.next
